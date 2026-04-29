@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "presets": {
+    "x": {
+      "default": {
+        "resolution": {
+          "width": 1080,
+          "height": 1080
+        },
+        "background": {
+          "library": "unified",
+          "mode": "random",
+          "file": null
+        },
+        "layout": {
+          "headerReciter": {
+            "x": 70,
+            "y": 70,
+            "anchor": "top_left"
+          },
+          "headerSurah": {
+            "x": -70,
+            "y": 70,
+            "anchor": "top_right"
+          },
+          "divider": {
+            "y": 170
+          },
+          "verseArea": {
+            "paddingX": 120,
+            "paddingTop": 230,
+            "paddingBottom": 110
+          }
+        },
+        "typography": {
+          "headerFontSize": 38,
+          "verseStartFontSize": 55,
+          "verseMinFontSize": 20,
+          "verseLineHeightMultiplier": 1.6,
+          "verseGlowBlur": 6,
+          "headerGlowBlur": 10
+        }
+      }
+    },
+    "youtube": {
+      "default": {
+        "resolution": {
+          "width": 1920,
+          "height": 1080
+        },
+        "background": {
+          "library": "unified",
+          "mode": "fixed",
+          "file": "bg1.jpg"
+        },
+        "layout": {
+          "surah": {
+            "x": 0.5,
+            "y": 730,
+            "unit": "px",
+            "anchor": "center"
+          },
+          "reciter": {
+            "x": 0.5,
+            "y": 860,
+            "unit": "px",
+            "anchor": "center"
+          },
+          "range": {
+            "x": 0.5,
+            "y": 960,
+            "unit": "px",
+            "anchor": "center"
+          },
+          "dua": {
+            "x": 0.5,
+            "y": 1040,
+            "unit": "px",
+            "anchor": "center"
+          },
+          "textBackground": {
+            "enabled": false,
+            "y": 500,
+            "height": 580
+          }
+        },
+        "typography": {
+          "videoFontSizeSurah": 110,
+          "videoFontSizeReciter": 75,
+          "videoFontSizeRange": 50,
+          "videoFontSizeDua": 35,
+          "textStrokeWidth": 2,
+          "textShadowOpacity": 0.95,
+          "textBackgroundOpacity": 0
+        }
+      }
+    }
+  }
+}

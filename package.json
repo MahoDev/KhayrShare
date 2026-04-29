@@ -1,0 +1,27 @@
+{
+  "name": "KhayrShare",
+  "version": "1.0.0",
+  "description": "Functional assistant services for content curation and media generation",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest",
+    "start:content-suggester": "node src/services/content-suggester/manual-assistant.js",
+    "start:media-generator": "node src/services/media-generator/generator.js",
+    "sync:content": "node src/services/content-suggester/sync-content.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MahoDev/sharing-helpers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MahoDev/sharing-helpers/issues"
+  },
+  "homepage": "https://github.com/MahoDev/sharing-helpers#readme"
+}

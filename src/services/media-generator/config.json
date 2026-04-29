@@ -1,0 +1,52 @@
+{
+  "trigger": {
+    "probability": 1,
+    "checkIntervalMinutes": 120,
+    "enabled": true,
+    "comment": "15% chance per check, running every 30 minutes"
+  },
+  "videoMode": {
+    "useXPosterStyle": false,
+    "useYouTubeStyle": true,
+    "randomSelection": false,
+    "comment": "Both styles enabled, randomly selected each time"
+  },
+  "output": {
+    "suggestionsDir": "./suggestions",
+    "videoOutputDir": "./output"
+  },
+  "settings": {
+    "visuals": {
+      "textBottomOffset": 100,
+      "videoFontSizeSurah": 130,
+      "videoFontSizeReciter": 90,
+      "videoFontSizeRange": 60,
+      "videoFontSizeDua": 45,
+      "textStrokeWidth": 3,
+      "textShadowOpacity": 0.9,
+      "textBackgroundOpacity": 0.3,
+      "comment": "Visual settings: Font sizes in px, Stroke width in px, Opacities 0.0-1.0"
+    },
+    "excludedReciters": [
+      37
+    ],
+    "comment": "Reciter IDs to exclude (matches x_poster settings)"
+  },
+  "testMode": {
+    "enabled": true,
+    "comment": "Set to true to test dua phrase implementation. Generate test videos to preview before deployment."
+  },
+  "paths": {
+    "xPosterContentFetcher": "../x_poster/content-fetcher.js",
+    "xPosterVideoGenerator": "../x_poster/video-generator.js",
+    "xPosterTextRenderer": "../x_poster/text-renderer.js",
+    "youtubePosterVideoGenerator": "../youtube_poster/video-generator.js",
+    "youtubePosterThumbnailGenerator": "../youtube_poster/thumbnail-generator.js",
+    "recitersJson": "../x_poster/reciters.json",
+    "facebookConfig": "../facebook_poster/config.json"
+  },
+  "manualGeneration": {
+    "isRandom": true,
+    "style": "youtube"
+  }
+}

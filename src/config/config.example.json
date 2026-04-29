@@ -1,0 +1,5 @@
+{
+  "CONTENT_LIBRARY_PATH": "/absolute/path/to/content",
+  "OUTPUT_PATH": "/absolute/path/to/output",
+  "LOG_LEVEL": "info"
+}

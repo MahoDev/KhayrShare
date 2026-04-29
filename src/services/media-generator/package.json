@@ -1,0 +1,14 @@
+{
+  "name": "video_generator_service",
+  "version": "1.0.0",
+  "description": "Background video generator for Quran content",
+  "main": "scheduler.js",
+  "scripts": {
+    "start": "node scheduler.js",
+    "test": "node generator.js"
+  },
+  "dependencies": {
+    "node-cron": "^3.0.3",
+    "sharp": "^0.34.5"
+  }
+}

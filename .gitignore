@@ -1,0 +1,13 @@
+node_modules/
+fb_session/
+x_session/
+yt_session/
+output/
+logs/
+temp/
+*.lnk
+package-lock.json
+dist/
+src/config/config.json
+*.log
+.env*
