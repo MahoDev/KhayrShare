@@ -37,13 +37,13 @@
     "comment": "Set to true to test dua phrase implementation. Generate test videos to preview before deployment."
   },
   "paths": {
-    "xPosterContentFetcher": "../x_poster/content-fetcher.js",
-    "xPosterVideoGenerator": "../x_poster/video-generator.js",
-    "xPosterTextRenderer": "../x_poster/text-renderer.js",
-    "youtubePosterVideoGenerator": "../youtube_poster/video-generator.js",
-    "youtubePosterThumbnailGenerator": "../youtube_poster/thumbnail-generator.js",
-    "recitersJson": "../x_poster/reciters.json",
-    "facebookConfig": "../facebook_poster/config.json"
+    "xPosterContentFetcher": "../media-generator/content-fetcher.js",
+    "xPosterVideoGenerator": "../video-publisher/video-generator.js",
+    "xPosterTextRenderer": "../media-generator/text-renderer.js",
+    "youtubePosterVideoGenerator": "../video-publisher/video-generator.js",
+    "youtubePosterThumbnailGenerator": "../video-publisher/thumbnail-generator.js",
+    "recitersJson": "../../global_assets/english-rectier-names.json",
+    "facebookConfig": "../content-suggester/config.json"
   },
   "manualGeneration": {
     "isRandom": true,

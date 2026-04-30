@@ -8,8 +8,10 @@
   },
   "scripts": {
     "test": "jest",
-    "start:content-suggester": "node src/services/content-suggester/manual-assistant.js",
-    "start:media-generator": "node src/services/media-generator/generator.js",
+    "start:content-suggester": "node src/services/content-suggester/scheduler.js",
+    "start:media-generator": "node src/services/media-generator/scheduler.js",
+    "start:background": "pm2 start ecosystem.config.js",
+    "stop:background": "pm2 stop ecosystem.config.js",
     "sync:content": "node src/services/content-suggester/sync-content.js"
   },
   "repository": {
@@ -23,5 +25,14 @@
   "bugs": {
     "url": "https://github.com/MahoDev/sharing-helpers/issues"
   },
-  "homepage": "https://github.com/MahoDev/sharing-helpers#readme"
+  "homepage": "https://github.com/MahoDev/sharing-helpers#readme",
+  "dependencies": {
+    "luxon": "^3.7.2",
+    "node-cron": "^4.2.1",
+    "node-notifier": "^10.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "prettier": "^3.8.3"
+  }
 }

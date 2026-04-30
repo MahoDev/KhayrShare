@@ -262,8 +262,7 @@ class VideoGenerator {
 
     // 2. Build FFmpeg command with overlay
     const baseFilter = `scale=${this.width}:${this.height}:force_original_aspect_ratio=increase,crop=${this.width}:${this.height}`;
-    const zoom =
-      `zoompan=z='min(zoom+0.0005,1.1)':d=1:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=${this.width}x${this.height}`;
+    const zoom = `zoompan=z='min(zoom+0.0005,1.1)':d=1:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=${this.width}x${this.height}`;
 
     let filter;
     if (isGif) {

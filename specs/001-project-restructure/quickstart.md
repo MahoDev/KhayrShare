@@ -2,8 +2,8 @@
 
 1. **Clone the repository**:
    ```bash
-   git clone <new-repo-url> human-assister
-   cd human-assister
+   git clone <new-repo-url> KhayrShare
+   cd KhayrShare
    ```
 
 2. **Install dependencies**:

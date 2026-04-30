@@ -1,0 +1,35 @@
+{
+  "settings": {
+    "manualAssistPort": 38211,
+    "manualAssistVerbose": true,
+    "maxSuggestionsPerDay": 2,
+    "priorityContentRatio": 0.5,
+    "skipDayProbability": 0.1,
+    "checkIntervalMinutes": 60,
+    "enabled": true
+  },
+  "taxonomy": {
+    "categories": {
+      "quran": "quran",
+      "reminder": "reminder",
+      "dua": "dua",
+      "general": "general"
+    },
+    "days": {
+      "friday": "Friday",
+      "any": "any"
+    }
+  },
+  "groups": [
+    {
+      "name": "General Islamic Reminders",
+      "url": "https://www.facebook.com/groups/example1",
+      "categories": ["general", "reminder"]
+    },
+    {
+      "name": "Quran Lovers",
+      "url": "https://www.facebook.com/groups/example2",
+      "categories": ["quran"]
+    }
+  ]
+}

@@ -54,9 +54,10 @@ class VideoGenerator {
 
     // 1. Check for manual params passed via environment variable (ephemeral run)
     let manualParams = null;
-    const envSource = process.env.MANUAL_PARAMS || process.env._ || process.env.PARAMS;
-    
-    if (envSource && envSource.trim().startsWith('{')) {
+    const envSource =
+      process.env.MANUAL_PARAMS || process.env._ || process.env.PARAMS;
+
+    if (envSource && envSource.trim().startsWith("{")) {
       try {
         manualParams = JSON.parse(envSource);
       } catch (e) {
@@ -72,21 +73,29 @@ class VideoGenerator {
 
     if (manualConfig) {
       // Support common typo variations or lowercase
-      const rId = manualConfig.reciterId || manualConfig.reciterid || manualConfig.reciter_id;
+      const rId =
+        manualConfig.reciterId ||
+        manualConfig.reciterid ||
+        manualConfig.reciter_id;
       if (rId) {
         options.reciterId = rId;
         console.log(`[VideoGen] Manual Reciter ID detected: ${rId}`);
       }
 
       // Only force MANUAL mode if surah is specified
-      const isRnd = manualConfig.isRandom !== undefined ? manualConfig.isRandom : manualConfig.isandom;
+      const isRnd =
+        manualConfig.isRandom !== undefined
+          ? manualConfig.isRandom
+          : manualConfig.isandom;
       if (isRnd === false && manualConfig.surahId) {
         options.mode = "MANUAL";
         options.surah = manualConfig.surahId;
         const start = manualConfig.startVerse || 1;
         const end = manualConfig.endVerse || 10;
         options.verseRange = `${start}-${end}`;
-        console.log(`[VideoGen] Manual Content Mode: Surah ${options.surah}, Range ${options.verseRange}`);
+        console.log(
+          `[VideoGen] Manual Content Mode: Surah ${options.surah}, Range ${options.verseRange}`,
+        );
       }
     }
 
@@ -518,7 +527,9 @@ if (require.main === module) {
             endVerse = startVerse;
           }
           if (endVerse < startVerse) {
-            throw new Error(`Invalid range: endVerse < startVerse (${startVerse}-${endVerse})`);
+            throw new Error(
+              `Invalid range: endVerse < startVerse (${startVerse}-${endVerse})`,
+            );
           }
 
           manual.isRandom = false;
