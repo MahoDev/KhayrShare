@@ -1,36 +1,42 @@
-# Quickstart: Integrated Media Pipeline
+# Quickstart: Integrate Recovered Files
 
-## Prerequisites
-- Node.js v18+
-- FFmpeg (for video generation)
-- Internet connection (for audio fetching)
+## Overview
+This feature restores the functionality of the `media-generator` and `content-suggester` services by integrating previously lost critical files and configuration data.
 
-## Installation
-The system uses the root `package.json`. New dependencies will be added automatically during implementation.
+## Integration Steps
 
-```powershell
-npm install
+1. **Move Files**:
+   - Move `recovered-files/reciters.json` to `global_assets/reciters.json`.
+   - Move `recovered-files/content-fetcher.js` to `src/services/media-generator/content-fetcher.js`.
+   - Move `recovered-files/text-renderer.js` to `src/services/media-generator/text-renderer.js`.
+
+2. **Install Missing Dependencies**:
+   ```bash
+   npm install axios
+   npm install canvas --save-optional
+   ```
+
+3. **Update Configuration**:
+   - Merge `recovered-files/config.json` into `src/services/content-suggester/config.json`.
+   - Update `src/services/media-generator/config.json` path references.
+
+4. **Clean Codebase**:
+   - Update `src/services/media-generator/generator.js` to remove deprecated paths.
+   - Delete the `recovered-files/` directory permanently.
+
+## Running the Services
+
+Once integration is complete, test the services individually:
+
+```bash
+# Test the Media Generator
+npm run start:media-generator
+
+# Test the Content Suggester
+npm run start:content-suggester
 ```
 
-## Running Services
-Both services are managed via PM2 for background execution.
-
-### Start All Services
-```powershell
+Or run all background services via PM2:
+```bash
 ./start-all.bat
 ```
-
-### Manual Service Control
-```powershell
-# Content Suggester (Scheduler)
-npm run start:content-suggester
-
-# Media Generator (Scheduler)
-npm run start:media-generator
-```
-
-## Verification
-- **Logs**: Check PM2 logs with `pm2 logs`.
-- **Output**: 
-  - Suggestions -> `OUTPUT_PATH/next_post.txt`
-  - Videos -> `OUTPUT_PATH/*.mp4`

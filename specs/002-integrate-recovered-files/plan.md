@@ -1,35 +1,35 @@
-# Implementation Plan: Integrate & Refactor Recovered Media Pipeline Files
+# Implementation Plan: [FEATURE]
 
-**Branch**: `002-integrate-recovered-files` | **Date**: 2026-04-30 | **Spec**: [spec.md](./spec.md)
+**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+
+**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/plan-template.md` for the execution workflow.
 
 ## Summary
-This feature restores the core media generation and content suggestion capabilities by integrating recovered legacy files into the new `src/services/` structure. The technical approach involves refactoring hardcoded legacy paths, moving shared assets (like `reciters.json`) to a global location, and establishing proper service boundaries to ensure long-term maintainability without data loss.
+
+Integrate the recovered legacy files (`content-fetcher.js`, `text-renderer.js`, `reciters.json`, and group configs) into the new KhayrShare service architecture. Restore background functionality for the media-generator and content-suggester services while preserving all existing data and ensuring the architecture remains modular and extensible without deprecated path references.
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+**Language/Version**: Node.js (JavaScript)
+**Primary Dependencies**: axios, canvas (optionalDependency)
+**Storage**: Filesystem (`config.json`, `reciters.json`)
+**Testing**: N/A (Integration testing via manual service execution)
+**Target Platform**: Node.js / PM2
+**Project Type**: Background automation services
+**Performance Goals**: Reliable periodic execution without memory leaks or unhandled crashes
+**Constraints**: Zero data loss for recovered group URLs; must handle network failures gracefully
+**Scale/Scope**: ~200 Facebook groups, 43 reciters, low-frequency execution (e.g., 1 video/12h)
 
-**Language/Version**: Node.js v18+ (LTS)  
-**Primary Dependencies**: `node-cron`, `pm2`, `axios` (new), `canvas` (optional, new)  
-**Storage**: JSON flat-file storage (`config.json`, `reciters.json`, `content.json`)  
-**Testing**: `node:test` (built-in Node.js runner) - NEEDS CLARIFICATION for project-wide setup  
-**Target Platform**: Windows (user local environment)
-**Project Type**: Automation Background Services  
-**Performance Goals**: N/A (scheduled intervals)  
-**Constraints**: Zero data loss for group URLs; zero references to legacy directories.  
-**Scale/Scope**: ~200 Facebook groups, 43 reciters.
+## Constitution Check
 
-### Principles Audit
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-- **Principle I (Modular Architecture)**: ✅ PASS. Recovered logic is being moved into service-specific folders.
-- **Principle II (Configuration Externalization)**: ✅ PASS. All paths and group data are moved into JSON config files.
-- **Principle III (Test-First Development)**: ⚠️ VIOLATION. Project currently lacks a test runner. Research task 0.1 added.
-- **Principle IV (Observability & Logging)**: ✅ PASS. Logic uses existing console logging compatible with PM2.
-- **Principle V (Graceful Degradation)**: ✅ PASS. Fetcher includes retry logic with backoff.
+- [x] **Modular Architecture**: Files correctly assigned to service vs. shared directories.
+- [x] **Configuration Externalization**: Hardcoded paths removed; config files merged correctly.
+- [x] **Test-First Development**: Manual integration tests defined in spec scenarios.
+- [x] **Observability & Logging**: Services maintain PM2 logging compatibility.
+- [x] **Graceful Degradation**: External dependencies (like `canvas`) made optional; `content-fetcher.js` uses retry loops.
 
 ## Project Structure
 
@@ -46,39 +46,23 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
-
 ```text
 global_assets/
-├── reciters.json        # Shared reciter database (moved from recovered-files)
-├── fonts/               # Shared fonts for rendering
-├── images/              # Shared backgrounds
-└── quranKFGQPC-data.js  # Shared Quran text data
+└── reciters.json
 
 src/
 ├── services/
-│   ├── media-generator/
-│   │   ├── config.json       # Paths updated to global_assets
-│   │   ├── generator.js      # Refactored for new paths
-│   │   ├── content-fetcher.js # Moved from recovered-files
-│   │   └── text-renderer.js   # Moved from recovered-files
-│   └── content-suggester/
-│       └── config.json       # Merged with real group data
-└── lib/
-    └── shared-utils.js       # (Future) Shared logic
+│   ├── content-suggester/
+│   │   └── config.json
+│   └── media-generator/
+│       ├── config.json
+│       ├── content-fetcher.js
+│       ├── generator.js
+│       └── text-renderer.js
 ```
 
-**Structure Decision**: Option 1 (Single project) - The services share `global_assets` but remain logically separated in the `src/services` directory.
-
-## Complexity Tracking
+**Structure Decision**: A single monorepo structure where shared data (`reciters.json`) lives in `global_assets/` and service-specific logic (`content-fetcher.js`, `text-renderer.js`) lives inside the isolated `src/services/media-generator/` boundary.
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| Principle III | Project lacks testing infrastructure. | Implementing tests now would require setting up the infrastructure from scratch. | Research task will define a minimal setup. |
+*(No violations detected)*

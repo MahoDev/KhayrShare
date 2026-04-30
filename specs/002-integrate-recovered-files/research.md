@@ -1,23 +1,22 @@
-# Research: Recovered Files Integration
+# Research & Decisions: Integrate Recovered Files
 
-## R0.1: Testing Infrastructure
-**Decision**: Use Node.js built-in `node:test` runner.
-**Rationale**: Aligns with Principle VII (Minimize external dependencies). Zero setup required other than creating `.test.js` files.
-**Alternatives considered**: Vitest (too much overhead for this stage), Jest (complex configuration).
+## Technical Context Unknowns Resolved
 
-## R0.2: Canvas Dependency on Windows
-**Decision**: Keep as `optionalDependency`.
-**Rationale**: `canvas` requires native build tools (Python, Visual Studio) on Windows. If installation fails, the service can still run in YouTube-landscape mode (which doesn't use `text-renderer.js` yet).
-**Implementation**: Use dynamic `import()` or `require()` within a try-catch block in `text-renderer.js` to prevent runtime crashes if the module is missing.
+- **Canvas Dependency on Windows**:
+  - *Decision*: Add `canvas` as an `optionalDependency` in `package.json`.
+  - *Rationale*: Canvas often fails to compile on Windows without Visual Studio build tools. Since `useXPosterStyle` is false by default, it is not on the critical path, and optional installation prevents `npm install` from failing.
+  - *Alternatives considered*: Normal dependency (rejected due to high likelihood of failure), mocking (rejected as it disables the feature entirely).
 
-## R0.3: Path Resolution Strategy
-**Decision**: Use absolute paths resolved from the project root in configuration, but keep `path.resolve(__dirname, ...)` for internal service dependencies.
-**Rationale**: Ensures services can be run from any CWD (like via PM2) while maintaining the modularity requested in Principle I.
-**Implementation**: 
-- Shared assets -> `global_assets/`
-- Service configs -> `src/services/<service>/config.json`
-- Service-to-Service references -> Relative paths in `config.json`.
+- **Path Resolution for Recovered Files**:
+  - *Decision*: Place `reciters.json` in `global_assets/` and `content-fetcher.js` / `text-renderer.js` in `src/services/media-generator/`. Update paths to use `../../global_assets/` relative mapping.
+  - *Rationale*: Centralizes shared static data while keeping service-specific logic inside the service boundary.
+  - *Alternatives considered*: Placing all files in `global_assets/` (rejected, logic shouldn't be in assets).
 
-## R0.4: Merging Config Data
-**Decision**: Replace only the `groups` key in `content-suggester/config.json`.
-**Rationale**: Preserves the user's specific `checkIntervalMinutes` and `taxonomy` settings which were correctly initialized in the new structure.
+- **Configuration Merging**:
+  - *Decision*: Merge recovered `config.json` group data into `src/services/content-suggester/config.json`, replacing dummy groups while keeping existing settings and taxonomy.
+  - *Rationale*: Preserves the actual posting targets without losing the scheduler configurations added during refactoring.
+
+## Best Practices & Patterns
+
+- **Graceful Degradation**: `content-fetcher.js` must handle network errors using exponential backoff to adhere to Constitution Principle V.
+- **Externalization**: No hardcoded paths to deprecated directories (`youtube_poster`, `x_poster`) should remain in the code (Constitution Principle II).
