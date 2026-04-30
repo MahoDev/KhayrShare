@@ -42,8 +42,9 @@ async function test() {
             console.log(content);
             console.log("-------------------------------\n");
             
-            const json = JSON.parse(content.replace(/\\/g, "\\\\"));
-            const groupUrl = json.group?.url;
+            // Parse the plain-text format for the group URL
+            const groupSection = content.match(/\[ FACEBOOK GROUP \][\s\S]*?\n([^\n]+)\n([^\n]+)/);
+            const groupUrl = groupSection ? groupSection[2].trim() : null;
             
             if (groupUrl && groupUrl.startsWith("https://www.facebook.com/groups/")) {
                 console.log(`SUCCESS: Found group URL: ${groupUrl}`);

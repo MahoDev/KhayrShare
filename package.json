@@ -15,8 +15,6 @@
     "sync:content": "node src/services/content-suggester/sync-content.js",
     "test:media-generator": "node src/services/media-generator/test.js",
     "test:content-suggester": "node src/services/content-suggester/test.js"
-
-
   },
   "repository": {
     "type": "git",
@@ -32,6 +30,7 @@
   "homepage": "https://github.com/MahoDev/sharing-helpers#readme",
   "dependencies": {
     "axios": "^1.15.2",
+    "chokidar": "^5.0.0",
     "luxon": "^3.7.2",
     "node-cron": "^4.2.1",
     "node-notifier": "^10.0.1"

@@ -21,6 +21,17 @@ module.exports = {
       env: {
         NODE_ENV: "production",
       }
+    },
+    {
+      name: "khayr-watcher",
+      script: "./src/services/content-suggester/watcher.js",
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: "150M",
+      env: {
+        NODE_ENV: "production",
+      }
     }
   ]
 };

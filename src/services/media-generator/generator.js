@@ -314,36 +314,49 @@ class VideoGenerator {
       `suggestion_${timestamp}.txt`,
     );
 
-    const fileContent = `Generated: ${new Date().toLocaleString("en-US", { timeZone: "Africa/Cairo" })}
-Style: ${style === "x_poster" ? "X-Poster (1080x1080)" : "YouTube (1920x1080)"}
+    const sep = "─".repeat(60);
 
-Matching Groups (${matchType}):
-${groupListText || "No matching groups found"}
-
-Caption:
-${caption}
-
-YouTube Tags:
-${youtubeTags}
-
-Video Path:
-${absVideoPath}
-
-Thumbnail Path:
-${thumbnailPath}`;
+    const fileContent = [
+      `[ KhayrShare Video Suggestion ]`,
+      `Generated: ${new Date().toLocaleString("en-US", { timeZone: "Africa/Cairo" })}`,
+      sep,
+      ``,
+      `[ VIDEO FILE ]`,
+      absVideoPath,
+      ``,
+      `[ THUMBNAIL FILE ]`,
+      thumbnailPath,
+      ``,
+      sep,
+      `[ YOUTUBE TITLE ]`,
+      ytMetadata.title || "",
+      ``,
+      `[ YOUTUBE DESCRIPTION / CAPTION ]`,
+      caption,
+      ``,
+      `[ YOUTUBE TAGS ]`,
+      youtubeTags,
+      ``,
+      sep,
+      `[ FACEBOOK GROUPS TO POST IN (${matchType}) ]`,
+      groupListText || "No matching groups found",
+    ].join("\n");
 
     fs.writeFileSync(suggestionFile, fileContent, "utf8");
     console.log(`[VideoGen] Suggestion file created: ${suggestionFile}`);
 
-    // Open in default text editor
-    const openCmd =
-      process.platform === "win32"
-        ? `start "" "${suggestionFile}"`
-        : process.platform === "darwin"
-          ? `open "${suggestionFile}"`
-          : `xdg-open "${suggestionFile}"`;
+    // Open in Notepad++ on Windows (fallback to default if not installed)
+    let openCmd;
+    if (process.platform === "win32") {
+      const npp = `"C:\\Program Files\\Notepad++\\notepad++.exe"`;
+      openCmd = `${npp} "${suggestionFile}" 2>nul || start "" "${suggestionFile}"`;
+    } else if (process.platform === "darwin") {
+      openCmd = `open "${suggestionFile}"`;
+    } else {
+      openCmd = `xdg-open "${suggestionFile}"`;
+    }
 
-    exec(openCmd, { windowsHide: true });
+    exec(openCmd, { windowsHide: true, shell: true });
 
     return suggestionFile;
   }

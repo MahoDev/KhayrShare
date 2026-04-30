@@ -174,20 +174,32 @@ function ensureServerStarted(config) {
 }
 
 function formatSuggestionText(suggestion) {
-  const cleanSuggestion = { ...suggestion };
+  const sep = "─".repeat(60);
+  const group = suggestion.group || {};
+  const content = suggestion.content || {};
 
-  // 1. Ensure the internal string uses single backslashes
-  if (cleanSuggestion.content && cleanSuggestion.content.imagePath) {
-    cleanSuggestion.content.imagePath =
-      cleanSuggestion.content.imagePath.replace(/\//g, "\\");
-  }
-
-  // 2. Stringify the object
-  let jsonString = JSON.stringify(cleanSuggestion, null, 2);
-
-  // 3. Post-process the string to convert double backslashes back to single
-  // This looks for "\\" in the string and turns them into "\"
-  return jsonString.replace(/\\\\/g, "\\");
+  return [
+    `[ KhayrShare Facebook Suggestion ]`,
+    `Generated: ${suggestion.createdAt || ""}  |  Day: ${suggestion.day || ""}`,
+    sep,
+    ``,
+    `[ FACEBOOK GROUP ]`,
+    group.name || "",
+    group.url || "",
+    ``,
+    sep,
+    `[ CAPTION TO PASTE ]`,
+    content.caption || "(no caption)",
+    ``,
+    sep,
+    `[ IMAGE FILE PATH ]`,
+    content.imagePath || content.image || "",
+    ``,
+    sep,
+    `[ STATUS ]`,
+    `Mark as done: change finishedPosting to true, then save this file.`,
+    `finishedPosting: ${suggestion.finishedPosting ? "true" : "false"}`,
+  ].join("\n");
 }
 
 function showToast(config, title, message, groupUrl) {
@@ -218,11 +230,11 @@ function showToast(config, title, message, groupUrl) {
         if (!err) {
           logVerbose(config, `Debug: groupUrl is '${groupUrl}'`);
 
-          // Open PENDING_TXT_FILE with default opener
           if (fs.existsSync(txtPath)) {
+            // Open in Notepad on Windows
             const openFileCmd =
               process.platform === "win32"
-                ? `start "" "${txtPath}"`
+                ? `notepad.exe "${txtPath}"`
                 : process.platform === "darwin"
                   ? `open "${txtPath}"`
                   : `xdg-open "${txtPath}"`;
@@ -478,17 +490,14 @@ async function createPendingSuggestion(config) {
   // Check if there's a pending suggestion that is NOT finishedPosting
   if (hasPendingSuggestion()) {
     const txtContent = fs.readFileSync(PENDING_TXT_FILE, "utf8");
-    try {
-      const pending = JSON.parse(txtContent.replace(/\\/g, "\\\\"));
-      if (pending && pending.finishedPosting !== true) {
-        logVerbose(
-          config,
-          "Pending suggestion exists and not finishedPosting; not creating another.",
-        );
-        return null;
-      }
-    } catch {
-      // If JSON is malformed, treat as no pending suggestion
+    // Check the plain-text status line
+    const isDone = /finishedPosting:\s*true/i.test(txtContent);
+    if (!isDone) {
+      logVerbose(
+        config,
+        "Pending suggestion exists and not finishedPosting; not creating another.",
+      );
+      return null;
     }
   }
 
@@ -559,16 +568,39 @@ function markDone() {
   }
 
   const txtContent = fs.readFileSync(PENDING_TXT_FILE, "utf8");
-  let pending;
-  try {
-    pending = JSON.parse(txtContent);
-  } catch {
-    console.log("Pending suggestion file is not valid JSON.");
-    return false;
-  }
+
+  // Parse the plain-text format
+  const getLine = (label) => {
+    const lines = txtContent.split("\n");
+    const idx = lines.findIndex(l => l.trim() === `[ ${label} ]`);
+    if (idx === -1) return null;
+    // Return the first non-empty line after the label
+    for (let i = idx + 1; i < lines.length; i++) {
+      const v = lines[i].trim();
+      if (v && !v.startsWith("[") && !v.startsWith("─")) return v;
+    }
+    return null;
+  };
+
+  const groupUrl = getLine("FACEBOOK GROUP") ? null : null; // url is second non-sep line after label
+  // Extract group URL specifically (second content line under [ FACEBOOK GROUP ])
+  const groupSection = txtContent.match(/\[ FACEBOOK GROUP \][\s\S]*?\n([^\n]+)\n([^\n]+)/);
+  const parsedGroupName = groupSection ? groupSection[1].trim() : null;
+  const parsedGroupUrl = groupSection ? groupSection[2].trim() : null;
+
+  const imageSection = txtContent.match(/\[ IMAGE FILE PATH \][\s\S]*?\n([^\n─\[]+)/);
+  const parsedImage = imageSection ? imageSection[1].trim() : null;
+
+  const isDone = /finishedPosting:\s*true/i.test(txtContent);
+
+  const pending = {
+    group: { url: parsedGroupUrl, name: parsedGroupName },
+    content: { image: parsedImage, isPriority: false },
+    finishedPosting: isDone,
+  };
 
   // If finishedPosting is true, clear the pending suggestion and update history
-  if (pending.finishedPosting === true) {
+  if (isDone) {
     const groupUrl = pending.group?.url;
     const contentImage = pending.content?.image;
 
