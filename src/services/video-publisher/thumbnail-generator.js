@@ -25,6 +25,8 @@ class ThumbnailGenerator {
     const surahInfoPath = path.resolve(
       __dirname,
       "..",
+      "..",
+      "..",
       "global_assets",
       "surah_info.json",
     );

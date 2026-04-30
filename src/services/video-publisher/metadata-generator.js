@@ -13,6 +13,8 @@ class MetadataGenerator {
     const surahInfoPath = path.resolve(
       __dirname,
       "..",
+      "..",
+      "..",
       "global_assets",
       "surah_info.json",
     );
@@ -30,6 +32,8 @@ class MetadataGenerator {
     // Load English Reciter Names
     const englishNamesPath = path.resolve(
       __dirname,
+      "..",
+      "..",
       "..",
       "global_assets",
       "english-rectier-names.json",

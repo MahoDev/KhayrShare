@@ -44,6 +44,8 @@ class ContentFetcher {
     const surahInfoPath = path.resolve(
       __dirname,
       "..",
+      "..",
+      "..",
       "global_assets",
       "surah_info.json",
     );
@@ -120,12 +122,13 @@ class ContentFetcher {
     if (this.quranMap) return;
 
     try {
-      const assetPath = path.resolve("../global_assets/quranKFGQPC-data.js");
+      // Corrected relative path from project root
+      const assetPath = path.resolve("global_assets/quranKFGQPC-data.js");
       // Check if file exists to avoid silent failures
       if (!fs.existsSync(assetPath)) {
-        // Try alternate path if running from different cwd
+        // Try alternate path based on __dirname for robustness
         const altPath = path.resolve(
-          path.join(__dirname, "../global_assets/quranKFGQPC-data.js"),
+          path.join(__dirname, "../../../global_assets/quranKFGQPC-data.js"),
         );
         if (fs.existsSync(altPath)) {
           const quranModule = await import("file://" + altPath);
@@ -133,7 +136,7 @@ class ContentFetcher {
           console.log("Local Quran Text loaded successfully (alternate path).");
           return;
         }
-        throw new Error(`Quran data file not found at ${assetPath}`);
+        throw new Error(`Quran data file not found at ${assetPath} or ${altPath}`);
       }
       const quranModule = await import("file://" + assetPath);
       this.quranMap = quranModule.quranText;

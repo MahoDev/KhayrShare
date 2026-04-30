@@ -29,11 +29,13 @@
   },
   "homepage": "https://github.com/MahoDev/sharing-helpers#readme",
   "dependencies": {
+    "arabic-reshaper": "^1.1.0",
     "axios": "^1.15.2",
     "chokidar": "^5.0.0",
     "luxon": "^3.7.2",
     "node-cron": "^4.2.1",
-    "node-notifier": "^10.0.1"
+    "node-notifier": "^10.0.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "jest": "^30.3.0",
