@@ -123,12 +123,12 @@ class ContentFetcher {
 
     try {
       // Corrected relative path from project root
-      const assetPath = path.resolve("global_assets/quranKFGQPC-data.js");
+      const assetPath = path.resolve("global_assets/quranKFGQPC-data.mjs");
       // Check if file exists to avoid silent failures
       if (!fs.existsSync(assetPath)) {
         // Try alternate path based on __dirname for robustness
         const altPath = path.resolve(
-          path.join(__dirname, "../../../global_assets/quranKFGQPC-data.js"),
+          path.join(__dirname, "../../../global_assets/quranKFGQPC-data.mjs"),
         );
         if (fs.existsSync(altPath)) {
           const quranModule = await import("file://" + altPath);

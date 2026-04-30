@@ -1,4 +1,4 @@
- export const quranText = new Map([
+ module.exports.quranText = new Map([
     [
         1,
         [
