@@ -13,7 +13,9 @@
     "start:background": "pm2 start ecosystem.config.js",
     "stop:background": "pm2 stop ecosystem.config.js",
     "sync:content": "node src/services/content-suggester/sync-content.js",
-    "test:media-generator": "node src/services/media-generator/test.js"
+    "test:media-generator": "node src/services/media-generator/test.js",
+    "test:content-suggester": "node src/services/content-suggester/test.js"
+
 
   },
   "repository": {

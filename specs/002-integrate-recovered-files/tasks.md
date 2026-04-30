@@ -60,11 +60,11 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T011 [P] [US2] Create an integration test script `src/services/content-suggester/test.js` to verify suggester produces a valid real URL, and add `"test:content-suggester": "node src/services/content-suggester/test.js"` to `package.json`
+- [X] T011 [P] [US2] Create an integration test script `src/services/content-suggester/test.js` to verify suggester produces a valid real URL, and add `"test:content-suggester": "node src/services/content-suggester/test.js"` to `package.json`
 
 ### Implementation for User Story 2
 
-- [ ] T012 [US2] Merge `groups` object from `recovered-files/config.json` into `src/services/content-suggester/config.json`, replacing the placeholder `groups` array but keeping existing `settings` and `taxonomy` intact. Ensure structure compatibility.
+- [X] T012 [US2] Merge `groups` object from `recovered-files/config.json` into `src/services/content-suggester/config.json`, replacing the placeholder `groups` array but keeping existing `settings` and `taxonomy` intact. Ensure structure compatibility.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
