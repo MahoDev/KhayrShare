@@ -36,14 +36,20 @@ description: "Task list template for feature implementation"
 
 **Goal**: Restore end-to-end video generation by placing files and updating paths.
 
-**Independent Test**: Run `npm run start:media-generator` and confirm it completes a full cycle without crashing.
+**Independent Test**: Run `npm run test:media-generator` and confirm it completes a full cycle without crashing.
+
+### Tests for User Story 1 ⚠️
+
+> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [ ] T006 [P] [US1] Create an integration test script `src/services/media-generator/test.js` to verify generator executes without crashing, and add `"test:media-generator": "node src/services/media-generator/test.js"` to `package.json`
 
 ### Implementation for User Story 1
 
-- [ ] T006 [P] [US1] Update `paths.recitersJson` value to `"../../global_assets/reciters.json"` in `src/services/media-generator/config.json`
-- [ ] T007 [P] [US1] Update font and image loading paths in `src/services/media-generator/text-renderer.js` to point to `../../global_assets/` (e.g. `../../global_assets/fonts/`, `../../global_assets/images/`)
-- [ ] T008 [US1] Update `src/services/media-generator/generator.js` to import `content-fetcher.js` from `./content-fetcher.js` instead of the old path
-- [ ] T009 [US1] Update `src/services/media-generator/generator.js` to import `text-renderer.js` from `./text-renderer.js` instead of the old path
+- [ ] T007 [P] [US1] Update `paths.recitersJson` value to `"../../global_assets/reciters.json"` in `src/services/media-generator/config.json`
+- [ ] T008 [P] [US1] Update font and image loading paths in `src/services/media-generator/text-renderer.js` to point to `../../global_assets/` (e.g. `../../global_assets/fonts/`, `../../global_assets/images/`)
+- [ ] T009 [US1] Update `src/services/media-generator/generator.js` to import `content-fetcher.js` from `./content-fetcher.js` instead of the old path
+- [ ] T010 [US1] Update `src/services/media-generator/generator.js` to import `text-renderer.js` from `./text-renderer.js` instead of the old path
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -53,11 +59,15 @@ description: "Task list template for feature implementation"
 
 **Goal**: Restore real group data as the authoritative source for the content-suggester, preserving all ~200 real URLs verbatim.
 
-**Independent Test**: Run `npm run start:content-suggester` and inspect generated `next_post.txt` to confirm it contains a real group URL.
+**Independent Test**: Run `npm run test:content-suggester` and inspect generated `next_post.txt` to confirm it contains a real group URL.
+
+### Tests for User Story 2 ⚠️
+
+- [ ] T011 [P] [US2] Create an integration test script `src/services/content-suggester/test.js` to verify suggester produces a valid real URL, and add `"test:content-suggester": "node src/services/content-suggester/test.js"` to `package.json`
 
 ### Implementation for User Story 2
 
-- [ ] T010 [US2] Merge `groups` object from `recovered-files/config.json` into `src/services/content-suggester/config.json`, replacing the placeholder `groups` array but keeping existing `settings` and `taxonomy` intact. Ensure structure compatibility.
+- [ ] T012 [US2] Merge `groups` object from `recovered-files/config.json` into `src/services/content-suggester/config.json`, replacing the placeholder `groups` array but keeping existing `settings` and `taxonomy` intact. Ensure structure compatibility.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -71,8 +81,8 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T011 [P] [US3] Remove all hardcoded `../youtube_poster/` and `../x_poster/` path references in `src/services/media-generator/generator.js` (specifically lines 167, 185, 225, 237, 242) and update to correct new paths (`../video-publisher/` or `../../global_assets/`)
-- [ ] T012 [P] [US3] Delete stale file `src/services/media-generator/ecosystem.config.js`
+- [ ] T013 [P] [US3] Remove all hardcoded `../youtube_poster/` and `../x_poster/` path references in `src/services/media-generator/generator.js` (specifically lines 167, 185, 225, 237, 242) and update to correct new paths (`../video-publisher/` or `../../global_assets/`)
+- [ ] T014 [P] [US3] Delete stale file `src/services/media-generator/ecosystem.config.js`
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -80,9 +90,11 @@ description: "Task list template for feature implementation"
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-**Purpose**: Cleanup
+**Purpose**: Cleanup and Validation of Success Criteria
 
-- [ ] T013 Delete `recovered-files/` directory entirely from the file system.
+- [ ] T015 Validate SC-006: Temporarily add a dummy reciter to `global_assets/reciters.json` and run `npm run test:media-generator` to ensure it's picked up.
+- [ ] T016 Validate SC-007: Run `pm2 start ecosystem.config.js` and verify both services start cleanly in the background.
+- [ ] T017 Delete `recovered-files/` directory entirely from the file system.
 
 ---
 

@@ -14,7 +14,7 @@ Integrate the recovered legacy files (`content-fetcher.js`, `text-renderer.js`, 
 **Language/Version**: Node.js (JavaScript)
 **Primary Dependencies**: axios, canvas (optionalDependency)
 **Storage**: Filesystem (`config.json`, `reciters.json`)
-**Testing**: N/A (Integration testing via manual service execution)
+**Testing**: Automated integration test scripts via npm test
 **Target Platform**: Node.js / PM2
 **Project Type**: Background automation services
 **Performance Goals**: Reliable periodic execution without memory leaks or unhandled crashes
@@ -27,7 +27,7 @@ Integrate the recovered legacy files (`content-fetcher.js`, `text-renderer.js`, 
 
 - [x] **Modular Architecture**: Files correctly assigned to service vs. shared directories.
 - [x] **Configuration Externalization**: Hardcoded paths removed; config files merged correctly.
-- [x] **Test-First Development**: Manual integration tests defined in spec scenarios.
+- [x] **Test-First Development**: Integration test scripts included in tasks before implementation.
 - [x] **Observability & Logging**: Services maintain PM2 logging compatibility.
 - [x] **Graceful Degradation**: External dependencies (like `canvas`) made optional; `content-fetcher.js` uses retry loops.
 
