@@ -5,6 +5,12 @@
 **Status**: Draft
 **Input**: User description: "The recovered-files that I have temporarily retrieved from the old git repo and added here were in the project before the refactor. They were important. However, like the project, they likely need a lot of refactoring and improvement (without wiping data like links). It's very important that things are built in a way that is easy to build upon and add new features."
 
+## Clarifications
+
+### Session 2026-04-30
+- Q: Cleanup of `recovered-files/` directory → A: Delete the directory entirely from the file system.
+- Q: Handling the `canvas` dependency → A: Add `canvas` as an `optionalDependency` to prevent installation failure on Windows.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Restore Media Generator Functionality (Priority: P1) 🎯 MVP
@@ -94,7 +100,7 @@ The operator's recovered files contain years of curated data: ~200 real Facebook
 - **FR-007**: The `media-generator/config.json` `paths.facebookConfig` MUST point to `../content-suggester/config.json` (already set correctly).
 - **FR-008**: The stale `src/services/media-generator/ecosystem.config.js` (with `cwd: "./video_generator_service"`) MUST be removed or replaced by the root-level `ecosystem.config.js`.
 - **FR-009**: The `text-renderer.js` background image source MUST be updated to use `global_assets/images/` (which contains `background_1.png` and `background_2.png`) rather than any deleted local path.
-- **FR-010**: The `recovered-files/` directory MUST be cleaned up (deleted or gitignored) after integration is complete so it does not become a permanent part of the codebase.
+- **FR-010**: The `recovered-files/` directory MUST be permanently deleted from the file system after integration is complete so it does not become a permanent part of the codebase.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -119,7 +125,7 @@ The operator's recovered files contain years of curated data: ~200 real Facebook
 ## Assumptions
 
 - The `axios` dependency used by `content-fetcher.js` is not in the root `package.json` and will need to be added.
-- The `canvas` package used by `text-renderer.js` is also not in the root `package.json` and will need to be added (it requires native bindings and may need OS-level prerequisites like `libcairo`).
+- The `canvas` package used by `text-renderer.js` MUST be added to the root `package.json` as an `optionalDependency` to ensure `npm install` doesn't fail if the environment lacks build tools for native bindings.
 - The `text-renderer.js` (square format) is only used when `videoMode.useXPosterStyle` is `true` in `media-generator/config.json`. Currently that is set to `false`, so `text-renderer.js` is not on the critical path for basic operation — but it must still be correctly placed for when it is eventually enabled.
 - The `global_assets/video_backgrounds/` directory (confirmed to have images) is the correct background source for the YouTube-style landscape video generator, which is what `generator.js` passes to `video-publisher/video-generator.js`.
 - The content-suggester's `config.json` has both `groups` (for the manual assistant) and `settings`/`taxonomy` (for the scheduler). The merged file should keep the `settings` and `taxonomy` from the current file and replace only the `groups` section with the real data.
