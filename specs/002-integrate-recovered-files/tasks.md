@@ -42,14 +42,11 @@ description: "Task list template for feature implementation"
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [P] [US1] Create an integration test script `src/services/media-generator/test.js` to verify generator executes without crashing, and add `"test:media-generator": "node src/services/media-generator/test.js"` to `package.json`
-
-### Implementation for User Story 1
-
-- [ ] T007 [P] [US1] Update `paths.recitersJson` value to `"../../global_assets/reciters.json"` in `src/services/media-generator/config.json`
-- [ ] T008 [P] [US1] Update font and image loading paths in `src/services/media-generator/text-renderer.js` to point to `../../global_assets/` (e.g. `../../global_assets/fonts/`, `../../global_assets/images/`)
-- [ ] T009 [US1] Update `src/services/media-generator/generator.js` to import `content-fetcher.js` from `./content-fetcher.js` instead of the old path
-- [ ] T010 [US1] Update `src/services/media-generator/generator.js` to import `text-renderer.js` from `./text-renderer.js` instead of the old path
+- [X] T006 [P] [US1] Create an integration test script `src/services/media-generator/test.js` to verify generator executes without crashing, and add `"test:media-generator": "node src/services/media-generator/test.js"` to `package.json`
+- [X] T007 [P] [US1] Update `paths.recitersJson` value to `"../../../global_assets/reciters.json"` in `src/services/media-generator/config.json`
+- [X] T008 [P] [US1] Update font and image loading paths in `src/services/media-generator/text-renderer.js` to point to `../../../global_assets/` (e.g. `../../../global_assets/fonts/`, `../../../global_assets/images/`)
+- [X] T009 [US1] Update `src/services/media-generator/generator.js` to import `content-fetcher.js` from `./content-fetcher.js` instead of the old path
+- [X] T010 [US1] Update `src/services/media-generator/generator.js` to import `text-renderer.js` from `./text-renderer.js` instead of the old path
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 

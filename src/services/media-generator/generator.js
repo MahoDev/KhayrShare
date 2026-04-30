@@ -14,9 +14,7 @@ class VideoGenerator {
     this.baseDir = path.dirname(configPath);
 
     // Load shared modules
-    const ContentFetcher = require(
-      path.resolve(this.baseDir, this.config.paths.xPosterContentFetcher),
-    );
+    const ContentFetcher = require("./content-fetcher");
     this.contentFetcher = new ContentFetcher(
       path.resolve(this.baseDir, this.config.paths.recitersJson),
       { excludedReciters: this.config.settings.excludedReciters || [] },
@@ -108,9 +106,7 @@ class VideoGenerator {
   async generateXPosterVideo() {
     console.log("[VideoGen] Generating square-format video...");
 
-    const TextRenderer = require(
-      path.resolve(this.baseDir, this.config.paths.xPosterTextRenderer),
-    );
+    const TextRenderer = require("./text-renderer");
     const VideoGenerator = require(
       path.resolve(this.baseDir, this.config.paths.xPosterVideoGenerator),
     );

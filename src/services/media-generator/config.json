@@ -42,7 +42,7 @@
     "xPosterTextRenderer": "../media-generator/text-renderer.js",
     "youtubePosterVideoGenerator": "../video-publisher/video-generator.js",
     "youtubePosterThumbnailGenerator": "../video-publisher/thumbnail-generator.js",
-    "recitersJson": "../../global_assets/english-rectier-names.json",
+    "recitersJson": "../../../global_assets/reciters.json",
     "facebookConfig": "../content-suggester/config.json"
   },
   "manualGeneration": {

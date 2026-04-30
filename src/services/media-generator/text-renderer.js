@@ -11,7 +11,7 @@ class TextRenderer {
         this.height = config.video?.height || 1080;
         this.tempDir = path.join(__dirname, 'temp');
         // Point to the global assets folder
-        this.assetsDir = path.resolve(__dirname, '../global_assets');
+        this.assetsDir = path.resolve(__dirname, '../../../global_assets');
         
         this.fontFamily = 'Arial'; // Default fallback
         this.registerFonts();
