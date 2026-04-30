@@ -13,10 +13,10 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Move `recovered-files/reciters.json` to `global_assets/reciters.json`
-- [ ] T002 [P] Move `recovered-files/content-fetcher.js` to `src/services/media-generator/content-fetcher.js`
-- [ ] T003 [P] Move `recovered-files/text-renderer.js` to `src/services/media-generator/text-renderer.js`
-- [ ] T004 Install `axios` as a dependency and `canvas` as an `optionalDependency` in `package.json`
+- [X] T001 [P] Move `recovered-files/reciters.json` to `global_assets/reciters.json`
+- [X] T002 [P] Move `recovered-files/content-fetcher.js` to `src/services/media-generator/content-fetcher.js`
+- [X] T003 [P] Move `recovered-files/text-renderer.js` to `src/services/media-generator/text-renderer.js`
+- [X] T004 Install `axios` as a dependency and `canvas` as an `optionalDependency` in `package.json`
 
 ---
 
