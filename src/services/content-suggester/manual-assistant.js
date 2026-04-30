@@ -243,30 +243,6 @@ function showToast(config, title, message, groupUrl) {
             exec(openFileCmd, { windowsHide: true });
           }
 
-          // Open Group URL if available
-          if (groupUrl) {
-            const openBrowserCmd =
-              process.platform === "win32"
-                ? `start "" "${groupUrl}"`
-                : process.platform === "darwin"
-                  ? `open "${groupUrl}"`
-                  : `xdg-open "${groupUrl}"`;
-
-            logVerbose(config, `Executing browser command: ${openBrowserCmd}`);
-
-            exec(openBrowserCmd, { windowsHide: true }, (browserErr) => {
-              if (browserErr) {
-                console.log(
-                  "[manual-assist] Open browser error:",
-                  browserErr && browserErr.message
-                    ? browserErr.message
-                    : browserErr,
-                );
-              } else {
-                logVerbose(config, "Opened browser:", groupUrl);
-              }
-            });
-          }
         }
 
         resolve();
