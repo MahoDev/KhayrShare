@@ -5,7 +5,7 @@ const { OUTPUT_PATH } = require("../../config");
 
 /**
  * Background Video Generator
- * Generates Quran videos periodically using x_poster and youtube_poster styles
+ * Generates Quran videos periodically using x_poster and video-publisher styles
  * without interfering with their normal operation.
  */
 class VideoGenerator {
@@ -157,13 +157,8 @@ class VideoGenerator {
       ),
     );
 
-    // Load youtube config for backgrounds
-    const ytConfig = JSON.parse(
-      fs.readFileSync(
-        path.resolve(this.baseDir, "../youtube_poster/config.json"),
-        "utf8",
-      ),
-    );
+    // Use local config for backgrounds and settings
+    const ytConfig = this.config;
 
     const videoGen = new VideoGenerator(ytConfig);
 
@@ -178,7 +173,7 @@ class VideoGenerator {
     const audioPath = await this.contentFetcher.processAudio(rukuData.verses);
 
     // Select random background
-    const bgDir = path.resolve(this.baseDir, "../youtube_poster/backgrounds");
+    const bgDir = path.resolve(this.baseDir, "../video-publisher/backgrounds");
     const backgrounds = fs
       .readdirSync(bgDir)
       .filter(
@@ -193,7 +188,7 @@ class VideoGenerator {
         : null;
 
     if (!bgPath) {
-      throw new Error("No backgrounds found in youtube_poster/backgrounds");
+      throw new Error("No backgrounds found in video-publisher/backgrounds");
     }
 
     // Generate video
@@ -218,7 +213,7 @@ class VideoGenerator {
 
     // Use MetadataGenerator to generate caption
     const MetadataGenerator = require(
-      path.resolve(this.baseDir, "../youtube_poster/metadata-generator.js"),
+      path.resolve(this.baseDir, "../video-publisher/metadata-generator.js"),
     );
     const metadataGen = new MetadataGenerator();
     const ytMetadata = metadataGen.generate(metadata);
@@ -232,14 +227,7 @@ class VideoGenerator {
       const ThumbnailGenerator = require(
         path.resolve(this.baseDir, "../youtube_poster/thumbnail-generator.js"),
       );
-      // Load YouTube config for thumbnail settings if needed, or rely on defaults
-      const ytConfig = JSON.parse(
-        fs.readFileSync(
-          path.resolve(this.baseDir, "../youtube_poster/config.json"),
-          "utf8",
-        ),
-      );
-      const thumbGen = new ThumbnailGenerator(ytConfig);
+      const thumbGen = new ThumbnailGenerator(this.config);
       // Use the same background as the video if available
       const thumbResult = await thumbGen.generate(metadata, bgPath);
       thumbnailPath = path.resolve(thumbResult.thumbnailPath);

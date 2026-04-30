@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const { exec } = require("child_process");
-const VideoGenerator = require("../youtube_poster/video-generator");
+const VideoGenerator = require("../video-publisher/video-generator");
 
 // 1. Load Config
 const configPath = path.join(__dirname, "config.json");

@@ -4,20 +4,45 @@
     "manualAssistVerbose": true,
     "maxSuggestionsPerDay": 2,
     "priorityContentRatio": 0.5,
-    "skipDayProbability": 0.1,
+    "skipDayProbability": 0,
     "checkIntervalMinutes": 60,
-    "enabled": true
+    "enabled": true,
+    "categoryDefaults": {
+      "quran": "من الآيات التي يُخطأ في فهمها",
+      "dua": "https://www.facebook.com/photo?fbid=1431683478612723"
+    }
   },
   "taxonomy": {
     "categories": {
+      "generalReligious": "generalReligious",
+      "hadith": "hadith",
+      "motiv": "motivation",
+      "wrk": "work",
+      "gen": "general",
       "quran": "quran",
-      "reminder": "reminder",
       "dua": "dua",
-      "general": "general"
+      "englishGroups": "englishGroups",
+      "video": "video",
+      "muallim": "muallim"
     },
     "days": {
-      "friday": "Friday",
-      "any": "any"
+      "any": "any",
+      "fri": "Friday",
+      "mon": "Monday",
+      "tue": "Tuesday",
+      "wed": "Wednesday",
+      "thu": "Thursday",
+      "sat": "Saturday",
+      "sun": "Sunday",
+      "mon-thu": [
+        "Sunday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "weekend": [
+        "Saturday",
+        "Sunday"
+      ]
     }
   },
   "groups": {

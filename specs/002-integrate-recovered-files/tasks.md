@@ -78,8 +78,8 @@ description: "Task list template for feature implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T013 [P] [US3] Remove all hardcoded `../youtube_poster/` and `../x_poster/` path references in `src/services/media-generator/generator.js` (specifically lines 167, 185, 225, 237, 242) and update to correct new paths (`../video-publisher/` or `../../global_assets/`)
-- [ ] T014 [P] [US3] Delete stale file `src/services/media-generator/ecosystem.config.js`
+- [X] T013 [P] [US3] Remove all hardcoded `../youtube_poster/` and `../x_poster/` path references in `src/services/media-generator/generator.js` (specifically lines 167, 185, 225, 237, 242) and update to correct new paths (`../video-publisher/` or `../../global_assets/`)
+- [X] T014 [P] [US3] Delete stale file `src/services/media-generator/ecosystem.config.js`
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -89,9 +89,9 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Cleanup and Validation of Success Criteria
 
-- [ ] T015 Validate SC-006: Temporarily add a dummy reciter to `global_assets/reciters.json` and run `npm run test:media-generator` to ensure it's picked up.
-- [ ] T016 Validate SC-007: Run `pm2 start ecosystem.config.js` and verify both services start cleanly in the background.
-- [ ] T017 Delete `recovered-files/` directory entirely from the file system.
+- [X] T015 Validate SC-006: Temporarily add a dummy reciter to `global_assets/reciters.json` and run `npm run test:media-generator` to ensure it's picked up.
+- [X] T016 Validate SC-007: Run `pm2 start ecosystem.config.js` and verify both services start cleanly in the background.
+- [X] T017 Delete `recovered-files/` directory entirely from the file system.
 
 ---
 
