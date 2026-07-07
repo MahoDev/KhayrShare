@@ -26,14 +26,21 @@ const runSync = debounce(() => {
   } catch (err) {
     console.error("Error during sync:", err);
   }
-}, 1000); // Wait 1 second after last change
+}, 3000); // Wait 3 seconds after last change
 
 console.log(`Starting file watcher on ${IMAGES_DIR}...`);
 
 const watcher = chokidar.watch(IMAGES_DIR, {
   ignored: /(^|[\/\\])\../, // ignore dotfiles
   persistent: true,
-  ignoreInitial: true, // Don't run on initial scan to avoid heavy load on startup
+  ignoreInitial: true,
+  usePolling: true,
+  interval: 2000, // Check every 2 seconds instead of 1
+  binaryInterval: 2000,
+  awaitWriteFinish: {
+    stabilityThreshold: 3000, // Wait 3s for file to be "still"
+    pollInterval: 500
+  }
 });
 
 watcher

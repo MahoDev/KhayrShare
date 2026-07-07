@@ -12,17 +12,17 @@ const CONTENT_FILE = path.join(OUTPUT_PATH, "content.json");
 const CONFIG_FILE = path.resolve(__dirname, "config.json");
 
 function getAllFiles(dirPath, arrayOfFiles) {
-  const files = fs.readdirSync(dirPath);
   arrayOfFiles = arrayOfFiles || [];
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
-  files.forEach(function (file) {
-    const fullPath = path.join(dirPath, file);
-    if (fs.statSync(fullPath).isDirectory()) {
-      arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
-    } else if (/\.(jpg|jpeg|png)$/i.test(file)) {
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    if (entry.isDirectory()) {
+      getAllFiles(fullPath, arrayOfFiles);
+    } else if (/\.(jpg|jpeg|png|mp4|mov|avi|mkv)$/i.test(entry.name)) {
       arrayOfFiles.push(fullPath);
     }
-  });
+  }
 
   return arrayOfFiles;
 }
@@ -35,7 +35,7 @@ function sync() {
   const CAT_MAP = taxonomy.categories || {};
   const DAY_MAP = taxonomy.days || { any: "any" };
 
-  console.log("Scanning images folder recursively...");
+  console.log("Scanning content folder recursively...");
   if (!fs.existsSync(IMAGES_DIR)) {
     fs.mkdirSync(IMAGES_DIR);
   }
@@ -48,6 +48,15 @@ function sync() {
     currentContent = JSON.parse(fs.readFileSync(CONTENT_FILE, "utf8"));
   }
 
+  // Optimize lookup by creating maps
+  const contentByPath = new Map();
+  const contentByFilename = new Map();
+  currentContent.forEach((c) => {
+    if (c.image) contentByPath.set(c.image, c);
+    const fname = path.basename(c.image);
+    if (fname) contentByFilename.set(fname, c);
+  });
+
   const newContent = allFilePaths.map((filePath) => {
     const relativePath = path
       .relative(absoluteImagesDir, filePath)
@@ -57,8 +66,7 @@ function sync() {
 
     // Try to find existing entry to preserve caption
     const existing =
-      currentContent.find((c) => c.image === relativePath) ||
-      currentContent.find((c) => c.image === filename);
+      contentByPath.get(relativePath) || contentByFilename.get(filename);
 
     let categories = existing ? existing.categories : ["general"];
     let allowedDays = existing ? existing.allowedDays : "any";
@@ -76,11 +84,13 @@ function sync() {
       return taxonomyKey ? CAT_MAP[taxonomyKey] : lowerVal;
     };
 
-    // 1. Infer from subfolder (Primary)
+    // 1. Infer from subfolders (Primary)
     const pathParts = relativePath.split("/");
     if (pathParts.length > 1) {
-      const folderName = pathParts[0];
-      categories = [getMappedCat(folderName).toLowerCase()];
+      const folderCategories = pathParts
+        .slice(0, -1)
+        .map((folder) => getMappedCat(folder).toLowerCase());
+      categories = [...new Set(folderCategories)];
     }
 
     // 2. Parse filename features
@@ -162,10 +172,20 @@ function sync() {
     };
   });
 
-  fs.writeFileSync(CONTENT_FILE, JSON.stringify(newContent, null, 2));
-  console.log(
-    `Successfully synced ${newContent.length} images to ${CONTENT_FILE}`,
-  );
+  const serialized = JSON.stringify(newContent, null, 2);
+  let existingSerialized = "";
+  if (fs.existsSync(CONTENT_FILE)) {
+    existingSerialized = fs.readFileSync(CONTENT_FILE, "utf8");
+  }
+
+  if (serialized !== existingSerialized) {
+    fs.writeFileSync(CONTENT_FILE, serialized, "utf8");
+    console.log(
+      `Successfully synced ${newContent.length} files to ${CONTENT_FILE}`,
+    );
+  } else {
+    console.log("No changes detected in content.json (already in sync).");
+  }
 }
 
 if (require.main === module) {

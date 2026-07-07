@@ -17,5 +17,5 @@ call pm2 status
 
 echo.
 echo Services are now running in the background.
-echo This window will close in 5 seconds...
-timeout /t 5
+echo Press any key to close this window...
+pause > nul

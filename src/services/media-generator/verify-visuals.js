@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const { exec } = require("child_process");
+const { OUTPUT_PATH } = require("../../config");
 const VideoGenerator = require("../video-publisher/video-generator");
 
 // 1. Load Config
@@ -12,7 +13,7 @@ if (!fs.existsSync(configPath)) {
 const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
 // 2. Initialize Video Generator
-const videoGen = new VideoGenerator(config);
+const videoGen = new VideoGenerator({ ...config, OUTPUT_PATH });
 
 // 3. Dummy Metadata (Representative of a typical video)
 const metadata = {

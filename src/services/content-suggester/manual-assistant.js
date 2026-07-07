@@ -206,16 +206,15 @@ function showToast(config, title, message, groupUrl) {
   return new Promise((resolve) => {
     const txtPath = path.resolve(PENDING_TXT_FILE);
 
-    console.log("[manual-assist] Showing toast notification.");
-    logVerbose(config, "Toast will open:", txtPath);
-
+    /*
+    // 1. Notify (non-blocking)
     notifier.notify(
       {
         title: title,
         message: message,
-        appID: "content-suggester",
-        wait: true,
-        timeout: 15,
+        appID: "KhayrShare",
+        wait: false,
+        timeout: 10,
       },
       (err, response) => {
         if (err) {
@@ -226,28 +225,37 @@ function showToast(config, title, message, groupUrl) {
         } else {
           logVerbose(config, "Toast response:", response);
         }
-
-        if (!err) {
-          logVerbose(config, `Debug: groupUrl is '${groupUrl}'`);
-
-          if (fs.existsSync(txtPath)) {
-            // Open in Notepad on Windows
-            const openFileCmd =
-              process.platform === "win32"
-                ? `notepad.exe "${txtPath}"`
-                : process.platform === "darwin"
-                  ? `open "${txtPath}"`
-                  : `xdg-open "${txtPath}"`;
-
-            logVerbose(config, `Executing file open command: ${openFileCmd}`);
-            exec(openFileCmd, { windowsHide: true });
-          }
-
-        }
-
-        resolve();
       },
     );
+    */
+
+    // 2. Open text file in default text editor
+    if (fs.existsSync(txtPath)) {
+      const openFileCmd =
+        process.platform === "win32"
+          ? `explorer.exe "${txtPath}"`
+          : process.platform === "darwin"
+            ? `open "${txtPath}"`
+            : `xdg-open "${txtPath}"`;
+
+      logVerbose(config, `Executing file open command: ${openFileCmd}`);
+      exec(openFileCmd, { windowsHide: true, shell: true });
+    }
+
+    // 3. Open Facebook group link in default browser
+    if (groupUrl) {
+      const openBrowserCmd =
+        process.platform === "win32"
+          ? `start "" "${groupUrl}"`
+          : process.platform === "darwin"
+            ? `open "${groupUrl}"`
+            : `xdg-open "${groupUrl}"`;
+
+      logVerbose(config, `Executing browser open command: ${openBrowserCmd}`);
+      exec(openBrowserCmd, { windowsHide: true, shell: true });
+    }
+
+    resolve();
   });
 }
 

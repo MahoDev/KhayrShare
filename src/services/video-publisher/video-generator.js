@@ -8,7 +8,7 @@ const arabicReshaper = require("arabic-reshaper");
  */
 class VideoGenerator {
   constructor(config = {}) {
-    this.outputDir = path.join(__dirname, "output");
+    this.outputDir = config.OUTPUT_PATH || path.join(__dirname, "output");
     this.config = config;
 
     // Allow custom resolution (used by the new style editor / presets)
@@ -250,12 +250,13 @@ class VideoGenerator {
         .replace(/[\\/:*?"<>|()[\]']/g, "")
         .replace(/\s+/g, "_")
         .replace(/[^\x00-\x7F]/g, "");
+    const reciter = sanitize(metadata.reciterName || "UnknownReciter");
     const surah = sanitize(metadata.surahName || "UnknownSurah");
     const range = sanitize(metadata.range || "0");
     const timestamp = Date.now();
     const outputPath = path.join(
       this.outputDir,
-      `yt_${surah}_${range}_${timestamp}.mp4`,
+      `${reciter}_${surah}_${range}_${timestamp}.mp4`,
     );
     const isGif = path.extname(backgroundPath).toLowerCase() === ".gif";
 
@@ -283,7 +284,7 @@ class VideoGenerator {
     return new Promise((resolve, reject) => {
       exec(
         command,
-        { maxBuffer: 1024 * 1024 * 100 },
+        { maxBuffer: 1024 * 1024 * 100, windowsHide: true },
         (error, stdout, stderr) => {
           // Cleanup overlay file
           if (fs.existsSync(overlayPath)) fs.unlinkSync(overlayPath);

@@ -23,6 +23,20 @@
     }
   },
 
+  "3": {
+    "name": "عبد الله بصفر",
+
+    "hashtag_name": "عبد_الله_بصفر",
+
+    "bitrate": {
+      "32kbps": "Abdullah_Basfar_32kbps",
+
+      "64kbps": "Abdullah_Basfar_64kbps",
+
+      "192kbps": "Abdullah_Basfar_192kbps"
+    }
+  },
+
   "4": {
     "name": "عبد الرحمن السديس",
 
@@ -283,6 +297,16 @@
     "includeGeneralGroups": true
   },
 
+  "28": {
+    "name": "خليفة الطنيجي",
+
+    "hashtag_name": "خليفة_الطنيجي",
+
+    "bitrate": {
+      "64kbps": "khalefa_al_tunaiji_64kbps"
+    }
+  },
+
   "29": {
     "name": "محمود علي البنا (مرتل)",
 
@@ -322,10 +346,18 @@
 
     "bitrate": {
       "128kbps": "Ali_Hajjaj_AlSuesy_128kbps"
-    },
-	    "includeGeneralGroups": true
+    }
   },
 
+  "33": {
+    "name": "سهل زين يس",
+
+    "hashtag_name": "سهل_زين_يس",
+
+    "bitrate": {
+      "128kbps": "Sahl_Yassin_128kbps"
+    }
+  },
 
   "34": {
     "name": "أحمد بن علي العجمي",
@@ -334,6 +366,16 @@
 
     "bitrate": {
       "128kbps": "ahmed_ibn_ali_al_ajamy_128kbps"
+    }
+  },
+
+  "35": {
+    "name": "كريم منصوري",
+
+    "hashtag_name": "كريم_منصوري",
+
+    "bitrate": {
+      "40kbps": "Karim_Mansoori_40kbps"
     }
   },
 

@@ -19,7 +19,7 @@ class ContentSuggesterScheduler {
     } else {
       this.config = {
         settings: {
-          checkIntervalMinutes: 60,
+          checkIntervalMinutes: 5,
           enabled: true
         }
       };

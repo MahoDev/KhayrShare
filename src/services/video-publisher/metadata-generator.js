@@ -5,9 +5,18 @@ const fs = require("fs");
  * YouTube Metadata Generator
  */
 class MetadataGenerator {
-  constructor(configPath = null) {
-    this.configPath = configPath || path.join(__dirname, "config.json");
-    this.config = JSON.parse(fs.readFileSync(this.configPath, "utf8"));
+  constructor(configOrPath = null) {
+    if (configOrPath && typeof configOrPath === "object") {
+      this.config = configOrPath;
+      this.configPath = null;
+    } else {
+      this.configPath = configOrPath || path.join(__dirname, "config.json");
+      if (fs.existsSync(this.configPath)) {
+        this.config = JSON.parse(fs.readFileSync(this.configPath, "utf8"));
+      } else {
+        this.config = {};
+      }
+    }
 
     // Load Surah Info (Non-tashkeel names)
     const surahInfoPath = path.resolve(

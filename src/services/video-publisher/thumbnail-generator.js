@@ -7,7 +7,7 @@ class ThumbnailGenerator {
     this.width = 1920;
     this.height = 1080;
     this.backgroundsDir = path.join(__dirname, "backgrounds");
-    this.outputDir = path.join(__dirname, "output");
+    this.outputDir = config.OUTPUT_PATH || path.join(__dirname, "output");
     this.config = config;
 
     // Default fonts if not in config
@@ -195,8 +195,12 @@ class ThumbnailGenerator {
     // Process: resize background, composite text overlay
     const timestamp = Date.now();
     const sanitize = (s) =>
-      (s || "").replace(/[\\/:*?"<>|]/g, "").replace(/\s+/g, "_");
-    const fileName = `thumb_${sanitize(metadata.surahName || "unknown")}_${timestamp}.jpg`;
+      (s || "").toString().replace(/[\\/:*?"<>|()[\]']/g, "").replace(/\s+/g, "_").replace(/[^\x00-\x7F]/g, "");
+    
+    const reciter = sanitize(metadata.reciterName || "UnknownReciter");
+    const surah = sanitize(metadata.surahName || "UnknownSurah");
+    const range = sanitize(metadata.range || "0");
+    const fileName = `${reciter}_${surah}_${range}_${timestamp}.jpg`;
     const outputPath = path.join(this.outputDir, fileName);
 
     if (!fs.existsSync(this.outputDir)) {

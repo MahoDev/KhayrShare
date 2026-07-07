@@ -1,4 +1,4 @@
- module.exports.quranText = new Map([
+ export const quranText = new Map([
     [
         1,
         [
@@ -81638,4 +81638,5 @@
         ]
     ]
 ])
+
 

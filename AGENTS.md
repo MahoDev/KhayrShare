@@ -1,5 +1,5 @@
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan:
-specs/002-integrate-recovered-files/plan.md
+specs/004-video-style-formats/plan.md
 <!-- SPECKIT END -->

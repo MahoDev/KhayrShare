@@ -5,7 +5,7 @@
     "maxSuggestionsPerDay": 50,
     "priorityContentRatio": 0.5,
     "skipDayProbability": 0,
-    "checkIntervalMinutes": 3,
+    "checkIntervalMinutes": 20,
     "enabled": true,
     "categoryDefaults": {
       "quran": "من الآيات التي يُخطأ في فهمها",
@@ -42,17 +42,17 @@
     "hadith": [
       {
         "name": "صحيح البخاري ومسلم",
-        "url": "https://www.facebook.com/groups/2515879105097897/",
+        "url": "https://www.facebook.com/groups/496829877961680",
         "categories": ["hadith"]
       },
       {
         "name": "صحيح البخاري ومسلم",
-        "url": "https://www.facebook.com/groups/423962545982357/",
+        "url": "https://www.facebook.com/groups/2043569512718899",
         "categories": ["hadith"]
       },
       {
-        "name": "قصص الانبياء",
-        "url": "https://www.facebook.com/groups/894580901328431",
+        "name": "مجموعة قناة التوحيد لنشر العلم النافع",
+        "url": "https://www.facebook.com/groups/1485444928428848/",
         "categories": ["hadith"]
       },
       {
@@ -71,8 +71,8 @@
         "categories": ["hadith"]
       },
       {
-        "name": "قناة صحيح البخاري",
-        "url": "https://www.facebook.com/groups/5390690430964543/",
+        "name": "الصحيحان البخاري ومسلم",
+        "url": "https://www.facebook.com/groups/2334512856600705",
         "categories": ["hadith"]
       },
       {
@@ -91,8 +91,8 @@
         "categories": ["hadith"]
       },
       {
-        "name": "أحاديث البخاري ومسلم",
-        "url": "https://www.facebook.com/groups/199068367391616/",
+        "name": "تعلم التوحيد والعقيدة الصحيحة",
+        "url": "https://www.facebook.com/groups/424819975622871/",
         "categories": ["hadith"]
       },
       {
@@ -108,8 +108,8 @@
     ],
     "religious_mix": [
       {
-        "name": "الطريق الى الجنه",
-        "url": "https://www.facebook.com/groups/735269817574822",
+        "name": "🕋اللهم أرزقنا شفاعته🕋",
+        "url": "https://www.facebook.com/groups/1653313938575417/",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
@@ -120,6 +120,26 @@
       {
         "name": "فضل الصلاة على النبي والحوقلة والاستغفار",
         "url": "https://www.facebook.com/groups/519437396087074/",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "تذكرة Reminder ",
+        "url": "https://www.facebook.com/groups/687623699192475",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "لعلّها المُنجيه",
+        "url": "https://www.facebook.com/groups/345924703108831",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "‌اللّهُمَّ ‌صَلِّ ‌عَلَىٰ‌ مُحَمَّد ‌وَعَلَىٰ ‌آلِ‌ مُحَمَّد‌",
+        "url": "https://www.facebook.com/groups/648524900227904",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "‌بلغو عني ولو أية‌",
+        "url": "https://www.facebook.com/groups/919845544079638",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
@@ -173,12 +193,7 @@
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
-        "name": "2 إزاي أكون ملتزم",
-        "url": "https://www.facebook.com/groups/1182863336213072/",
-        "categories": ["generalReligious", "hadith", "quran", "dua"]
-      },
-      {
-        "name": "لا تحزن ان الله معنا",
+        "name": "لا تحزن ان الله معنا***",
         "url": "https://www.facebook.com/groups/1883759091918716",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
@@ -188,12 +203,17 @@
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
+        "name": "محبي د أحمد العربي",
+        "url": "https://www.facebook.com/groups/821474552898900/",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
         "name": "لقاء",
         "url": "https://www.facebook.com/groups/1765169417712353/",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
-        "name": "الطريق الى الله",
+        "name": "***الطريق الى الله",
         "url": "https://www.facebook.com/groups/561063561394329/",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
@@ -208,13 +228,18 @@
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
+        "name": "تنبيه الغافلين",
+        "url": "https://www.facebook.com/groups/337419587343119",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
         "name": "أيقظني لصلاة الفجره",
         "url": "https://www.facebook.com/groups/5343833895682132",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
-        "name": "محبي الدكتور هاله سمير(ثقافي",
-        "url": "https://www.facebook.com/groups/3321759814729574",
+        "name": "الدكتورة هالة سمير ",
+        "url": "https://www.facebook.com/groups/219548458978109",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
@@ -228,15 +253,41 @@
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
+        "name": "صفحة أهل الحديث والأثر",
+        "url": "https://www.facebook.com/groups/129875737578862",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "منهج اهل السنة والجماعة",
+        "url": "https://www.facebook.com/groups/1225151670908039",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "نحن نحب الإسلام",
+        "url": "https://www.facebook.com/groups/828258270530349",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "حصن نفسك",
+        "url": "https://www.facebook.com/groups/321785627992771",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "التسبيح 🤲",
+        "url": "https://www.facebook.com/groups/1538771873073586",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
+        "name": "التضرع إلى الله",
+        "url": "https://www.facebook.com/groups/171437316355928",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
         "name": "وقفات إيمانيه",
         "url": "https://www.facebook.com/groups/694349530746740/",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
-      {
-        "name": "أسرار الصلاة الإبراهيمية في آخر الليل مع الدعاء ستنذهل",
-        "url": "https://www.facebook.com/groups/1882866108846169/",
-        "categories": ["generalReligious", "hadith", "dua"]
-      },
+
       {
         "name": "سيستجيب",
         "url": "https://www.facebook.com/groups/1714826818791214",
@@ -248,18 +299,8 @@
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
-        "name": "الثقة بالله تحقق المستحيل",
-        "url": "https://www.facebook.com/groups/512221533599182/",
-        "categories": ["generalReligious", "hadith", "quran", "dua"]
-      },
-      {
         "name": "درر وفوائد ودروس الشيخ عبد الرزاق البدر",
         "url": "https://www.facebook.com/groups/654229319088523",
-        "categories": ["generalReligious", "hadith", "quran", "dua"]
-      },
-      {
-        "name": "قصص الانبياء",
-        "url": "https://www.facebook.com/groups/3549002885339966/",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
@@ -273,7 +314,7 @@
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
-        "name": "اذكروا الله ذكرا كثيرا",
+        "name": "اذكروا الله ذكرا كثيرا**",
         "url": "https://www.facebook.com/groups/428224177964637",
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
@@ -303,6 +344,11 @@
         "categories": ["generalReligious", "hadith", "quran", "dua"]
       },
       {
+        "name": "قيام الليل .. الثلث الاخير",
+        "url": "https://www.facebook.com/groups/1109157666966234",
+        "categories": ["generalReligious", "hadith", "quran", "dua"]
+      },
+      {
         "name": "مجربات المتقين لقضاء حوائج المحتاجين",
         "url": "https://www.facebook.com/groups/349082579696003/",
         "categories": ["generalReligious", "hadith", "dua"]
@@ -313,7 +359,7 @@
         "categories": ["generalReligious", "hadith", "dua"]
       },
       {
-        "name": "الرجوع إلى الله مع ( مصطفى حسنى)",
+        "name": "الرجوع إلى الله مع ( مصطفى حسنى)***",
         "url": "https://www.facebook.com/groups/354889671529035/",
         "categories": ["generalReligious", "hadith", "dua"]
       },
@@ -343,11 +389,6 @@
         "categories": ["generalReligious", "hadith", "dua"]
       },
       {
-        "name": "سفينة النجاة ( الاستغفار وسورة البقرة )",
-        "url": "https://www.facebook.com/groups/869832392382699/",
-        "categories": ["generalReligious", "hadith", "dua"]
-      },
-      {
         "name": "قصص واقعية عن فضل الاستغفار والذكر يحكيها أصحابها",
         "url": "https://www.facebook.com/groups/568240110210648",
         "categories": ["generalReligious", "hadith", "dua"]
@@ -365,7 +406,7 @@
         "categories": ["quran"]
       },
       {
-        "name": "القرآن الكريم ❤️",
+        "name": "القرآن الكريم ❤***",
         "url": "https://www.facebook.com/groups/365944292318367/",
         "categories": ["quran", "video"]
       },
@@ -380,8 +421,63 @@
         "categories": ["quran"]
       },
       {
-        "name": "صفحة القران الكريم",
-        "url": "https://www.facebook.com/groups/1775497489356328",
+        "name": "ورتل القرآن ترتيلا",
+        "url": "https://www.facebook.com/groups/1795587347390349",
+        "categories": ["quran"]
+      },
+      {
+        "name": "ايات من القران الكريم يومياً",
+        "url": "https://www.facebook.com/groups/1056410214448427",
+        "categories": ["quran"]
+      },
+      {
+        "name": "آيات القرآن الكريم",
+        "url": "https://www.facebook.com/groups/938488304562765",
+        "categories": ["quran"]
+      },
+      {
+        "name": "مجموعة القران الكريم",
+        "url": "https://www.facebook.com/groups/581144304717407",
+        "categories": ["quran"]
+      },
+      {
+        "name": "أهل القرآن",
+        "url": "https://www.facebook.com/groups/quranics",
+        "categories": ["quran"]
+      },
+      {
+        "name": "أهل القرآن",
+        "url": "https://www.facebook.com/groups/114064895326765",
+        "categories": ["quran"]
+      },
+      {
+        "name": "قرأن",
+        "url": "https://www.facebook.com/groups/855815557766360",
+        "categories": ["quran"]
+      },
+      {
+        "name": "محبى القران الكريم",
+        "url": "https://www.facebook.com/groups/212503853945440",
+        "categories": ["quran"]
+      },
+      {
+        "name": "#أخَتّبِر_حٌفِّظّګ_فِّيِّ_أّلَقِرأنِ_أّلَګريِّمَ mustafa hosny",
+        "url": "https://www.facebook.com/groups/818397538691939",
+        "categories": ["quran"]
+      },
+      {
+        "name": "اختبر حفظك في القرآن الكريم",
+        "url": "https://www.facebook.com/groups/1701491830310942",
+        "categories": ["quran"]
+      },
+      {
+        "name": "القران الكريم",
+        "url": "https://www.facebook.com/groups/2134851103417724",
+        "categories": ["quran"]
+      },
+      {
+        "name": "محبي الشيخ سعد عتيق العتيق",
+        "url": "https://www.facebook.com/groups/345508143033885",
         "categories": ["quran", "video"]
       },
       {
@@ -405,7 +501,7 @@
         "categories": ["quran"]
       },
       {
-        "name": "القران الكريم في كل الاوقات",
+        "name": "القران الكريم في كل الاوقات**",
         "url": "https://www.facebook.com/groups/973092191253197/",
         "categories": ["quran"]
       },
@@ -432,12 +528,12 @@
     ],
     "dua": [
       {
-        "name": "أدعية يومية",
-        "url": "https://www.facebook.com/groups/702529053694650/",
+        "name": "دعاء لقضاء الحاجه***",
+        "url": "https://www.facebook.com/groups/939965484787813",
         "categories": ["dua"]
       },
       {
-        "name": "ادعية مستجابة لقضاء   الحاجة بإذن الله",
+        "name": "ادعية مستجابة لقضاء   الحاجة بإذن الله***",
         "url": "https://www.facebook.com/groups/6256099961094283/",
         "categories": ["dua"]
       },
@@ -447,13 +543,13 @@
         "categories": ["dua"]
       },
       {
-        "name": "أدعية تيسير الزواج",
+        "name": "أدعية تيسير الزواج**",
         "url": "https://www.facebook.com/groups/185394441901542/",
         "categories": ["dua"]
       },
       {
         "name": "ادعيه يوميه",
-        "url": "https://www.facebook.com/groups/235375857576313/",
+        "url": "https://www.facebook.com/groups/233985241510499",
         "categories": ["dua"]
       },
       {
@@ -464,11 +560,6 @@
       {
         "name": "أوراد مجربة وعظيمة لقضاء الحاجة",
         "url": "https://www.facebook.com/groups/2362403874131256",
-        "categories": ["dua", "generalReligious"]
-      },
-      {
-        "name": "أوراد مجربة وعظيمة لقضاء الحاجة الأصلي",
-        "url": "https://www.facebook.com/groups/440660391370211/",
         "categories": ["dua", "generalReligious"]
       },
       {
@@ -489,13 +580,38 @@
         "categories": ["englishGroups"]
       },
       {
-        "name": "Muslims",
-        "url": "https://www.facebook.com/groups/467404063984762/",
+        "name": "Islam a Solution to humanity**",
+        "url": "https://www.facebook.com/groups/3807762689340781",
         "categories": ["englishGroups"]
       },
       {
-        "name": "Quran Versess",
-        "url": "https://www.facebook.com/groups/1816119318633742/",
+        "name": "Tawbah circles",
+        "url": "https://www.facebook.com/groups/557691866533987",
+        "categories": ["englishGroups"]
+      },
+      {
+        "name": "Authentic Hadith",
+        "url": "https://www.facebook.com/groups/567732398162232/",
+        "categories": ["englishGroups"]
+      },
+      {
+        "name": "Muslims Islamic Community",
+        "url": "https://www.facebook.com/groups/1547711645473978",
+        "categories": ["englishGroups"]
+      },
+      {
+        "name": "inside ISLAM",
+        "url": "https://www.facebook.com/groups/1000326933358688/",
+        "categories": ["englishGroups"]
+      },
+      {
+        "name": "Qur'an Reminders",
+        "url": "https://www.facebook.com/groups/quranreminders",
+        "categories": ["englishGroups"]
+      },
+      {
+        "name": "Call to Tawheed",
+        "url": "https://www.facebook.com/groups/2430423740573743/",
         "categories": ["englishGroups"]
       },
       {
@@ -514,8 +630,8 @@
         "categories": ["englishGroups"]
       },
       {
-        "name": "Islam - The True Religion On Earth",
-        "url": "https://www.facebook.com/groups/547657122892195/",
+        "name": "Du'a",
+        "url": "https://www.facebook.com/groups/1662617514069011/",
         "categories": ["englishGroups"]
       },
       {
@@ -539,13 +655,13 @@
         "categories": ["englishGroups"]
       },
       {
-        "name": "Mufti Menk & Dr Zakir Nayek Fans",
-        "url": "https://www.facebook.com/groups/648359133478731/",
+        "name": "AT-TAHARAH TV",
+        "url": "https://www.facebook.com/groups/1172009902817438",
         "categories": ["englishGroups"]
       },
       {
         "name": "Dua’s And Reminders",
-        "url": "https://www.facebook.com/groups/411136320157388/",
+        "url": "https://www.facebook.com/groups/1479706292382210",
         "categories": ["englishGroups"]
       },
       {
@@ -554,33 +670,23 @@
         "categories": ["englishGroups"]
       },
       {
-        "name": "ISLAMIC QUESTIONS AND ANSWERS (IQA).",
-        "url": "https://www.facebook.com/groups/1985184098454721",
+        "name": "Islam practice.",
+        "url": "https://www.facebook.com/groups/996740564097698/",
         "categories": ["englishGroups"]
       },
       {
-        "name": "ISLAM PAGE GROUP.",
+        "name": "ISLAM PAGE GROUP**.",
         "url": "https://www.facebook.com/groups/834811564155872",
         "categories": ["englishGroups"]
       },
       {
-        "name": "Mufti menk's lectures",
-        "url": "https://www.facebook.com/groups/1663758744034365",
+        "name": "Yaqueen institute | Dr. Omar Suleiman fan group",
+        "url": "https://www.facebook.com/groups/742718826808104",
         "categories": ["englishGroups"]
       },
       {
-        "name": "Mufti Menk's Lecture's",
-        "url": "https://www.facebook.com/groups/764065538664733/",
-        "categories": ["englishGroups"]
-      },
-      {
-        "name": "Sheikh Assim Al-Hakeem",
-        "url": "https://www.facebook.com/groups/222028674097206",
-        "categories": ["englishGroups"]
-      },
-      {
-        "name": "Omar Suleiman",
-        "url": "https://www.facebook.com/groups/1133559443697264/",
+        "name": "DAILY DUAS FOR THE UMMAH.",
+        "url": "https://www.facebook.com/groups/521312078026732",
         "categories": ["englishGroups"]
       },
       {
@@ -589,8 +695,8 @@
         "categories": ["englishGroups"]
       },
       {
-        "name": "Muslim Best lectures",
-        "url": "https://www.facebook.com/groups/275614214558147/",
+        "name": "Powerful Dua Islamtics",
+        "url": "https://www.facebook.com/groups/699967038579976/",
         "categories": ["englishGroups"]
       },
       {
@@ -604,13 +710,18 @@
         "categories": ["englishGroups"]
       },
       {
+        "name": "...KHAIRA UMMAH...",
+        "url": "https://www.facebook.com/groups/292146274517457",
+        "categories": ["englishGroups"]
+      },
+      {
         "name": "Nouman Ali Khan lectures",
         "url": "https://www.facebook.com/groups/932568987502823",
         "categories": ["englishGroups"]
       },
       {
-        "name": "Scholars of Islam",
-        "url": "https://www.facebook.com/groups/170260026864356/",
+        "name": "Quran sayings",
+        "url": "https://www.facebook.com/groups/312564923146523",
         "categories": ["englishGroups"]
       },
       {
@@ -619,13 +730,13 @@
         "categories": ["englishGroups"]
       },
       {
-        "name": "Knowledge for every Muslim",
-        "url": "https://www.facebook.com/groups/280492558722125",
+        "name": "Mufti Ismail Menk supporters",
+        "url": "https://www.facebook.com/groups/271054239940590/",
         "categories": ["englishGroups"]
       },
       {
-        "name": "SHAIKH KHALID YASIN",
-        "url": "https://www.facebook.com/groups/346900757300388",
+        "name": "Muslim's Corner",
+        "url": "https://www.facebook.com/groups/777823137907982",
         "categories": ["englishGroups"]
       },
       {
@@ -634,8 +745,13 @@
         "categories": ["englishGroups"]
       },
       {
-        "name": "All Islamic Scholars.",
-        "url": "https://www.facebook.com/groups/945514476901571",
+        "name": "🌸 Women of Sunnah 🌸",
+        "url": "https://www.facebook.com/groups/661726662181303",
+        "categories": ["englishGroups"]
+      },
+      {
+        "name": "Say Subhanallah",
+        "url": "https://www.facebook.com/groups/872882283757365/",
         "categories": ["englishGroups"]
       },
       {
@@ -659,18 +775,18 @@
         "categories": ["englishGroups"]
       },
       {
-        "name": "❝REVIVE THE SUNNAH❞",
-        "url": "https://www.facebook.com/groups/216581988974192",
+        "name": "Quran and Hadith",
+        "url": "https://www.facebook.com/groups/434081876085958",
         "categories": ["englishGroups"]
       },
       {
-        "name": "Proud Muslim",
-        "url": "https://www.facebook.com/groups/3711794202420221/",
+        "name": "Live For Jannah",
+        "url": "https://www.facebook.com/groups/268562709107468/",
         "categories": ["englishGroups"]
       },
       {
-        "name": "Muslim post",
-        "url": "https://www.facebook.com/groups/517741039347192",
+        "name": "Mufti menk",
+        "url": "https://www.facebook.com/groups/319985145642245",
         "categories": ["englishGroups"]
       },
       {
@@ -693,14 +809,24 @@
         "url": "https://www.facebook.com/groups/1005725490260341",
         "categories": ["englishGroups"]
       },
+	  {
+        "name": "followers of ISLAM",
+        "url": "https://www.facebook.com/groups/2421022121596315",
+        "categories": ["englishGroups"]
+      },
       {
         "name": "Quran, Hadith and Duas",
         "url": "https://www.facebook.com/groups/574122438271603",
         "categories": ["englishGroups"]
       },
       {
-        "name": "In Sha Allah",
-        "url": "https://www.facebook.com/groups/964619631356928/",
+        "name": "Beauty Of Islam",
+        "url": "https://www.facebook.com/groups/740219801709876/",
+        "categories": ["englishGroups"]
+      },
+      {
+        "name": "Fi-Amanillah (في أمان الله)",
+        "url": "https://www.facebook.com/groups/510122177533156",
         "categories": ["englishGroups"]
       },
       {
@@ -718,21 +844,6 @@
       {
         "name": "أحكام التجويد للمبتدئين",
         "url": "https://www.facebook.com/groups/870307228203996",
-        "categories": ["video", "muallim"]
-      },
-      {
-        "name": "احكام التجويد ",
-        "url": "https://www.facebook.com/groups/382559114427981",
-        "categories": ["video", "muallim"]
-      },
-      {
-        "name": "التجويد خطوة بخطوة",
-        "url": "https://www.facebook.com/groups/1903050930127626",
-        "categories": ["video", "muallim"]
-      },
-      {
-        "name": "محبي الشيخ فارس عنتر للقراءات",
-        "url": "https://www.facebook.com/groups/823499942547041/",
         "categories": ["video", "muallim"]
       }
     ],
@@ -756,8 +867,8 @@
         "forReciter": "محمد عبد الكريم"
       },
       {
-        "name": "روائع فضيلة الشيخ احمد احمد نعينع",
-        "url": "https://www.facebook.com/groups/1104085257268628/",
+        "name": "القارئ الطبيب أحمد أحمد نعينع",
+        "url": "https://www.facebook.com/groups/1696419860568745",
         "categories": ["video"],
         "forReciter": "أحمد نعينع"
       },
@@ -767,12 +878,7 @@
         "categories": ["video"],
         "forReciter": "علي الحذيفي"
       },
-      {
-        "name": "الشيخ علي الحذيفي",
-        "url": "http://facebook.com/groups/2804722983177699/",
-        "categories": ["video"],
-        "forReciter": "علي الحذيفي"
-      },
+
       {
         "name": "قناة الشيخ عبد الباسط عبد الصمد للتلاوات النادرة",
         "url": "https://www.facebook.com/groups/849393312785369",
@@ -780,8 +886,8 @@
         "forReciter": "عبد الباسط"
       },
       {
-        "name": "عبدالباسط عبدالصمد صوت الخلود",
-        "url": "https://www.facebook.com/groups/3296737553880663",
+        "name": "رابطة محبى الشيخ / عبد الباسط عبد الصمد",
+        "url": "https://www.facebook.com/groups/520668274783506/",
         "categories": ["video"],
         "forReciter": "عبد الباسط"
       },
@@ -792,32 +898,8 @@
         "forReciter": "عبد الباسط"
       },
       {
-        "name": "الصوت الذهبي عبد الباسط",
-        "url": "https://www.facebook.com/groups/1291847977831898/",
-        "categories": ["video"],
-        "forReciter": "عبد الباسط"
-      },
-      {
-        "name": "محبى فضيلة الشيخ عبد الباسط عبد الصمد على مستوى العالم",
-        "url": "https://www.facebook.com/groups/256141495479296",
-        "categories": ["video"],
-        "forReciter": "عبد الباسط"
-      },
-      {
-        "name": "اصوات خالدة الشيخ عبدالباسط عبدالصمد",
-        "url": "https://www.facebook.com/groups/1632704593708530/",
-        "categories": ["video"],
-        "forReciter": "عبد الباسط"
-      },
-      {
         "name": "الشيخ عبد الباسط عبد الصمد",
         "url": "https://www.facebook.com/groups/391608458412786",
-        "categories": ["video"],
-        "forReciter": "عبد الباسط"
-      },
-      {
-        "name": "كنوز الشيخ عبد الباسط عبد الصمد",
-        "url": "https://www.facebook.com/groups/802221660319035",
         "categories": ["video"],
         "forReciter": "عبد الباسط"
       },
@@ -828,50 +910,50 @@
         "forReciter": ["ياسر الدوسري", "ناصر القطامي"]
       },
       {
-        "name": "فيديوهات من أجمل التلاوات لشيخ ناصر القطامي والشيخ ياسر الدوسري",
-        "url": "https://www.facebook.com/groups/2769279006652348",
-        "categories": ["video"],
-        "forReciter": ["ياسر الدوسري", "ناصر القطامي"]
-      },
-      {
-        "name": "الشيخ ناصر القطامي",
-        "url": "https://www.facebook.com/groups/306994111815/",
-        "categories": ["video"],
-        "forReciter": "ناصر القطامي"
-      },
-      {
-        "name": "تلاوات الشيخ ناصر القطامي",
-        "url": "https://www.facebook.com/groups/2891259741094499",
-        "categories": ["video"],
-        "forReciter": "ناصر القطامي"
-      },
-      {
         "name": "تلاوات الشيخ ناصر القطامي",
         "url": "https://www.facebook.com/groups/3518107561788527",
         "categories": ["video"],
         "forReciter": "ناصر القطامي"
       },
       {
-        "name": "تلاوات الشيخ ياسر الدوسري",
-        "url": "https://www.facebook.com/groups/357317128568205",
+        "name": "فضيلة الشيخ ناصر بن علي القطامي",
+        "url": "https://www.facebook.com/groups/1752445598408923",
+        "categories": ["video"],
+        "forReciter": "ناصر القطامي"
+      },
+      {
+        "name": "الشيخ ناصر القطامي",
+        "url": "https://www.facebook.com/groups/1625478750933716/",
+        "categories": ["video"],
+        "forReciter": "ناصر القطامي"
+      },
+      {
+        "name": "أجمل التلاوات لشيخ ياسر الدوسري",
+        "url": "https://www.facebook.com/groups/131660931869894",
         "categories": ["video"],
         "forReciter": "ياسر الدوسري"
       },
       {
-        "name": "الشيخ ياسر الدوسري",
-        "url": "https://www.facebook.com/groups/1428148081405017",
+        "name": "ياسر الدوسري",
+        "url": "https://www.facebook.com/groups/959719773242539",
         "categories": ["video"],
         "forReciter": "ياسر الدوسري"
       },
       {
-        "name": "الشيخ ياسر الدوسري",
-        "url": "https://www.facebook.com/groups/419113193015346",
+        "name": "تلاوات خاشعة للشيخ ياسر الدوسري",
+        "url": "https://www.facebook.com/groups/1244948070996586",
         "categories": ["video"],
         "forReciter": "ياسر الدوسري"
       },
       {
         "name": "الشيخ د ياسر الدوسري",
         "url": "https://www.facebook.com/groups/3501324880149760",
+        "categories": ["video"],
+        "forReciter": "ياسر الدوسري"
+      },
+      {
+        "name": "تلاوات الشيخ ياسر الدوسري",
+        "url": "https://www.facebook.com/groups/375525560691200",
         "categories": ["video"],
         "forReciter": "ياسر الدوسري"
       },
@@ -891,6 +973,11 @@
         "categories": ["video"]
       },
       {
+        "name": "تلاوات قرآنية",
+        "url": "https://www.facebook.com/groups/2652676934967968",
+        "categories": ["video"]
+      },
+      {
         "name": "Haramain Sarvent ( أئمة الكعبة المشرفة )",
         "url": "https://www.facebook.com/groups/287140499760145",
         "categories": ["video"]
@@ -906,38 +993,18 @@
         "categories": ["video"]
       },
       {
-        "name": "أجمل القراءات القرآنية",
-        "url": "https://www.facebook.com/groups/129573395048062",
-        "categories": ["video"]
-      },
-      {
-        "name": "تلاوة القرآن",
-        "url": "https://www.facebook.com/groups/1241131937364811/",
-        "categories": ["video"]
-      },
-      {
-        "name": "مزامير الفرقان",
-        "url": "https://www.facebook.com/groups/2466787253403960",
-        "categories": ["video"]
-      },
-      {
         "name": "أئمة الحرمين الشريفين حفظهم الله تعالیٰ",
         "url": "https://www.facebook.com/groups/150568342956084/",
         "categories": ["video"]
       },
       {
+        "name": "أئمة الحرمين الشريفين",
+        "url": "https://www.facebook.com/groups/1430834573830268/",
+        "categories": ["video"]
+      },
+      {
         "name": "تلاوات مؤثرة للقرآن الكريم",
         "url": "https://www.facebook.com/groups/122696483048941",
-        "categories": ["video"]
-      },
-      {
-        "name": "جمهورية القراء",
-        "url": "https://www.facebook.com/groups/2351026941823209/",
-        "categories": ["video"]
-      },
-      {
-        "name": "إذاعة القرآن الكريم من القاهرة",
-        "url": "https://www.facebook.com/groups/2819966314914900",
         "categories": ["video"]
       },
       {
@@ -970,14 +1037,26 @@
         "forReciter": "الطبلاوي"
       },
       {
+        "name": "تلاوات الشيخ محمد محمود الطبلاوي",
+        "url": "https://www.facebook.com/groups/5937167046359707/",
+        "categories": ["video"],
+        "forReciter": "الطبلاوي"
+      },
+      {
+        "name": "كنوز عبد الباسط عبد الصمد والمنشاوى والطبلاوى",
+        "url": "https://www.facebook.com/groups/1502023350194861/",
+        "categories": ["video"],
+        "forReciter": "الطبلاوي"
+      },
+      {
         "name": "إصدارات مشاري راشد العفاسي _ Alafasy",
         "url": "https://www.facebook.com/groups/251097172661621/",
         "categories": ["video"],
         "forReciter": "مشاري العفاسي"
       },
       {
-        "name": "Alafasy_مشاري راشد العفاسي",
-        "url": "https://www.facebook.com/groups/646780989992128",
+        "name": "مقتطفات مشاري راشد العفاسيAlafasy",
+        "url": "https://www.facebook.com/groups/596122654390999/",
         "categories": ["video"],
         "forReciter": "مشاري العفاسي"
       },
@@ -988,16 +1067,28 @@
         "forReciter": "مشاري العفاسي"
       },
       {
+        "name": "مشاري العفاسي احبابه ومتابعينه️",
+        "url": "https://www.facebook.com/groups/3660985957296810/",
+        "categories": ["video"],
+        "forReciter": "مشاري العفاسي"
+      },
+      {
+        "name": "الشيخ مشاري راشد العفاسي",
+        "url": "https://www.facebook.com/groups/3121948731384939/",
+        "categories": ["video"],
+        "forReciter": "مشاري العفاسي"
+      },
+      {
         "name": "أبو بكر الشاطري",
         "url": "https://www.facebook.com/groups/607320086513420",
         "categories": ["video"],
         "forReciter": "أبو بكر الشاطري"
       },
       {
-        "name": "عشاق القارئ الشيخ صلاح بوخاطر",
-        "url": "https://www.facebook.com/groups/338873034857911/",
+        "name": "الشيخ أبو بكر الشاطري",
+        "url": "https://www.facebook.com/groups/879411421232244",
         "categories": ["video"],
-        "forReciter": "صلاح بوخاطر"
+        "forReciter": "أبو بكر الشاطري"
       },
       {
         "name": "القارئ فارس عباد",
@@ -1006,8 +1097,20 @@
         "forReciter": "فارس عباد"
       },
       {
-        "name": "محبى الشيخ فارس عباد",
-        "url": "https://www.facebook.com/groups/139096413553015",
+        "name": "الشيخ فارس عباد القرآن الكريم",
+        "url": "https://www.facebook.com/groups/563631530974760/",
+        "categories": ["video"],
+        "forReciter": "فارس عباد"
+      },
+      {
+        "name": "محبي الشيخ فارس عباد",
+        "url": "https://www.facebook.com/groups/1001101820719206/",
+        "categories": ["video"],
+        "forReciter": "فارس عباد"
+      },
+      {
+        "name": "فارس عباد",
+        "url": "https://www.facebook.com/groups/627795912609899/",
         "categories": ["video"],
         "forReciter": "فارس عباد"
       },
@@ -1018,34 +1121,58 @@
         "forReciter": "سعد الغامدي"
       },
       {
+        "name": "محبي الشيخ القارئ سعد الغامدي",
+        "url": "https://www.facebook.com/groups/1157520234880746",
+        "categories": ["video"],
+        "forReciter": "سعد الغامدي"
+      },
+      {
+        "name": "الشيخ سعد الغامدي",
+        "url": "https://www.facebook.com/groups/626150349220410/",
+        "categories": ["video"],
+        "forReciter": "سعد الغامدي"
+      },
+      {
         "name": "عشاق الصوت العذب - علي جابر ومحمد أيوب",
         "url": "https://www.facebook.com/groups/997550367483436",
         "categories": ["video"],
         "forReciter": ["علي جابر", "محمد أيوب"]
       },
       {
+        "name": "الشيخ علي عبدالله جابر",
+        "url": "https://www.facebook.com/groups/512673833668612",
+        "categories": ["video"],
+        "forReciter": "علي جابر"
+      },
+      {
+        "name": "محبي الشيخ عبد الله علي جابر",
+        "url": "https://www.facebook.com/groups/429117972232424",
+        "categories": ["video"],
+        "forReciter": "علي جابر"
+      },
+      {
+        "name": "فضيلة الشيخ علي جابر رحمه الله",
+        "url": "https://www.facebook.com/groups/6650503841711426",
+        "categories": ["video"],
+        "forReciter": "علي جابر"
+      },	  
+      {
         "name": "محبى الشيخ محمد أيوب رحمه الله",
         "url": "https://www.facebook.com/groups/265087967159242",
         "categories": ["video"],
-        "forReciter": ["محمد أيوب"]
+        "forReciter": "محمد أيوب"
       },
       {
-        "name": "محبي الشيخ د. ماهر المعيقلي",
-        "url": "https://www.facebook.com/groups/444958466383359",
+        "name": "محبي الشيخ محمد أيوب",
+        "url": "https://www.facebook.com/groups/211859978829783/",
         "categories": ["video"],
-        "forReciter": "ماهر المعيقلي"
+        "forReciter": "محمد أيوب"
       },
       {
-        "name": "الشيخ ماهر المعيقلي",
-        "url": "https://www.facebook.com/groups/344011390065514",
+        "name": "تلاوات الشيخ محمد أيوب وتلميذه الشيخ احمد بن طالب",
+        "url": "https://www.facebook.com/groups/8583595108337013/",
         "categories": ["video"],
-        "forReciter": "ماهر المعيقلي"
-      },
-      {
-        "name": "فضيلة الشيخ ماهر بن حمد المعيقلي",
-        "url": "https://www.facebook.com/groups/115958302257762",
-        "categories": ["video"],
-        "forReciter": "ماهر المعيقلي"
+        "forReciter": "محمد أيوب"
       },
       {
         "name": "محب الشيخ ماهر المعيقلي",
@@ -1060,8 +1187,8 @@
         "forReciter": "ماهر المعيقلي"
       },
       {
-        "name": "الماهر بالقران",
-        "url": "https://www.facebook.com/groups/541837914040771/",
+        "name": "الشيخ ماهر المعيقلي 🤍🌻",
+        "url": "https://www.facebook.com/groups/626791758723955",
         "categories": ["video"],
         "forReciter": "ماهر المعيقلي"
       },
@@ -1078,16 +1205,16 @@
         "forReciter": "المنشاوي"
       },
       {
-        "name": "محبي الشيخ المنشاوي وكبار القراء",
-        "url": "https://www.facebook.com/groups/223663538736185/",
-        "categories": ["video"],
-        "forReciter": "المنشاوي"
-      },
-      {
         "name": "محبيروائع الشيخين المنشاوى وعبد الباسط",
         "url": "https://www.facebook.com/groups/725147287841099",
         "categories": ["video"],
         "forReciter": ["المنشاوي", "عبد الباسط"]
+      },
+      {
+        "name": "المنشاوى ملك التحبير",
+        "url": "https://www.facebook.com/groups/791196798507858",
+        "categories": ["video"],
+        "forReciter": "المنشاوي"
       },
       {
         "name": "الشيخ صلاح بو خاطر",
@@ -1120,26 +1247,39 @@
         "forReciter": "سعود الشريم"
       },
       {
-        "name": "الشيخ سعود بن إبراهيم الشريم حفظه الله",
-        "url": "https://www.facebook.com/groups/286468186257767",
-        "categories": ["video"],
-        "forReciter": "سعود الشريم"
-      },
-      {
-        "name": "الشيخ محمود خليل الحصري (شيخ القراء)",
-        "url": "https://www.facebook.com/groups/833732977082723/",
-        "categories": ["video"],
-        "forReciter": "الحصري"
-      },
-      {
         "name": "الشيخ الحصري - AlHosary‏",
         "url": "https://www.facebook.com/groups/276785560749380/",
         "categories": ["video"],
         "forReciter": "الحصري"
       },
       {
+        "name": "الشيخ محمود خليل الحصرى",
+        "url": "https://www.facebook.com/groups/441535666241884",
+        "categories": ["video"],
+        "forReciter": "الحصري"
+      },
+      {
+        "name": "تلاوات الشيخين الحصري و المنشاوي�",
+        "url": "https://www.facebook.com/groups/394559609791938",
+        "categories": ["video"],
+        "forReciter": "الحصري"
+      },
+
+      {
+        "name": "محبى الشيخ الحصرى",
+        "url": "https://www.facebook.com/groups/236652413753376/",
+        "categories": ["video"],
+        "forReciter": "الحصري"
+      },	  
+      {
         "name": "محبى الشيخ احمد بن على العجمى",
         "url": "https://www.facebook.com/groups/137450283057508",
+        "categories": ["video"],
+        "forReciter": "أحمد بن علي العجمي"
+      },
+      {
+        "name": "محبي الشيخ احمد العجمي",
+        "url": "https://www.facebook.com/groups/325781748716114",
         "categories": ["video"],
         "forReciter": "أحمد بن علي العجمي"
       },
@@ -1150,8 +1290,32 @@
         "forReciter": "أحمد بن علي العجمي"
       },
       {
+        "name": "تلاوات الشيخ أحمد العجمي",
+        "url": "https://www.facebook.com/groups/1270515473358060",
+        "categories": ["video"],
+        "forReciter": "أحمد بن علي العجمي"
+      },
+      {
+        "name": "محبي القارئ أحمد علي العجمي القرآن الكريم",
+        "url": "https://www.facebook.com/groups/alasood86",
+        "categories": ["video"],
+        "forReciter": "أحمد بن علي العجمي"
+      },
+      {
         "name": "الشيخ عبد الرحمن السديس",
         "url": "https://www.facebook.com/groups/2522314847912525/",
+        "categories": ["video"],
+        "forReciter": "السديس"
+      },
+      {
+        "name": "Shaikh Abdur Rahman As-Sudais",
+        "url": "https://www.facebook.com/groups/24037809378",
+        "categories": ["video"],
+        "forReciter": "السديس"
+      },
+      {
+        "name": "محبي الشيخ عبد الرحمن السديس",
+        "url": "https://www.facebook.com/groups/490291754736903",
         "categories": ["video"],
         "forReciter": "السديس"
       },
@@ -1174,20 +1338,14 @@
         "forReciter": "عبد الله المطرود"
       },
       {
-        "name": "القران الكريم بصوت الشيخ عبدالله المطرود",
-        "url": "https://www.facebook.com/groups/1506512556286590/",
-        "categories": ["video"],
-        "forReciter": "عبد الله المطرود"
-      },
-      {
         "name": "الشيخ عبدالله المطرود",
         "url": "https://www.facebook.com/groups/566101674922195/",
         "categories": ["video"],
         "forReciter": "عبد الله المطرود"
       },
       {
-        "name": "صلاح البدير",
-        "url": "https://www.facebook.com/groups/1196942977450289/",
+        "name": "الشيخ صلاح البدير حفظه الله",
+        "url": "https://www.facebook.com/groups/5334942379952970",
         "categories": ["video"],
         "forReciter": "صلاح البدير"
       },
@@ -1195,7 +1353,7 @@
         "name": "عشاق القارئ الشيخ صلاح بوخاطر",
         "url": "https://www.facebook.com/groups/338873034857911/",
         "categories": ["video"],
-        "forReciter": "صلاح البدير"
+        "forReciter": "صلاح بوخاطر"
       },
       {
         "name": "محبي الشيخ محمود علي البنا",
@@ -1204,8 +1362,14 @@
         "forReciter": "محمود علي البنا"
       },
       {
+        "name": "الشيخ :- محمود على البنا",
+        "url": "https://www.facebook.com/groups/799883823914792",
+        "categories": ["video"],
+        "forReciter": "محمود علي البنا"
+      },
+      {
         "name": "محبي الشيخ محمود على البنا العسل المصفى",
-        "url": "https://www.facebook.com/groups/mahmoudalialbanna/",
+        "url": "https://www.facebook.com/groups/1779031885631985/",
         "categories": ["video"],
         "forReciter": "محمود علي البنا"
       },
