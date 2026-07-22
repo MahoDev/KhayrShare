@@ -14,6 +14,10 @@ const GROUP_USAGE_FILE = path.join(OUTPUT_PATH, "group_usage.json");
 
 const SUGGESTIONS_DIR = OUTPUT_PATH;
 const PENDING_TXT_FILE = path.join(SUGGESTIONS_DIR, "next_post.txt");
+const DAILY_GROUP_SUGGESTIONS_FILE = path.join(
+  OUTPUT_PATH,
+  "daily_group_suggestions.json",
+);
 
 function ensureSuggestionsDir() {
   if (!fs.existsSync(SUGGESTIONS_DIR)) {
@@ -51,6 +55,41 @@ function safeUnlink(filePath) {
   try {
     if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
   } catch {}
+}
+
+/**
+ * Load daily group suggestions tracker.
+ * Returns { date: "YYYY-MM-DD", suggestedUrls: [] } — reset if missing, corrupt, or stale.
+ */
+function loadDailyGroupSuggestions() {
+  const today = DateTime.now().setZone("local").toISODate();
+  const data = readJson(DAILY_GROUP_SUGGESTIONS_FILE, null);
+
+  if (!data || data.date !== today) {
+    return { date: today, suggestedUrls: [] };
+  }
+
+  // Graceful fallback: if suggestedUrls is present but not an array, reset with warning
+  if (data.suggestedUrls !== undefined && !Array.isArray(data.suggestedUrls)) {
+    console.warn(
+      "[manual-assist] daily_group_suggestions.json has invalid suggestedUrls — resetting to []",
+    );
+    data.suggestedUrls = [];
+  }
+
+  return data;
+}
+
+/**
+ * Append a group URL to the daily group suggestions tracker and persist.
+ */
+function appendDailyGroupSuggestion(groupUrl) {
+  const state = loadDailyGroupSuggestions();
+  state.suggestedUrls.push(groupUrl);
+  writeJson(DAILY_GROUP_SUGGESTIONS_FILE, state);
+  console.log(
+    `[manual-assist] Recorded group suggestion for within-day dampening: ${groupUrl}`,
+  );
 }
 
 function ensureTodayHistory(config) {
@@ -278,6 +317,7 @@ function selectSuggestion(config, history, currentDay) {
   }
 
   const usageData = readJson(GROUP_USAGE_FILE, {});
+  const dailySuggestions = loadDailyGroupSuggestions();
 
   while (pool.length > 0) {
     // --- WEIGHTED RANDOM SELECTION START ---
@@ -300,6 +340,15 @@ function selectSuggestion(config, history, currentDay) {
       // REDUCE FREQUENCY FOR QURAN GROUPS
       if (group.categories && group.categories.includes("quran")) {
         weight = weight * 0.3;
+      }
+
+      // NEW: within-day dampening — groups suggested today get drastically reduced weight
+      const dampeningFactor = config.settings?.sameDayDampeningFactor ?? 0.1;
+      if (dailySuggestions.suggestedUrls.includes(group.url)) {
+        weight *= dampeningFactor;
+        console.log(
+          `[DEBUG] Group ${group.name} dampened (suggested today): weight now ${weight.toFixed(2)}`,
+        );
       }
 
       return { group, weight };
@@ -502,6 +551,9 @@ async function createPendingSuggestion(config) {
 
   fs.writeFileSync(PENDING_TXT_FILE, formatSuggestionText(suggestion), "utf8");
 
+  // Track this suggestion in the within-day dampening tracker
+  appendDailyGroupSuggestion(suggestion.group.url);
+
   console.log("[manual-assist] Created new pending suggestion:", {
     group: suggestion.group.name || suggestion.group.url,
     image: suggestion.content.image,
@@ -556,7 +608,7 @@ function markDone() {
   // Parse the plain-text format
   const getLine = (label) => {
     const lines = txtContent.split("\n");
-    const idx = lines.findIndex(l => l.trim() === `[ ${label} ]`);
+    const idx = lines.findIndex((l) => l.trim() === `[ ${label} ]`);
     if (idx === -1) return null;
     // Return the first non-empty line after the label
     for (let i = idx + 1; i < lines.length; i++) {
@@ -568,11 +620,15 @@ function markDone() {
 
   const groupUrl = getLine("FACEBOOK GROUP") ? null : null; // url is second non-sep line after label
   // Extract group URL specifically (second content line under [ FACEBOOK GROUP ])
-  const groupSection = txtContent.match(/\[ FACEBOOK GROUP \][\s\S]*?\n([^\n]+)\n([^\n]+)/);
+  const groupSection = txtContent.match(
+    /\[ FACEBOOK GROUP \][\s\S]*?\n([^\n]+)\n([^\n]+)/,
+  );
   const parsedGroupName = groupSection ? groupSection[1].trim() : null;
   const parsedGroupUrl = groupSection ? groupSection[2].trim() : null;
 
-  const imageSection = txtContent.match(/\[ IMAGE FILE PATH \][\s\S]*?\n([^\n─\[]+)/);
+  const imageSection = txtContent.match(
+    /\[ IMAGE FILE PATH \][\s\S]*?\n([^\n─\[]+)/,
+  );
   const parsedImage = imageSection ? imageSection[1].trim() : null;
 
   const isDone = /finishedPosting:\s*true/i.test(txtContent);

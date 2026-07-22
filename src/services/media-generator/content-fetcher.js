@@ -35,9 +35,15 @@ class ContentFetcher {
 
   constructor(recitersPath, config = null) {
     this.reciters = JSON.parse(fs.readFileSync(recitersPath, "utf8"));
-    this.tempDir = path.join(__dirname, "temp");
+    // Use a unique subdirectory per instance to avoid race conditions
+    // when multiple generator instances run concurrently (e.g. scheduler + regeneration)
+    this.tempDir = path.join(
+      __dirname,
+      "temp",
+      `gen_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    );
     if (!fs.existsSync(this.tempDir)) {
-      fs.mkdirSync(this.tempDir);
+      fs.mkdirSync(this.tempDir, { recursive: true });
     }
 
     // Load Surah Info for fallbacks
@@ -136,7 +142,9 @@ class ContentFetcher {
           console.log("Local Quran Text loaded successfully (alternate path).");
           return;
         }
-        throw new Error(`Quran data file not found at ${assetPath} or ${altPath}`);
+        throw new Error(
+          `Quran data file not found at ${assetPath} or ${altPath}`,
+        );
       }
       const quranModule = await import("file://" + assetPath);
       this.quranMap = quranModule.quranText;
@@ -655,13 +663,44 @@ class ContentFetcher {
   }
 
   /**
+   * Get audio duration in milliseconds using ffprobe
+   */
+  async getAudioDuration(filePath) {
+    return new Promise((resolve, reject) => {
+      const command = `ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${filePath}"`;
+      exec(command, { windowsHide: true }, (error, stdout, stderr) => {
+        if (error) {
+          // Fallback: estimate duration from file size (rough heuristic)
+          try {
+            const stats = fs.statSync(filePath);
+            const estimatedMs = Math.round((stats.size / 16000) * 1000); // ~16KB/s for mp3
+            resolve(estimatedMs);
+          } catch (e) {
+            resolve(5000); // Default 5 seconds fallback
+          }
+          return;
+        }
+        const durationSec = parseFloat(stdout.trim());
+        if (Number.isFinite(durationSec) && durationSec > 0) {
+          resolve(Math.round(durationSec * 1000));
+        } else {
+          resolve(5000); // Default fallback
+        }
+      });
+    });
+  }
+
+  /**
    * Download all audio files for the Ruku and merge them
+   * Returns the merged audio path and verse timing metadata
    */
   async processAudio(verses) {
     const filePaths = [];
+    const verseTimings = [];
 
     // 1. Download all files
     console.log(`Downloading ${verses.length} audio segments...`);
+    let accumulatedStartMs = 0;
     for (const v of verses) {
       const fileName = `part_${Date.now()}_${v.numberInSurah}.mp3`;
       const filePath = path.join(this.tempDir, fileName);
@@ -690,6 +729,16 @@ class ContentFetcher {
         }
       }
 
+      // Get duration for this verse
+      const durationMs = await this.getAudioDuration(filePath);
+      verseTimings.push({
+        numberInSurah: v.numberInSurah,
+        text: v.text,
+        durationMs,
+        startTimeMs: accumulatedStartMs,
+      });
+      accumulatedStartMs += durationMs;
+
       filePaths.push(filePath);
     }
 
@@ -716,7 +765,13 @@ class ContentFetcher {
       });
     });
 
-    // 4. Cleanup parts
+    // 4. Return object with path and verse timings
+    const result = {
+      path: outputAudio,
+      verseTimings,
+    };
+
+    // 5. Cleanup parts
     filePaths.forEach((p) => {
       try {
         fs.unlinkSync(p);
@@ -726,7 +781,7 @@ class ContentFetcher {
       fs.unlinkSync(concatListPath);
     } catch (e) {}
 
-    return outputAudio;
+    return result;
   }
 
   cleanup() {

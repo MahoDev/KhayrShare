@@ -26,6 +26,16 @@ Edit `config.json` to customize:
     "useXPosterStyle": true, // Enable X-Poster style (1080x1080)
     "useYouTubeStyle": true, // Enable YouTube style (1920x1080)
     "randomSelection": true // Random selection when both enabled
+  },
+  "platforms": {
+    "tiktok": {
+      "enabled": false,
+      "channel_link": "https://www.tiktok.com/@your_channel"
+    },
+    "youtube": {
+      "enabled": true,
+      "channel_link": "https://www.youtube.com/@your_channel"
+    }
   }
 }
 ```
@@ -86,6 +96,14 @@ node generator.js --listReciters
    - Video path
    - Matched Facebook groups (specific or general)
 5. Opens the suggestion file in the default text editor automatically
+
+### Smart Suggestion Fairness & Regeneration
+
+This service automatically ensures fair rotation of reciters:
+- **Round-Robin**: Each reciter is selected exactly once per day before any repeats occur. This is tracked in `video-service-outputs/daily_reciter_pool.json`.
+- **Regeneration Workflow**: If you want a different video for the same reciter, you don't need to use the CLI. Every generated suggestion text file includes a `[ REGENERATE ]` block at the bottom.
+  - Simply open the text file and change `regenerate: false` to `regenerate: true` and save it.
+  - The system will detect this flag almost instantly (within 5 seconds), automatically generate a new video for the same reciter with a new random verse range, create a new suggestion file, and delete the old one. This regeneration bypasses the daily round-robin tracker so the reciter is not penalized twice.
 
 ### Output
 

@@ -112,17 +112,35 @@ class MetadataGenerator {
       ? surahRawName
       : `سورة ${surahRawName}`;
 
+    // Normalize single-verse range for display (e.g. "19-19" → "19", and use "الآية" instead of "الآيات")
+    let displayRange = range;
+    let rangeLabel = "الآيات";
+    if (range) {
+      const rangeStr = range.toString().trim();
+      if (!rangeStr.match(/[-,]/)) {
+        rangeLabel = "الآية";
+      } else if (rangeStr.includes("-")) {
+        const [start, end] = rangeStr.split("-").map((s) => s.trim());
+        if (start === end) {
+          rangeLabel = "الآية";
+          displayRange = start;
+        }
+      }
+    }
+
     // Title Template
     let titleTemplate =
       this.config.metadata?.titleTemplate ||
-      "{reciter} | {surah} | الآيات {range}";
+      "{reciter} | {surah} | {rangeLabel} {range}";
     let title = titleTemplate
       .split("{surah}")
       .join(surahDisplay)
       .split("{reciter}")
       .join(reciterName)
+      .split("{rangeLabel}")
+      .join(rangeLabel)
       .split("{range}")
-      .join(range);
+      .join(displayRange);
 
     if (title.length > 100) {
       title = title.substring(0, 97) + "...";
@@ -192,6 +210,38 @@ class MetadataGenerator {
       ),
     };
 
+    // Spintax / Randomization helpers
+    const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+    const hadiths = [
+      "قال رسول الله ﷺ «دعوة المرء المسلم لأخيه بظهر الغيب مستجابة، عند رأسه ملك موكل كلما دعا لأخيه بخير، قال الملك الموكل به: آمين ولك بمثل» (رواه مسلم)",
+      "قال رسول الله ﷺ «الدال على الخير كفاعله» (رواه الترمذي)",
+      "قال رسول الله ﷺ «من دل على هدى كان له من الأجر مثل أجور من تبعه لا ينقص ذلك من أجورهم شيئاً» (رواه مسلم)",
+      "قال رسول الله ﷺ «اقرؤوا القرآن فإنه يأتي يوم القيامة شفيعاً لأصحابه» (رواه مسلم)",
+      "قال رسول الله ﷺ «خيركم من تعلم القرآن وعلمه» (رواه البخاري)"
+    ];
+
+    const ctaIntros = [
+      "💡 كيف تساهم في نشر المقطع؟ (الدال على الخير كفاعله):",
+      "🌟 ساهم في نشر الخير وشارك الأجر:",
+      "🤍 كيف تدعم القناة وتشارك في الأجر؟",
+      "✨ الدال على الخير كفاعله.. خطوات بسيطة لدعم المقطع:"
+    ];
+
+    const subArs = [
+      "🔔 اشترك في القناة ليصلك كل جديد من تلاوات القرآن الكريم!",
+      "🔔 لا تنسَ الاشتراك في القناة وتفعيل الجرس لتصلك أحدث التلاوات.",
+      "🔔 اشترك الآن لتكون جزءاً من عائلتنا وتستمع لتلاوات يومية مريحة للقلب.",
+      "🔔 ادعم القناة بالاشتراك ليصلك كل جديد من كتاب الله."
+    ];
+
+    const subEns = [
+      "🔔 Subscribe for daily Quran recitations!",
+      "🔔 Don't forget to subscribe and hit the bell for daily recitations.",
+      "🔔 Subscribe to our channel and stay updated with beautiful Quran recitations.",
+      "🔔 Support the channel by subscribing for more soothing recitations."
+    ];
+
     // Description Template
     let template = this.config.metadata?.descriptionTemplate;
 
@@ -199,9 +249,9 @@ class MetadataGenerator {
     if (!template) {
       template =
         "{reciter} | {surah} | الآيات {range} | {first3Words}\n\n" +
-        "قال رسول الله ﷺ «دعوة المرء المسلم لأخيه بظهر الغيب مستجابة، عند رأسه ملك موكل كلما دعا لأخيه بخير، قال الملك الموكل به: آمين ولك بمثل» (رواه مسلم)\n" +
+        `${getRandom(hadiths)}\n` +
         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n" +
-        "💡 كيف تساهم في نشر المقطع؟ (الدال على الخير كفاعله):\n" +
+        `${getRandom(ctaIntros)}\n` +
         "• مشاهدة المقطع كاملاً: يساهم في اقتراح اليوتيوب للفيديو لجمهور أكبر.\n" +
         "• وضع إعجاب (Like): يساعد في تصنيف الفيديو كمحتوى قيم.\n" +
         "• كتابة تعليق: يزيد من تفاعل القناة وظهورها.\n" +
@@ -213,8 +263,8 @@ class MetadataGenerator {
         "🎧 Quran Recitation\n" +
         "📖 Surah {surahEng} ({range})\n" +
         "🎤 Reciter: {reciterEng}\n\n" +
-        "🔔 اشترك في القناة ليصلك كل جديد من تلاوات القرآن الكريم!\n" +
-        "🔔 Subscribe for daily Quran recitations!\n\n" +
+        `${getRandom(subArs)}\n` +
+        `${getRandom(subEns)}\n\n` +
         "📖 نص الآيات:\n" +
         "{verses}\n\n" +
         ".\n.\n.\n.\n.\n.\n" +
@@ -255,9 +305,8 @@ class MetadataGenerator {
       surahTag = `سورة_${surahTag}`;
     }
 
-    const hashtagsList = [
-      `#${surahTag}`,
-      `#${reciterTag}`,
+    const baseHashtags = [`#${surahTag}`, `#${reciterTag}`];
+    const hashtagsPool = [
       `#القرآن_الكريم`,
       `#Quran`,
       `#تلاوة_خاشعة`,
@@ -266,8 +315,22 @@ class MetadataGenerator {
       `#تجويد`,
       `#ترتيل`,
       `#تلاوات`,
+      `#قرآن_كريم`,
+      `#راحة_نفسية`,
+      `#صدقة_جارية`,
+      `#HolyQuran`,
+      `#quranrecitation`,
+      `#استغفار`
     ];
-    const hashtagsText = hashtagsList.join(" ");
+    
+    // Always include base hashtags, then pad with random ones up to 10 total
+    const shuffleArray = (arr) => [...arr].sort(() => 0.5 - Math.random());
+    const selectedHashtags = [
+      ...baseHashtags,
+      ...shuffleArray(hashtagsPool).slice(0, 8)
+    ];
+    
+    const hashtagsText = selectedHashtags.join(" ");
 
     text = text.split("{hashtags}").join(hashtagsText);
 
@@ -331,12 +394,16 @@ class MetadataGenerator {
     const simpleEng = this.getSimpleName(reciterEnglishName);
     const cleanReciter = this.cleanReciterName(reciterName);
 
-    // Exactly 10 tags with spaces for names
-    const tags = [
+    // Always include core tags for SEO relevance
+    const baseTags = [
       cleanReciter,
       surahDisplay,
       reciterEnglishName,
-      simpleEng,
+      simpleEng
+    ].filter(Boolean);
+
+    // Pool of highly relevant, but variable tags
+    const tagsPool = [
       `القرآن الكريم`,
       `تلاوة خاشعة`,
       `Quran`,
@@ -344,9 +411,24 @@ class MetadataGenerator {
       `recitation`,
       `Holy Quran`,
       `تجويد`,
-    ].filter(Boolean);
+      `قرآن كريم`,
+      `تلاوات هادئة`,
+      `quran recitation`,
+      `قران`,
+      `آيات خاشعة`,
+      `راحة نفسية`,
+      `صوت جميل`
+    ];
 
-    return tags.slice(0, 10).join(", ");
+    const shuffleArray = (arr) => [...arr].sort(() => 0.5 - Math.random());
+    
+    // Target 10-12 tags total
+    const targetTagCount = 12;
+    const optionalTags = shuffleArray(tagsPool).slice(0, targetTagCount - baseTags.length);
+
+    const tags = [...baseTags, ...optionalTags];
+
+    return tags.join(", ");
   }
 }
 

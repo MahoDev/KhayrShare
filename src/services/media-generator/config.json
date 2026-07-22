@@ -1,7 +1,7 @@
 {
   "trigger": {
     "probability": 1,
-    "checkIntervalMinutes": 120,
+    "checkIntervalMinutes": 50,
     "enabled": true,
     "comment": "15% chance per check, running every 30 minutes"
   },
@@ -15,6 +15,66 @@
     "suggestionsDir": "./suggestions",
     "videoOutputDir": "./output"
   },
+  "platforms": {
+    "tiktok": {
+      "enabled": true,
+      "channel_link": "https://www.tiktok.com/@your_channel",
+      "width": 1080,
+      "height": 1920,
+      "style": "youtube",
+      "maxDurationSec": null,
+      "resolutionGroup": "vertical",
+      "comment": "TikTok supports up to 10min videos. No verse cap needed."
+    },
+    "youtube_shorts": {
+      "enabled": true,
+      "channel_link": "https://studio.youtube.com/channel/UCKM5_yKVeYmWIR_yoVlRkDw/videos/short?filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D",
+      "width": 1080,
+      "height": 1920,
+      "style": "youtube",
+      "maxDurationSec": null,
+      "resolutionGroup": "vertical",
+      "comment": "YouTube Shorts supports up to 3min. No verse cap needed."
+    },
+    "instagram_reels": {
+      "enabled": false,
+      "channel_link": "https://www.instagram.com/your_channel",
+      "width": 1080,
+      "height": 1920,
+      "style": "youtube",
+      "maxDurationSec": null,
+      "resolutionGroup": "vertical",
+      "comment": "Instagram Reels up to 15min. No verse cap needed."
+    },
+    "pinterest": {
+      "enabled": false,
+      "channel_link": "https://www.pinterest.com/pin-creation-tool/",
+      "width": 1080,
+      "height": 1920,
+      "style": "youtube",
+      "maxDurationSec": 240,
+      "resolutionGroup": "pinterest_vertical",
+      "comment": "Pinterest video pins max 60sec. Verses will be selected as complete units (never truncated) to fit within this limit."
+    },
+    "facebook": {
+      "enabled": true,
+      "channel_link": "",
+      "width": 1920,
+      "height": 1080,
+      "style": "youtube",
+      "maxDurationSec": null,
+      "resolutionGroup": "horizontal"
+    },
+    "youtube": {
+      "enabled": true,
+      "channel_link": "",
+      "width": 1920,
+      "height": 1080,
+      "style": "youtube",
+      "maxDurationSec": null,
+      "resolutionGroup": "horizontal"
+    }
+  },
   "settings": {
     "visuals": {
       "textBottomOffset": 100,
@@ -25,12 +85,13 @@
       "textStrokeWidth": 3,
       "textShadowOpacity": 0.9,
       "textBackgroundOpacity": 0.3,
-      "comment": "Visual settings: Font sizes in px, Stroke width in px, Opacities 0.0-1.0"
+      "fontVerseDisplay": "KfgqpcHafsUthmanicScriptRegular-1jGEe.ttf",
+      "verseDisplayFontSize": 85,
+      "comment": "Visual settings: Font sizes in px, Stroke width in px, Opacities 0.0-1.0. To change verse-display font, use a system font family name (e.g., 'KFGQPC HAFS Uthmanic Script', 'Scheherazade New')."
     },
-    "excludedReciters": [
-      37
-    ],
-    "comment": "Reciter IDs to exclude (matches x_poster settings)"
+    "excludedReciters": [37],
+    "defaultFormat": "reciter-portrait-verse",
+    "comment": "Available formats (`classic`, `reciter-portrait`, `stock-video`, `verse-display`, `reciter-portrait-verse`)"
   },
   "testMode": {
     "enabled": true,

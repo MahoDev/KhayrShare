@@ -15,8 +15,8 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Create `src/services/video-publisher/assets/portraits/` directory and `README.md`
-- [ ] T002 [P] Create `src/services/video-publisher/assets/stock-videos/` directory and `README.md`
+- [x] T001 [P] Create `src/services/video-publisher/assets/portraits/` directory and `README.md`
+- [x] T002 [P] Create `src/services/video-publisher/assets/stock-videos/` directory and `README.md`
 
 ---
 
@@ -24,7 +24,7 @@
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
-- [ ] T003 Update `data` entities: Update `rukuData` usage in `src/services/media-generator/generator.js` to prepare for new fields (`format`, `bgType`, `thumbSnippet`)
+- [x] T003 Update `data` entities: Update `rukuData` usage in `src/services/media-generator/generator.js` to prepare for new fields (`format`, `bgType`, `thumbSnippet`)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -38,8 +38,8 @@
 
 ### Implementation for User Story 4
 
-- [ ] T004 [US4] Update `parseCliArgs` and `resolveCliConfig` in `src/services/media-generator/generator.js` to parse `--format`, `--bg-type`, `--thumb-text`, `--listPortraits`, `--listStockVideos`
-- [ ] T005 [US4] Implement logic in `src/services/media-generator/generator.js` to handle `--listPortraits` and `--listStockVideos` execution
+- [x] T004 [US4] Update `parseCliArgs` and `resolveCliConfig` in `src/services/media-generator/generator.js` to parse `--format`, `--bg-type`, `--thumb-text`, `--listPortraits`, `--listStockVideos`
+- [x] T005 [US4] Implement logic in `src/services/media-generator/generator.js` to handle `--listPortraits` and `--listStockVideos` execution
 
 **Checkpoint**: CLI parsing handles new inputs correctly.
 
@@ -53,8 +53,8 @@
 
 ### Implementation for User Story 6
 
-- [ ] T006 [P] [US6] Modify `createTextOverlayImage` SVG layout in `src/services/video-publisher/video-generator.js` (large centered verse, semi-transparent dark box)
-- [ ] T007 [P] [US6] Modify SVG layout in `src/services/video-publisher/thumbnail-generator.js` to match the new readable design
+- [x] T006 [P] [US6] Modify `createTextOverlayImage` SVG layout in `src/services/video-publisher/video-generator.js` (large centered verse, semi-transparent dark box)
+- [x] T007 [P] [US6] Modify SVG layout in `src/services/video-publisher/thumbnail-generator.js` to match the new readable design
 
 **Checkpoint**: Video and thumbnails use the new layout.
 
@@ -68,8 +68,8 @@
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Update `generateYouTubeVideo` in `src/services/media-generator/generator.js` to resolve portrait background path when `--bg-type portrait` is specified
-- [ ] T009 [US1] Update `createVideo` in `src/services/video-publisher/video-generator.js` to correctly scale/crop image backgrounds without stretching
+- [x] T008 [US1] Update `generateYouTubeVideo` in `src/services/media-generator/generator.js` to resolve portrait background path when `--bg-type portrait` is specified
+- [x] T009 [US1] Update `createVideo` in `src/services/video-publisher/video-generator.js` to correctly scale/crop image backgrounds without stretching
 
 **Checkpoint**: Portrait backgrounds work correctly.
 
@@ -83,8 +83,8 @@
 
 ### Implementation for User Story 2
 
-- [ ] T010 [US2] Update `generateYouTubeVideo` in `src/services/media-generator/generator.js` to resolve stock video path when `--bg-type stock` is specified
-- [ ] T011 [US2] Modify `createVideo` FFmpeg command in `src/services/video-publisher/video-generator.js` to apply `-stream_loop -1` and `-shortest` for stock video backgrounds
+- [x] T010 [US2] Update `generateYouTubeVideo` in `src/services/media-generator/generator.js` to resolve stock video path when `--bg-type stock` is specified
+- [x] T011 [US2] Modify `createVideo` FFmpeg command in `src/services/video-publisher/video-generator.js` to apply `-stream_loop -1` and `-shortest` for stock video backgrounds
 
 **Checkpoint**: Looping stock videos work flawlessly.
 
@@ -98,8 +98,8 @@
 
 ### Implementation for User Story 3
 
-- [ ] T012 [P] [US3] Update `processAudio` in `src/services/media-generator/content-fetcher.js` to calculate and return verse timings (duration and start time) within `rukuData`
-- [ ] T013 [US3] Update `createVideo` in `src/services/video-publisher/video-generator.js` to handle `--format verse-display` by generating dynamic overlays (using FFmpeg `drawtext` or sequential SVG overlays)
+- [x] T012 [P] [US3] Update `processAudio` in `src/services/media-generator/content-fetcher.js` to calculate and return verse timings (duration and start time) within `rukuData`
+- [x] T013 [US3] Update `createVideo` in `src/services/video-publisher/video-generator.js` to handle `--format verse-display` by generating dynamic overlays (using FFmpeg `drawtext` or sequential SVG overlays)
 
 **Checkpoint**: Synchronized verse text is functional.
 
@@ -113,7 +113,7 @@
 
 ### Implementation for User Story 5
 
-- [ ] T014 [US5] Verify `README.md` contents inside `src/services/video-publisher/assets/portraits/` and `src/services/video-publisher/assets/stock-videos/` include specs/naming rules
+- [x] T014 [US5] Verify `README.md` contents inside `src/services/video-publisher/assets/portraits/` and `src/services/video-publisher/assets/stock-videos/` include specs/naming rules
 
 **Checkpoint**: Assets organized properly.
 
@@ -127,8 +127,8 @@
 
 ### Implementation for User Story 7
 
-- [ ] T015 [US7] Implement interactive `readline` prompt in `src/services/media-generator/generator.js` to capture `rukuData.thumbSnippet` if `--thumb-text` is missing
-- [ ] T016 [US7] Update `src/services/video-publisher/thumbnail-generator.js` to use `rukuData.thumbSnippet` for the thumbnail text instead of the full range/default string
+- [x] T015 [US7] Implement interactive `readline` prompt in `src/services/media-generator/generator.js` to capture `rukuData.thumbSnippet` if `--thumb-text` is missing
+- [x] T016 [US7] Update `src/services/video-publisher/thumbnail-generator.js` to use `rukuData.thumbSnippet` for the thumbnail text instead of the full range/default string
 
 **Checkpoint**: Interactive thumbnail text prompt functions correctly.
 
@@ -138,9 +138,9 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T017 [P] Update CLI tests in `scratch/run_cli_tests.js` to cover `--format` and `--bg-type`
-- [ ] T018 Code cleanup and refactoring in `generator.js`
-- [ ] T019 Run quickstart.md validation to ensure all CLI commands work as documented
+- [x] T017 [P] Update CLI tests in `scratch/run_cli_tests.js` to cover `--format` and `--bg-type`
+- [x] T018 Code cleanup and refactoring in `generator.js`
+- [x] T019 Run quickstart.md validation to ensure all CLI commands work as documented
 
 ---
 
