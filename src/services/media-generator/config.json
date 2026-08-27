@@ -81,6 +81,15 @@
       "resolutionGroup": "horizontal"
     }
   },
+  "audio": {
+    "silenceRemoval": {
+      "enabled": true,
+      "minSilenceSec": 0.32,
+      "keepEdgeSec": 0.05,
+      "thresholdDb": -45,
+      "comment": "Removes long silent waiting periods from the final audio, keeping a small edge at each cut so recitations never feel abruptly clipped. minSilenceSec = gap long enough to trim (shorter breathing pauses are preserved). Set enabled=false to disable."
+    }
+  },
   "settings": {
     "visuals": {
       "textBottomOffset": 100,
