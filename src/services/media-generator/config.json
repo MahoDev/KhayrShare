@@ -1,7 +1,7 @@
 {
   "trigger": {
     "probability": 1,
-    "checkIntervalMinutes": 50,
+    "checkIntervalMinutes": 60,
     "enabled": true,
     "comment": "15% chance per check, running every 30 minutes"
   },
@@ -17,47 +17,52 @@
   },
   "platforms": {
     "tiktok": {
-      "enabled": true,
+      "enabled": false,
+      "dailyTargetPosts": 2,
       "channel_link": "https://www.tiktok.com/@your_channel",
       "width": 1080,
       "height": 1920,
       "style": "youtube",
       "maxDurationSec": null,
       "resolutionGroup": "vertical",
-      "comment": "TikTok supports up to 10min videos. No verse cap needed."
+      "comment": "Max 2 posts per day for TikTok."
     },
     "youtube_shorts": {
       "enabled": true,
+      "dailyTargetPosts": 2,
       "channel_link": "https://studio.youtube.com/channel/UCKM5_yKVeYmWIR_yoVlRkDw/videos/short?filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D",
       "width": 1080,
       "height": 1920,
       "style": "youtube",
-      "maxDurationSec": null,
+      "maxDurationSec": 60,
       "resolutionGroup": "vertical",
-      "comment": "YouTube Shorts supports up to 3min. No verse cap needed."
+      "comment": "Max 2 posts per day."
     },
     "instagram_reels": {
       "enabled": false,
+      "dailyTargetPosts": 0,
       "channel_link": "https://www.instagram.com/your_channel",
       "width": 1080,
       "height": 1920,
       "style": "youtube",
       "maxDurationSec": null,
       "resolutionGroup": "vertical",
-      "comment": "Instagram Reels up to 15min. No verse cap needed."
+      "comment": "Disabled for now."
     },
     "pinterest": {
       "enabled": false,
+      "dailyTargetPosts": 2,
       "channel_link": "https://www.pinterest.com/pin-creation-tool/",
       "width": 1080,
       "height": 1920,
       "style": "youtube",
-      "maxDurationSec": 240,
-      "resolutionGroup": "pinterest_vertical",
-      "comment": "Pinterest video pins max 60sec. Verses will be selected as complete units (never truncated) to fit within this limit."
+      "maxDurationSec": 60,
+      "resolutionGroup": "vertical",
+      "comment": "Max 2 pin per day."
     },
     "facebook": {
       "enabled": true,
+      "dailyTargetPosts": 0,
       "channel_link": "",
       "width": 1920,
       "height": 1080,
@@ -67,6 +72,7 @@
     },
     "youtube": {
       "enabled": true,
+      "dailyTargetPosts": 0,
       "channel_link": "",
       "width": 1920,
       "height": 1080,

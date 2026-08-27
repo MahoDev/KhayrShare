@@ -586,90 +586,137 @@ class VideoGenerator {
     const platforms = this.config.platforms || {};
     const lines = [];
     const sep = "─".repeat(60);
-    
+
     const rName = metadata.reciterName || "قارئ";
     const sName = metadata.surahNameArabic || metadata.surahName || "سورة";
-    const cleanSurahName = sName.includes('سورة') ? sName : 'سورة ' + sName;
-    const sNameNoSpaces = sName.replace(/\s+/g, "").replace(/^سورة/g, "");
+    // Strip tashkeel for clean display and matching
+    const sNameClean = sName.replace(/[\u064B-\u0652]/g, "");
+    // Build clean "سورة البقرة" display (without tashkeel, single space)
+    const cleanSurahName = sNameClean.includes("سورة")
+      ? sNameClean
+      : "سورة " + sNameClean;
+    // Strip tashkeel & spaces for hashtag/tag use, remove leading "سورة"
+    const sNameNoSpaces = sNameClean.replace(/\s+/g, "").replace(/^سورة/g, "");
     const rNameNoSpaces = rName.replace(/\s+/g, "_");
+
+    // Build clean surah name for display: "سورة البقرة" (tashkeel-free)
+    const surahDisplayClean = cleanSurahName.replace(/\s+/g, " ").trim();
+    // Build verse range string
+    const verseRange = metadata.range ? `الآيات ${metadata.range}` : "";
 
     // Randomization Helpers (Spintax)
     const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
     const shuffleArray = (arr) => [...arr].sort(() => 0.5 - Math.random());
 
-    // Caption Components
+    // Caption Components (all use cleanSurahName without tashkeel)
     const hooks = [
-      `تلاوة خاشعة تريح القلب من ${cleanSurahName}`,
-      `استمع وتدبر أيات من ${cleanSurahName}`,
-      `راحة نفسية وطمأنينة مع هذه التلاوة من ${cleanSurahName}`,
-      `تلاوة هادئة تأخذك لعالم آخر من ${cleanSurahName}`,
-      `أرح مسمعك وقلبك مع هذه التلاوة من ${cleanSurahName}`
+      `تلاوة خاشعة تريح القلب من ${surahDisplayClean}`,
+      `استمع وتدبر آيات من ${surahDisplayClean}`,
+      `راحة نفسية وطمأنينة مع هذه التلاوة من ${surahDisplayClean}`,
+      `تلاوة هادئة تأخذك لعالم آخر من ${surahDisplayClean}`,
+      `أرح مسمعك وقلبك مع هذه التلاوة من ${surahDisplayClean}`,
     ];
 
     const bodies = [
       `بصوت القارئ ${rName}. 🎧✨`,
       `بصوت يبعث على السكينة للقارئ ${rName}. 🌙`,
       `تلاوة عطرة بصوت ${rName}. 🤍`,
-      `أداء خاشع ومميز من القارئ ${rName}. ✨`
+      `أداء خاشع ومميز من القارئ ${rName}. ✨`,
     ];
 
-    const ctasTiktok = [
-      `شاركها لتكون صدقة جارية لك! 🤍`,
-      `لا تنسَ مشاركة المقطع ليعم الأجر. 🎧✨`,
-      `الدال على الخير كفاعله.. شاركها الآن! 🌙`,
-      `احفظ المقطع وشاركه مع من تحب. ✨`
+    // Verse info to include in descriptions (no tacky CTAs)
+    const verseInfo = [
+      `${surahDisplayClean} | ${verseRange} | بصوت ${rName}`,
+      `تلاوة من ${surahDisplayClean}، ${verseRange} بصوت القارئ ${rName}`,
+      `تأمل في آيات من ${surahDisplayClean} (${verseRange}) بصوت ${rName}`,
     ];
 
     const ctasInstagram = [
-      `احفظ المقطع للرجوع إليه وشاركه لتنال الأجر! 🤍\n\n"أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"`,
-      `لا تدع هذا المقطع يقف عندك، شاركه في الستوري ليكون صدقة جارية! 🌙✨`,
-      `اكتب "الحمد لله" وشارك المقطع مع أصدقائك ليعم الخير. 🤍`,
-      `احفظ الريل لتستمع إليه لاحقاً وشاركه كصدقة جارية. 🎧✨`
+      `${surahDisplayClean} | ${verseRange} | بصوت ${rName}`,
+      `تلاوة من ${surahDisplayClean}، ${verseRange} بصوت القارئ ${rName}`,
+      `تأمل في آيات من ${surahDisplayClean} (${verseRange}) بصوت ${rName}`,
     ];
 
-    const ctasPinterest = [
-      `احفظ هذا المنشور في لوحتك (Board) وشاركه ليعم الخير! 🤍✨`,
-      `لا تنسَ حفظ الدبوس (Pin) للرجوع إليه لاحقاً، وشاركه كصدقة جارية. 🌙`,
-      `أضف هذا المقطع إلى لوحة أدعيتك وشارك الأجر مع الجميع! ✨`
-    ];
-
-    // Hashtags Pools
+    // Hashtags Pools (sNameNoSpaces already has tashkeel stripped + "سورة" removed)
     const baseHashtags = [`#سورة_${sNameNoSpaces}`, `#القارئ_${rNameNoSpaces}`];
-    
-    const tiktokHashtagsPool = [
-      '#قرآن', '#تلاوة', '#تلاوة_خاشعة', '#القرآن_الكريم', '#صدقة_جارية', '#اكسبلور', '#مقاطع_دينية',
-      '#راحة_نفسية', '#MuslimTikTok', '#fyp', '#foryou', '#quranrecitation', '#islamic_video'
+
+    // TikTok hashtags: follow 3-5 structure:
+    // 1 broad/trending, 2 niche topic, 1 specific search keyword
+    const tiktokBroadTag = ["#قرآن", "#القرآن_الكريم"];
+    const tiktokNicheTags = [
+      "#تلاوة_خاشعة",
+      "#مقاطع_دينية",
+      "#راحة_نفسية",
+      "#تلاوات",
+      "#صدقة_جارية",
+      "#quranrecitation",
     ];
-    
+    const tiktokSpecificTags = ["#اكسبلور", "#MuslimTikTok", "#islamic_video"];
+
     const instagramHashtagsPool = [
-      '#قرآن', '#اسلاميات', '#القرآن_الكريم', '#قران', '#ذكر', '#تلاوات', '#اكسبلور',
-      '#مقاطع_دينية', '#ريلز', '#IslamicReminders', '#Islam', '#Muslim', '#Deen', '#QuranQuotes', '#ExplorePage', '#Reels'
-    ];
-    
-    const pinterestTagsPool = [
-      'قرآن', 'تلاوات خاشعة', 'اسلاميات', 'القرآن الكريم', 'مقاطع دينية',
-      'Quran', 'Islamic Quotes', 'Deen', 'Quran Recitation', 'Islamic Reminders'
+      "#قرآن",
+      "#اسلاميات",
+      "#القرآن_الكريم",
+      "#قران",
+      "#ذكر",
+      "#تلاوات",
+      "#اكسبلور",
+      "#مقاطع_دينية",
+      "#ريلز",
+      "#IslamicReminders",
+      "#Islam",
+      "#Muslim",
+      "#Deen",
+      "#QuranQuotes",
+      "#ExplorePage",
+      "#Reels",
     ];
 
-    const getHashtags = (pool, maxCount) => {
-      const selected = shuffleArray(pool).slice(0, maxCount);
-      return [...baseHashtags, ...selected].join(' ');
+    // Pinterest: 2-5 refined hashtags to append at end of description
+    const pinterestHashtagsPool = [
+      "#قرآن",
+      "#تلاوات_خاشعة",
+      "#اسلاميات",
+      "#القرآن_الكريم",
+      "#مقاطع_دينية",
+      "#Quran",
+      "#QuranRecitation",
+      "#IslamicReminders",
+    ];
+
+    // TikTok: max 4 hashtags total: 1 broad + 2 niche + 1 specific
+    // Base hashtags (surah + reciter) are excluded from the count
+    const getTiktokHashtags = () => {
+      // 1 broad/trending
+      const broad = getRandom(tiktokBroadTag);
+      // 2 niche topic
+      const niche = shuffleArray(tiktokNicheTags).slice(0, 2);
+      // 1 specific search keyword
+      const specific = getRandom(tiktokSpecificTags);
+      // Combine max 4 with base
+      return [...new Set([broad, ...niche, specific]), ...baseHashtags].join(
+        " ",
+      );
     };
 
-    const getTagsStr = (pool, maxCount) => {
-      const selected = shuffleArray(pool).slice(0, maxCount);
-      return [`سورة ${sNameNoSpaces}`, rNameNoSpaces, ...selected].join(', ');
+    const getInstagramHashtags = () => {
+      const pool = [...new Set([...baseHashtags, ...instagramHashtagsPool])];
+      const selected = shuffleArray(pool).slice(0, 12);
+      return selected.join(" ");
     };
 
+    // TikTok caption: hook + body + verse range, NO tacky CTA
     if (platforms.tiktok?.enabled) {
       lines.push(``);
       lines.push(sep);
       lines.push(`[ TIKTOK POSTING DETAILS ]`);
       lines.push(`[ CAPTION ]`);
-      lines.push(`${getRandom(hooks)} ${getRandom(bodies)}\n${getRandom(ctasTiktok)}`);
+      lines.push(
+        `${getRandom(hooks)}\n${getRandom(bodies)}\n\n${getRandom(verseInfo)}`,
+      );
       lines.push(``);
       lines.push(`[ HASHTAGS ]`);
-      lines.push(getHashtags(tiktokHashtagsPool, 8));
+      lines.push(getTiktokHashtags());
     }
 
     if (platforms.instagram?.enabled) {
@@ -677,24 +724,43 @@ class VideoGenerator {
       lines.push(sep);
       lines.push(`[ INSTAGRAM POSTING DETAILS ]`);
       lines.push(`[ CAPTION ]`);
-      lines.push(`${getRandom(hooks)} ${getRandom(bodies)}\n\n${getRandom(ctasInstagram)}`);
+      lines.push(
+        `${getRandom(hooks)} ${getRandom(bodies)}\n\n${getRandom(verseInfo)}\n\n${getRandom(ctasInstagram)}`,
+      );
       lines.push(``);
       lines.push(`[ HASHTAGS ]`);
-      lines.push(getHashtags(instagramHashtagsPool, 10));
+      lines.push(getInstagramHashtags());
     }
 
     if (platforms.pinterest?.enabled) {
+      // For Pinterest: convert tags to hashtags and append to description.
+      // Select 2-5 niche Pinterest hashtags.
+      const pinterestSelectedHashtags = shuffleArray(
+        pinterestHashtagsPool,
+      ).slice(0, 3);
+
+      // Title: clean, no tashkeel, no double "سورة"
+      const pinterestTitle = `${getRandom(hooks)} - بصوت ${rName}`;
+
+      // Description: informative, verse info, no tacky CTA, hashtags at end
+      const pinterestDescription = [
+        `استمع إلى هذه التلاوة الهادئة من ${surahDisplayClean}.`,
+        getRandom(verseInfo),
+        "",
+        pinterestSelectedHashtags.join(" "),
+      ].join("\n");
+
       lines.push(``);
       lines.push(sep);
       lines.push(`[ PINTEREST POSTING DETAILS ]`);
       lines.push(`[ TITLE ]`);
-      lines.push(`${getRandom(hooks)} بصوت ${rName}`);
+      lines.push(pinterestTitle);
       lines.push(``);
       lines.push(`[ DESCRIPTION ]`);
-      lines.push(`استمع إلى هذه التلاوة الهادئة من ${cleanSurahName} ${getRandom(bodies)} ${getRandom(ctasPinterest)}`);
+      lines.push(pinterestDescription);
       lines.push(``);
-      lines.push(`[ TAGS ]`);
-      lines.push(getTagsStr(pinterestTagsPool, 6));
+      lines.push(`[ TAGGED TOPICS ]`);
+      lines.push(`Quran, Quran Verses, Allah`);
     }
 
     return lines;
@@ -721,6 +787,7 @@ class VideoGenerator {
 
     // Generate Thumbnail
     let thumbnailPath = "Thumbnail generation failed";
+    let actualThumbBg = ""; // Track what background was actually used for the thumbnail
     try {
       const ThumbnailGenerator = require(
         path.resolve(this.baseDir, "../video-publisher/thumbnail-generator.js"),
@@ -733,9 +800,26 @@ class VideoGenerator {
       // but fall back to a classic image background if bgPath is a video file (sharp cannot process video)
       const bgExt = bgPath ? path.extname(bgPath).toLowerCase() : "";
       const isVideoBg = [".mp4", ".mov", ".webm", ".gif"].includes(bgExt);
-      const thumbBgPath = isVideoBg ? null : bgPath;
+      let thumbBgPath = isVideoBg ? null : bgPath;
+
+      // Enforce horizontal background if the selected one is vertical
+      if (thumbBgPath && thumbBgPath.includes("vertical")) {
+        const reciterId = metadata.reciterId || "0";
+        const portraitPath = path.resolve(
+          this.baseDir,
+          `../video-publisher/assets/portraits/${reciterId}.jpg`,
+        );
+        if (fs.existsSync(portraitPath)) {
+          thumbBgPath = portraitPath;
+        } else {
+          thumbBgPath = null;
+        }
+      }
+
       const thumbResult = await thumbGen.generate(metadata, thumbBgPath);
       thumbnailPath = path.resolve(thumbResult.thumbnailPath);
+      // Record the actual background used for the thumbnail (may differ from video's bgPath)
+      actualThumbBg = thumbBgPath || "";
     } catch (e) {
       console.error("[VideoGen] Thumbnail generation error:", e);
     }
@@ -880,13 +964,15 @@ class VideoGenerator {
       ``,
       sep,
       `[ POSTING STATUS ]`,
-      `posted: false`,
+      ...Object.entries(this.config.platforms || {})
+        .filter(([, pConfig]) => pConfig.enabled)
+        .map(([platform]) => `post_${platform}: false`),
       ``,
       sep,
       `[ THUMBNAIL ]`,
       `thumbnailText: ""`,
       `regenerateThumbnail: false`,
-      `backgroundUsed: ${bgPath || ""}`,
+      `backgroundUsed: ${actualThumbBg || bgPath || ""}`,
       `firstVerseText: ${firstVerseText}`,
       ``,
       sep,
@@ -936,6 +1022,7 @@ class VideoGenerator {
 
     // Generate Thumbnail (use first result's bgPath)
     let thumbnailPath = "Thumbnail generation failed";
+    let actualThumbBg = ""; // Track what background was actually used for the thumbnail
     try {
       const ThumbnailGenerator = require(
         path.resolve(this.baseDir, "../video-publisher/thumbnail-generator.js"),
@@ -947,9 +1034,26 @@ class VideoGenerator {
       const bgPath = firstResult.bgPath;
       const bgExt = bgPath ? path.extname(bgPath).toLowerCase() : "";
       const isVideoBg = [".mp4", ".mov", ".webm", ".gif"].includes(bgExt);
-      const thumbBgPath = isVideoBg ? null : bgPath;
+      let thumbBgPath = isVideoBg ? null : bgPath;
+
+      // Enforce horizontal background if the selected one is vertical
+      if (thumbBgPath && thumbBgPath.includes("vertical")) {
+        const reciterId = metadata.reciterId || "0";
+        const portraitPath = path.resolve(
+          this.baseDir,
+          `../video-publisher/assets/portraits/${reciterId}.jpg`,
+        );
+        if (fs.existsSync(portraitPath)) {
+          thumbBgPath = portraitPath;
+        } else {
+          thumbBgPath = null;
+        }
+      }
+
       const thumbResult = await thumbGen.generate(metadata, thumbBgPath);
       thumbnailPath = path.resolve(thumbResult.thumbnailPath);
+      // Record the actual background used for the thumbnail (may differ from video's bgPath)
+      actualThumbBg = thumbBgPath || "";
     } catch (e) {
       console.error("[VideoGen] Thumbnail generation error:", e);
     }
@@ -1083,13 +1187,15 @@ class VideoGenerator {
       ``,
       sep,
       `[ POSTING STATUS ]`,
-      `posted: false`,
+      ...Object.entries(this.config.platforms || {})
+        .filter(([, pConfig]) => pConfig.enabled)
+        .map(([platform]) => `post_${platform}: false`),
       ``,
       sep,
       `[ THUMBNAIL ]`,
       `thumbnailText: ""`,
       `regenerateThumbnail: false`,
-      `backgroundUsed: ${firstResult.bgPath || ""}`,
+      `backgroundUsed: ${actualThumbBg || firstResult.bgPath || ""}`,
       `firstVerseText: ${firstVerseText}`,
       ``,
       sep,
@@ -1195,14 +1301,15 @@ class VideoGenerator {
           groupKey,
           resolution: { width: platform.width, height: platform.height },
           style: platform.style || "youtube",
-          maxDurationSec: platform.maxDurationSec || null,
+          maxDurationSec: null,
           platforms: [],
           verses: null,
         });
       }
       const group = groups.get(groupKey);
       group.platforms.push(platform);
-      // Use the strictest (lowest) maxDurationSec across all platforms in this group
+      // Track the strictest (lowest) maxDurationSec for the group
+      // but keep each platform's individual maxDuration for smart dedup
       if (platform.maxDurationSec != null) {
         if (
           group.maxDurationSec == null ||
@@ -1213,6 +1320,24 @@ class VideoGenerator {
       }
     }
     return Array.from(groups.values());
+  }
+
+  /**
+   * Calculate actual total duration of verses in milliseconds.
+   * Uses _durationMs if available, otherwise estimates from text length.
+   * @param {Array} verses
+   * @returns {number} Total duration in milliseconds
+   */
+  _calculateTotalDurationMs(verses) {
+    if (!verses || verses.length === 0) return 0;
+    return verses.reduce((sum, v) => {
+      return (
+        sum +
+        (v._durationMs ||
+          v.durationMs ||
+          (v.text ? Math.max(3000, v.text.length * 80) : 5000))
+      );
+    }, 0);
   }
 
   /**
@@ -1290,9 +1415,22 @@ class VideoGenerator {
 
       // --- Multi-Platform Generation ---
       // Check if multiple platforms are enabled in config
+      const tracking = require("./tracking.js");
       const enabledPlatforms = Object.entries(this.config.platforms || {})
         .filter(([, pConfig]) => pConfig.enabled)
-        .map(([name, pConfig]) => ({ name, ...pConfig }));
+        .map(([name, pConfig]) => ({ name, ...pConfig }))
+        // Exclude platforms that have met their daily target
+        .filter((pConfig) => {
+          const target = pConfig.dailyTargetPosts;
+          if (!target || target <= 0) return true; // unlimited
+          if (tracking.isPlatformSaturated(pConfig.name, target)) {
+            console.log(
+              `[VideoGen] 🛑 ${pConfig.name.toUpperCase()} daily target (${target}) already met — excluding from generation.`,
+            );
+            return false;
+          }
+          return true;
+        });
 
       let videoResults = [];
 
@@ -1387,71 +1525,156 @@ class VideoGenerator {
           if (verse) verse._durationMs = vt.durationMs;
         }
 
-        // Generate one video PER RESOLUTION GROUP (not per-platform)
+        // Generate videos PER RESOLUTION GROUP with smart deduplication.
+        // For each resolution group, we:
+        //   1. Generate a "master" video with the full verse content
+        //   2. Calculate actual total duration
+        //   3. Only generate trimmed copies for platforms whose maxDuration is shorter.
+        //   4. For platforms where master already fits (or has no limit), reuse the master.
         for (const group of resolutionGroups) {
           const platformStyle = group.style || style;
           const resolution = group.resolution;
 
-          // Apply verse-boundary-safe duration selection if this group has a maxDurationSec
-          let versesForGroup = rukuData.verses;
-          let verseTimingsForGroup = rukuData.verseTimings;
-          let audioForGroup = audioResult;
+          // Calculate actual total duration of all fetched verses
+          const actualTotalMs = this._calculateTotalDurationMs(rukuData.verses);
+          const actualTotalSec = actualTotalMs / 1000;
+          console.log(
+            `\n[VideoGen] Group "${group.groupKey}": actual total duration = ${actualTotalSec}s (${actualTotalMs}ms)`,
+          );
 
-          if (group.maxDurationSec != null) {
-            console.log(
-              `\n[VideoGen] Group "${group.groupKey}" has ${group.maxDurationSec}s duration limit. Selecting verses...`,
-            );
-            versesForGroup = this.selectVersesForDuration(
-              versesForGroup,
-              group.maxDurationSec,
-            );
+          // Build a map of which platforms need a trimmed video vs can use the master
+          const needsTrim = {}; // platformName -> { maxDurationSec, needsOwnVideo }
+          let anyNeedsTrim = false;
+          let masterAssignedPlatforms = [];
 
-            if (versesForGroup.length < rukuData.verses.length) {
-              // We need a shorter audio file with only these verses
-              // Re-process audio with the subset
+          for (const p of group.platforms) {
+            const pMax = p.maxDurationSec;
+            if (pMax == null) {
+              // No limit → always reuse master
+              needsTrim[p.name] = false;
+              masterAssignedPlatforms.push(p.name);
+            } else if (actualTotalSec <= pMax) {
+              // Master already fits within this platform's limit → reuse
+              needsTrim[p.name] = false;
+              masterAssignedPlatforms.push(p.name);
               console.log(
-                `[VideoGen] Re-processing audio for ${versesForGroup.length} verses (was ${rukuData.verses.length})`,
+                `  → ${p.name}: master fits (${actualTotalSec}s ≤ ${pMax}s). Reusing master video.`,
               );
-
-              // Re-process audio for the verse subset only
-              const trimmedAudioResult =
-                await this.contentFetcher.processAudio(versesForGroup);
-              audioForGroup = trimmedAudioResult;
-              verseTimingsForGroup = trimmedAudioResult.verseTimings || [];
-
-              // Update rukuData for this group
-              rukuData.verses = versesForGroup;
-              rukuData.range = `${versesForGroup[0].numberInSurah}-${versesForGroup[versesForGroup.length - 1].numberInSurah}`;
+            } else {
+              // Master exceeds this platform's limit → needs own trimmed video
+              needsTrim[p.name] = { maxDurationSec: pMax };
+              anyNeedsTrim = true;
+              console.log(
+                `  → ${p.name}: master too long (${actualTotalSec}s > ${pMax}s). Will generate trimmed version.`,
+              );
             }
           }
 
-          const rukuDataForGroup = {
-            ...rukuData,
-            verses: versesForGroup,
-            verseTimings: verseTimingsForGroup,
-          };
-          const audioForGroupData = { ...audioForGroup };
+          // For the text file / suggestion, we still need to list all platforms.
+          // Group platforms by which video they'll use for the suggestion file output.
+          const masterPlatformNames = masterAssignedPlatforms;
 
+          // --- Generate the MASTER video (full content, no trimming) ---
           console.log(
-            `\n[VideoGen] --- Generating for resolution group: ${group.groupKey} (${resolution.width}x${resolution.height}, style: ${platformStyle}, platforms: ${group.platforms.map((p) => p.name).join(", ")}) ---`,
+            `\n[VideoGen] --- Generating MASTER video for group: ${group.groupKey} (${resolution.width}x${resolution.height}, style: ${platformStyle}) ---`,
           );
 
-          let result;
+          const masterRukuData = {
+            ...rukuData,
+            verses: [...rukuData.verses],
+            verseTimings: [...(rukuData.verseTimings || [])],
+          };
+
+          let masterResult;
           if (platformStyle === "x_poster") {
-            result = await this.generateXPosterVideo(resolution);
+            masterResult = await this.generateXPosterVideo(resolution);
           } else {
-            result = await this.generateYouTubeVideo(resolution, {
-              rukuData: rukuDataForGroup,
-              audioResult: audioForGroupData,
+            masterResult = await this.generateYouTubeVideo(resolution, {
+              rukuData: masterRukuData,
+              audioResult: { ...audioResult },
             });
           }
 
-          // Tag the result with ALL platforms that share this resolution
-          result.platforms = group.platforms.map((p) => p.name);
-          result.platformGroup = group.groupKey;
-          result.resolutionGroup = group;
-          result.videoPaths = group.platforms.map(() => result.videoPath);
-          videoResults.push(result);
+          // Tag master result with platforms that reuse it
+          masterResult.platforms = masterPlatformNames;
+          masterResult.platformGroup = `${group.groupKey}-master`;
+          videoResults.push(masterResult);
+
+          // --- Generate trimmed videos for platforms that need them ---
+          if (anyNeedsTrim) {
+            // Group platforms by their maxDurationSec value to avoid re-encoding
+            // when multiple platforms have the same limit
+            const trimGroupMap = new Map();
+            for (const [pName, pConfig] of Object.entries(needsTrim)) {
+              if (pConfig === false) continue;
+              const limitKey = String(pConfig.maxDurationSec);
+              if (!trimGroupMap.has(limitKey)) {
+                trimGroupMap.set(limitKey, {
+                  maxDurationSec: pConfig.maxDurationSec,
+                  platformNames: [],
+                });
+              }
+              trimGroupMap.get(limitKey).platformNames.push(pName);
+            }
+
+            for (const [, tg] of trimGroupMap) {
+              console.log(
+                `\n[VideoGen] --- Generating TRIMMED video for ${tg.platformNames.join(", ")} (max ${tg.maxDurationSec}s) ---`,
+              );
+
+              // Select verses that fit within the stricter limit
+              const trimmedVerses = this.selectVersesForDuration(
+                [...rukuData.verses],
+                tg.maxDurationSec,
+              );
+
+              // Re-process audio for the verse subset
+              console.log(
+                `[VideoGen] Re-processing audio for ${trimmedVerses.length} verses (was ${rukuData.verses.length})`,
+              );
+              const trimmedAudioResult =
+                await this.contentFetcher.processAudio(trimmedVerses);
+              const trimmedVerseTimings = trimmedAudioResult.verseTimings || [];
+
+              // Build a clean rukuData copy for this trimmed version
+              // WITHOUT mutating the shared master rukuData
+              const trimmedRukuData = {
+                ...rukuData,
+                verses: trimmedVerses,
+                verseTimings: trimmedVerseTimings,
+                range: `${trimmedVerses[0].numberInSurah}-${trimmedVerses[trimmedVerses.length - 1].numberInSurah}`,
+              };
+
+              let trimmedResult;
+              if (platformStyle === "x_poster") {
+                trimmedResult = await this.generateXPosterVideo(resolution);
+              } else {
+                trimmedResult = await this.generateYouTubeVideo(resolution, {
+                  rukuData: trimmedRukuData,
+                  audioResult: { ...trimmedAudioResult },
+                });
+              }
+
+              trimmedResult.platforms = tg.platformNames;
+              trimmedResult.platformGroup = `${group.groupKey}-${tg.maxDurationSec}s`;
+              videoResults.push(trimmedResult);
+            }
+          }
+
+          // Log final assignment for this group
+          console.log(
+            `\n[VideoGen] Video assignment for group "${group.groupKey}":`,
+          );
+          for (const result of videoResults) {
+            if (
+              result.platformGroup &&
+              result.platformGroup.startsWith(group.groupKey)
+            ) {
+              console.log(
+                `  ${result.platformGroup}: ${result.platforms.join(", ")} → ${result.videoPath || "N/A"}`,
+              );
+            }
+          }
         }
 
         // Create a combined suggestion file with all video paths

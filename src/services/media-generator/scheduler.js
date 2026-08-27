@@ -1,4 +1,3 @@
-const cron = require("node-cron");
 const path = require("path");
 const fs = require("fs");
 const VideoGenerator = require("./generator");
@@ -64,67 +63,98 @@ class Scheduler {
         try {
           const stats = fs.statSync(filePath);
           const lastMtime = this.fileModCache.get(filePath);
-          
+
           // Skip if file hasn't been modified since last check
           if (lastMtime && stats.mtimeMs <= lastMtime) {
             continue;
           }
-          
+
           this.fileModCache.set(filePath, stats.mtimeMs);
           content = fs.readFileSync(filePath, "utf8");
         } catch (fileErr) {
-          console.error(`[Scheduler] Could not read file ${path.basename(filePath)}:`, fileErr.message);
+          console.error(
+            `[Scheduler] Could not read file ${path.basename(filePath)}:`,
+            fileErr.message,
+          );
           continue;
         }
 
-        // --- Handle posting status ---
-        if (/posted:\s*true/i.test(content)) {
-          console.log(`[Scheduler] Detected posted flag in ${path.basename(filePath)}`);
-          
+        // --- Handle per-platform posting status ---
+        // Detect lines like "post_tiktok: true" and increment daily counters
+        const tracking = require("./tracking.js");
+        const platformPostRegex = /^post_(\w+):\s*true\s*$/im;
+        let platformPostMatch;
+        let didAnyPlatformPost = false;
+
+        while ((platformPostMatch = platformPostRegex.exec(content)) !== null) {
+          const platform = platformPostMatch[1];
+          console.log(
+            `[Scheduler] Detected post_${platform}: true in ${path.basename(filePath)}`,
+          );
+
           try {
-            const tracking = require("./tracking.js");
-            const reciterMatch = content.match(/reciterId:\s*(\d+)/);
-            // We need the reciter name as well, which is in the title block
-            const titleMatch = content.match(/\[ YOUTUBE TITLE \]\n(.+)/);
-            let reciterName = "Unknown";
-            
-            if (titleMatch) {
-              const titleParts = titleMatch[1].trim().split("|").map(s => s.trim());
-              reciterName = titleParts[0] || "Unknown";
-            } else if (reciterMatch) {
-              // fallback to ID if title isn't there
-              reciterName = reciterMatch[1];
-            }
-            
-            // Record upload across all enabled platforms
-            const platforms = this.config.platforms || {};
-            let recordedAny = false;
-            for (const [platform, pConfig] of Object.entries(platforms)) {
-              if (pConfig.enabled) {
-                tracking.recordUpload(reciterName, platform);
-                recordedAny = true;
-              }
-            }
-            
-            if (recordedAny) {
-              console.log(`[Scheduler] Tracking recorded for ${reciterName}. Archiving suggestion file.`);
-              // Rename to .txt.posted
-              const newPath = filePath + ".posted";
-              fs.renameSync(filePath, newPath);
-              this.fileModCache.delete(filePath); // Remove old path from cache
-              continue; // Move to next file since this one is processed and renamed
-            } else {
-              console.warn(`[Scheduler] posted: true found but no platforms are enabled in config.`);
-            }
+            tracking.incrementDailyPostCount(platform);
+            didAnyPlatformPost = true;
+
+            // Reset this line to false
+            content = content.replace(
+              new RegExp(`^post_${platform}:\\s*true`, "im"),
+              `post_${platform}: false`,
+            );
           } catch (e) {
-            console.error(`[Scheduler] Error recording tracking from ${path.basename(filePath)}:`, e.message);
+            console.error(
+              `[Scheduler] Error recording post for ${platform}:`,
+              e.message,
+            );
+          }
+        }
+
+        // If any platform posted, write the updated content back
+        if (didAnyPlatformPost) {
+          fs.writeFileSync(filePath, content, "utf8");
+          console.log(
+            `[Scheduler] Updated posting flags in ${path.basename(filePath)}`,
+          );
+
+          // Check if ALL enabled platforms have been posted
+          const allPlatformsPosted = Object.entries(this.config.platforms || {})
+            .filter(([, pConfig]) => pConfig.enabled)
+            .every(([platform]) => {
+              const postedMatch = content.match(
+                new RegExp(`^post_${platform}:\\s*(true|false)\\s*$`, "im"),
+              );
+              // If the line exists and is true, it's posted
+              if (postedMatch) return postedMatch[1] === "true";
+              // If no per-platform line exists, assume not posted yet
+              return false;
+            });
+
+          if (allPlatformsPosted) {
+            console.log(
+              `[Scheduler] All platforms posted for ${path.basename(filePath)}. Archiving.`,
+            );
+            const newPath = filePath + ".posted";
+            fs.renameSync(filePath, newPath);
+            this.fileModCache.delete(filePath);
+            continue;
           }
         }
 
         // --- Handle thumbnail regeneration ---
         if (/regenerateThumbnail:\s*true/i.test(content)) {
-          const thumbTextMatch = content.match(/thumbnailText:\s*(?:"([^"]*)"|(.+))/);
-          const vidMatch = content.match(/\[ VIDEO FILE \]\n(.+)/);
+          const thumbTextMatch = content.match(
+            /thumbnailText:\s*(?:"([^"]*)"|(.+))/,
+          );
+
+          // Match single-platform: [ VIDEO FILE ] \n <path>
+          let vidMatch = content.match(/\[ VIDEO FILE \]\r?\n([^\r\n]+)/);
+
+          // Match multi-platform: [ VIDEO FILES (N platforms) ] \n [GROUP: ...] → platforms \n <path>
+          if (!vidMatch) {
+            vidMatch = content.match(
+              /\[ VIDEO FILES[^\]]*\]\r?\n\s*\[GROUP:[^\]]*\]\s*→[^\n]*\r?\n\s*([^\r\n]+)/,
+            );
+          }
 
           if (!vidMatch) {
             console.warn(
@@ -142,7 +172,9 @@ class Scheduler {
           }
 
           const videoPath = vidMatch[1].trim();
-          const newThumbText = thumbTextMatch ? (thumbTextMatch[1] || thumbTextMatch[2] || "").trim() : "";
+          const newThumbText = thumbTextMatch
+            ? (thumbTextMatch[1] || thumbTextMatch[2] || "").trim()
+            : "";
 
           console.log(
             `[Scheduler] Thumbnail regeneration requested for ${path.basename(filePath)}. Text: "${newThumbText || "(empty)"}"`,
@@ -163,7 +195,9 @@ class Scheduler {
 
             // Build a minimal metadata object from the suggestion file
             const reciterMatch = content.match(/reciterId:\s*(\d+)/);
-            const reciterNameMatch = content.match(/\[ YOUTUBE TITLE \]\n(.+)/);
+            const reciterNameMatch = content.match(
+              /\[ YOUTUBE TITLE \]\r?\n([^\r\n]+)/,
+            );
             const reciterId = reciterMatch ? reciterMatch[1] : "0";
 
             // Use the video's existing background (scan for background path)
@@ -178,9 +212,13 @@ class Scheduler {
               "../video-publisher/assets/portraits",
             );
             let bgPath = null;
-            const portraitPath = path.join(portraitDir, `${reciterId}.jpg`);
-            if (fs.existsSync(portraitPath)) {
-              bgPath = portraitPath;
+            // Try .jpg first, then .png
+            const portraitJpg = path.join(portraitDir, `${reciterId}.jpg`);
+            const portraitPng = path.join(portraitDir, `${reciterId}.png`);
+            if (fs.existsSync(portraitJpg)) {
+              bgPath = portraitJpg;
+            } else if (fs.existsSync(portraitPng)) {
+              bgPath = portraitPng;
             } else if (bgCandidates.length > 0) {
               bgPath = path.join(
                 __dirname,
@@ -221,7 +259,7 @@ class Scheduler {
             }
 
             // Use the same background as the original video (stored in the suggestion file)
-            const bgUsedMatch = content.match(/backgroundUsed:\s*(.+)/);
+            const bgUsedMatch = content.match(/backgroundUsed:\s*([^\r\n]+)/);
             let thumbBg = bgPath; // default to fallback
             if (bgUsedMatch) {
               const storedBg = bgUsedMatch[1].trim();
@@ -231,6 +269,18 @@ class Scheduler {
                 if (![".mp4", ".mov", ".webm", ".gif"].includes(bgExt)) {
                   thumbBg = storedBg;
                 }
+              }
+            }
+
+            // Enforce horizontal background if the selected one is vertical
+            if (thumbBg && thumbBg.includes("vertical")) {
+              // Try to fallback to the horizontal portrait (jpg or png)
+              if (fs.existsSync(portraitJpg)) {
+                thumbBg = portraitJpg;
+              } else if (fs.existsSync(portraitPng)) {
+                thumbBg = portraitPng;
+              } else {
+                thumbBg = null; // Let the generator pick a random one
               }
             }
 
@@ -244,17 +294,25 @@ class Scheduler {
             };
 
             // Parse the old thumbnail path so we can delete it
-            const oldThumbMatch = content.match(/\[ THUMBNAIL FILE \]\n(.+)/);
+            const oldThumbMatch = content.match(
+              /\[ THUMBNAIL FILE \]\r?\n([^\r\n]+)/,
+            );
             const oldThumbPath = oldThumbMatch ? oldThumbMatch[1].trim() : null;
 
             const thumbResult = await thumbGen.generate(metadata, thumbBg);
 
             // Delete the old thumbnail file (replace it with the new one)
             if (oldThumbPath && fs.existsSync(oldThumbPath)) {
-              fs.unlinkSync(oldThumbPath);
-              console.log(
-                `[Scheduler] Deleted old thumbnail: ${path.basename(oldThumbPath)}`,
-              );
+              try {
+                fs.unlinkSync(oldThumbPath);
+                console.log(
+                  `[Scheduler] Deleted old thumbnail: ${path.basename(oldThumbPath)}`,
+                );
+              } catch (delErr) {
+                console.warn(
+                  `[Scheduler] Could not delete old thumbnail: ${delErr.message}`,
+                );
+              }
             }
 
             // Update the suggestion file with the new thumbnail path
@@ -265,7 +323,7 @@ class Scheduler {
               )
               .replace(/thumbnailText:\s*(?:"[^"]*"|.+)/, `thumbnailText: ""`)
               .replace(
-                /\[ THUMBNAIL FILE \]\n.+/,
+                /\[ THUMBNAIL FILE \]\r?\n[^\r\n]+/,
                 `[ THUMBNAIL FILE ]\n${path.resolve(thumbResult.thumbnailPath)}`,
               );
             fs.writeFileSync(filePath, updated, "utf8");
@@ -370,19 +428,18 @@ class Scheduler {
    */
   start() {
     const intervalMinutes = this.config.trigger.checkIntervalMinutes || 30;
-
-    // Create cron pattern: run every N minutes
-    const cronPattern = `*/${intervalMinutes} * * * *`;
+    const intervalMs = intervalMinutes * 60 * 1000;
 
     console.log("========================================");
     console.log("Background Video Generator Scheduler");
     console.log("========================================");
-    console.log(`Check interval: Every ${intervalMinutes} minutes`);
+    console.log(
+      `Check interval: Every ${intervalMinutes} minutes (${intervalMs}ms)`,
+    );
     console.log(
       `Trigger probability: ${(this.config.trigger.probability * 100).toFixed(1)}%`,
     );
     console.log(`Enabled: ${this.config.trigger.enabled ? "YES" : "NO"}`);
-    console.log(`Cron pattern: ${cronPattern}`);
     console.log("========================================\n");
 
     if (!this.config.trigger.enabled) {
@@ -390,13 +447,21 @@ class Scheduler {
       return;
     }
 
-    // Schedule the job
-    cron.schedule(cronPattern, async () => {
+    // Run the first check immediately (don't wait for the first interval)
+    console.log(
+      `\n[${new Date().toLocaleString("en-US", { timeZone: "Africa/Cairo" })}] Initial scheduler check`,
+    );
+    this.attemptGeneration();
+
+    // Schedule subsequent checks using setInterval (not cron!)
+    // This ensures a true N-minute gap between runs, unlike cron's */N
+    // which resets at each hour boundary and causes uneven spacing.
+    setInterval(async () => {
       console.log(
         `\n[${new Date().toLocaleString("en-US", { timeZone: "Africa/Cairo" })}] Scheduler check triggered`,
       );
       await this.attemptGeneration();
-    });
+    }, intervalMs);
 
     // Setup fast-polling for regeneration requests (every 5 seconds)
     // This allows instant regeneration when the user saves the text file.
@@ -410,9 +475,6 @@ class Scheduler {
 
     console.log("[Scheduler] Service started and waiting for schedule...");
     console.log("[Scheduler] Press Ctrl+C to stop\n");
-
-    // Run once immediately for testing (optional - comment out if not desired)
-    // this.attemptGeneration();
   }
 }
 
