@@ -70,6 +70,15 @@ class ContentFetcher {
         this.config = {};
       }
     }
+
+    // Keep the on-disk service config around too. Some callers build a
+    // *partial* `config` object (e.g. `{ excludedReciters: [...] }`), so
+    // audio settings are read from the real config file rather than the
+    // partial one.
+    const fileConfigPath = path.join(__dirname, "config.json");
+    this.fileConfig = fs.existsSync(fileConfigPath)
+      ? JSON.parse(fs.readFileSync(fileConfigPath, "utf8"))
+      : {};
   }
 
   /**
@@ -691,6 +700,202 @@ class ContentFetcher {
   }
 
   /**
+   * Detect and shorten long silent gaps in a merged audio file.
+   *
+   * 1. Runs ffmpeg `silencedetect` to find all silence regions.
+   * 2. For any silence region longer than `minSilenceSec`, trims it down
+   *    to `keepEdgeSec * 2` (a small pad on each side of the cut).
+   * 3. Builds a new audio file from the non-silent + shortened-silent
+   *    segments via ffmpeg `atrim` + `concat`.
+   * 4. Adjusts the supplied `verseTimings` by mapping each old timestamp
+   *    through the cumulative time-removed offsets.
+   *
+   * Falls back to the original file on any error — never breaks generation.
+   *
+   * @param {string} mergedPath - Path to the merged audio file.
+   * @param {Array} verseTimings - Array of { startTimeMs, durationMs, … }.
+   * @param {object} settings - `{ minSilenceSec, keepEdgeSec, thresholdDb }`.
+   * @returns {Promise<{ path: string, verseTimings: Array } | null>}
+   */
+  async removeLongSilences(mergedPath, verseTimings, settings) {
+    const minSilence =
+      Number.isFinite(Number(settings.minSilenceSec)) && Number(settings.minSilenceSec) > 0
+        ? Number(settings.minSilenceSec)
+        : 0.5;
+    const keepEdge =
+      Number.isFinite(Number(settings.keepEdgeSec)) && Number(settings.keepEdgeSec) >= 0
+        ? Number(settings.keepEdgeSec)
+        : 0.15;
+    const threshold =
+      Number.isFinite(Number(settings.thresholdDb))
+        ? Number(settings.thresholdDb)
+        : -40;
+
+    // Step 1: Detect silence regions.
+    const detectCmd =
+      `ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${mergedPath}"`;
+    let totalDuration;
+    try {
+      totalDuration = await new Promise((resolve, reject) => {
+        exec(detectCmd, { windowsHide: true }, (err, stdout) => {
+          if (err) return reject(err);
+          const dur = parseFloat(stdout.trim());
+          if (Number.isFinite(dur) && dur > 0) resolve(dur);
+          else reject(new Error("Could not read merged audio duration"));
+        });
+      });
+    } catch (e) {
+      console.warn(`[Fetcher] Could not read merged audio duration: ${e.message}. Skipping silence removal.`);
+      return null;
+    }
+
+    const silenceCmd =
+      `ffmpeg -i "${mergedPath}" -af silencedetect=noise=${threshold}dB:d=${minSilence} -f null -`;
+
+    let silenceRegions;
+    try {
+      silenceRegions = await new Promise((resolve, reject) => {
+        exec(silenceCmd, { windowsHide: true }, (err, stdout, stderr) => {
+          // silencedetect writes to stderr; ffmpeg returns non-zero only
+          // on real failures, but we'll parse stderr regardless.
+          const output = (stderr || "") + (stdout || "");
+          const regions = [];
+          const startRe = /silence_start:\s*([\d.]+)/g;
+          const endRe = /silence_end:\s*([\d.]+)/g;
+          const starts = [];
+          const ends = [];
+          let m;
+          while ((m = startRe.exec(output))) starts.push(parseFloat(m[1]));
+          while ((m = endRe.exec(output))) ends.push(parseFloat(m[1]));
+
+          for (let i = 0; i < starts.length; i++) {
+            const s = starts[i];
+            const e = i < ends.length ? ends[i] : totalDuration;
+            if (Number.isFinite(s) && Number.isFinite(e) && e > s) {
+              regions.push({ start: s, end: e });
+            }
+          }
+          resolve(regions);
+        });
+      });
+    } catch (e) {
+      console.warn(`[Fetcher] silencedetect failed: ${e.message}. Skipping silence removal.`);
+      return null;
+    }
+
+    if (!silenceRegions || silenceRegions.length === 0) {
+      console.log("[Fetcher] No long silences detected — using original audio.");
+      return null;
+    }
+
+    // Step 2: Build a list of keep-segments and the time removed at each gap.
+    // For each silence region longer than minSilence, we keep keepEdge on each
+    // side and discard the middle.
+    const keeps = []; // { start, end } in original-time seconds
+    const removals = []; // { originalStart, removedSec } for timing adjustment
+    let cursor = 0; // current position in original timeline
+
+    for (const region of silenceRegions) {
+      const silenceDur = region.end - region.start;
+      if (silenceDur <= minSilence) {
+        // Not long enough to trim — will be included as-is.
+        continue;
+      }
+
+      // Keep audio from cursor to (silence start + keepEdge).
+      const keepEnd = Math.min(region.start + keepEdge, region.end);
+      if (keepEnd > cursor) {
+        keeps.push({ start: cursor, end: keepEnd });
+      }
+
+      // The gap we're removing (between the two kept edges).
+      const trimStart = keepEnd;
+      const trimEnd = Math.max(region.end - keepEdge, trimStart);
+      const removedSec = trimEnd - trimStart;
+      if (removedSec > 0) {
+        removals.push({ originalStart: trimStart, removedSec });
+      }
+
+      cursor = trimEnd;
+    }
+
+    // Keep the remainder of the audio after the last silence.
+    if (cursor < totalDuration) {
+      keeps.push({ start: cursor, end: totalDuration });
+    }
+
+    if (keeps.length === 0 || removals.length === 0) {
+      // Nothing to actually trim.
+      return null;
+    }
+
+    const totalRemoved = removals.reduce((sum, r) => sum + r.removedSec, 0);
+    console.log(
+      `[Fetcher] Trimming ${removals.length} long silence(s) totalling ${totalRemoved.toFixed(2)}s.`,
+    );
+
+    // Step 3: Build ffmpeg filter to reconstruct audio from kept segments.
+    const outPath = mergedPath.replace(/\.mp3$/i, "") + "_trimmed.mp3";
+    const filterParts = [];
+    const concatInputs = [];
+    for (let i = 0; i < keeps.length; i++) {
+      const k = keeps[i];
+      filterParts.push(
+        `[0:a]atrim=start=${k.start.toFixed(4)}:end=${k.end.toFixed(4)},asetpts=PTS-STARTPTS[s${i}]`,
+      );
+      concatInputs.push(`[s${i}]`);
+    }
+    const filterGraph =
+      filterParts.join("; ") +
+      `; ${concatInputs.join("")}concat=n=${keeps.length}:v=0:a=1[outa]`;
+    const buildCmd =
+      `ffmpeg -y -i "${mergedPath}" -filter_complex "${filterGraph}" -map "[outa]" -c:a libmp3lame -q:a 2 "${outPath}"`;
+
+    try {
+      await new Promise((resolve, reject) => {
+        exec(buildCmd, { windowsHide: true }, (err, stdout, stderr) => {
+          if (err) return reject(err);
+          resolve();
+        });
+      });
+    } catch (e) {
+      console.warn(
+        `[Fetcher] Silence-trimmed audio build failed: ${e.message}. Using original.`,
+      );
+      try { fs.unlinkSync(outPath); } catch (_) {}
+      return null;
+    }
+
+    // Validate the output isn't broken.
+    const trimmedDur = await this.getAudioDuration(outPath);
+    if (!Number.isFinite(trimmedDur) || trimmedDur < 300) {
+      console.warn("[Fetcher] Trimmed audio too short or invalid. Using original.");
+      try { fs.unlinkSync(outPath); } catch (_) {}
+      return null;
+    }
+
+    // Step 4: Adjust verse timings.
+    // For each verse, subtract the cumulative time removed before its
+    // original start time.
+    const adjustedTimings = verseTimings.map((vt) => {
+      const origStartSec = vt.startTimeMs / 1000;
+      let cumulativeRemoved = 0;
+      for (const r of removals) {
+        if (r.originalStart < origStartSec) {
+          // This removal happened before the verse start.
+          cumulativeRemoved += r.removedSec;
+        }
+      }
+      return {
+        ...vt,
+        startTimeMs: Math.max(0, Math.round(vt.startTimeMs - cumulativeRemoved * 1000)),
+      };
+    });
+
+    return { path: outPath, verseTimings: adjustedTimings };
+  }
+
+  /**
    * Download all audio files for the Ruku and merge them
    * Returns the merged audio path and verse timing metadata
    */
@@ -765,10 +970,31 @@ class ContentFetcher {
       });
     });
 
-    // 4. Return object with path and verse timings
+    // 4. Silence removal: shorten long pauses in the merged audio.
+    let finalPath = outputAudio;
+    let finalTimings = verseTimings;
+    const silenceSettings = this.fileConfig.audio?.silenceRemoval || {};
+    if (silenceSettings.enabled !== false) {
+      try {
+        const trimmed = await this.removeLongSilences(
+          outputAudio,
+          verseTimings,
+          silenceSettings,
+        );
+        if (trimmed) {
+          finalPath = trimmed.path;
+          finalTimings = trimmed.verseTimings;
+        }
+      } catch (e) {
+        console.warn(
+          `[Fetcher] Silence removal error: ${e.message}. Using original audio.`,
+        );
+      }
+    }
+
     const result = {
-      path: outputAudio,
-      verseTimings,
+      path: finalPath,
+      verseTimings: finalTimings,
     };
 
     // 5. Cleanup parts
@@ -780,6 +1006,12 @@ class ContentFetcher {
     try {
       fs.unlinkSync(concatListPath);
     } catch (e) {}
+    // Clean up the original merged file if we're using the trimmed version.
+    if (finalPath !== outputAudio) {
+      try {
+        fs.unlinkSync(outputAudio);
+      } catch (e) {}
+    }
 
     return result;
   }

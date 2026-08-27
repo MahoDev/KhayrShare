@@ -81,6 +81,15 @@
       "resolutionGroup": "horizontal"
     }
   },
+  "audio": {
+    "silenceRemoval": {
+      "enabled": true,
+      "minSilenceSec": 0.5,
+      "keepEdgeSec": 0.15,
+      "thresholdDb": -40,
+      "comment": "Trims long silent gaps (>0.5s) from merged recitation audio, keeping 0.15s padding at each cut edge so recitation never sounds clipped. Set enabled=false to use raw audio."
+    }
+  },
   "settings": {
     "visuals": {
       "textBottomOffset": 100,

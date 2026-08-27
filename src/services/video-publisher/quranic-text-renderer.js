@@ -1,6 +1,7 @@
 const { createCanvas, registerFont, loadImage } = require("canvas");
 const path = require("path");
 const fs = require("fs");
+const { mergeLoneVerseMarkers } = require("../shared/text-utils");
 
 /**
  * QuranicTextRenderer
@@ -68,7 +69,7 @@ class QuranicTextRenderer {
       }
     }
     if (currentLine) lines.push(currentLine.trim());
-    return lines;
+    return mergeLoneVerseMarkers(lines);
   }
 
   /**

@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const arabicReshaper = require("arabic-reshaper");
 const QuranicTextRenderer = require("./quranic-text-renderer.js");
+const { mergeLoneVerseMarkers } = require("../shared/text-utils");
 
 /**
  * VideoGenerator handles creating MP4 files from audio and backgrounds.
@@ -224,7 +225,7 @@ class VideoGenerator {
         }
       }
       if (currentLine) lines.push(currentLine.trim());
-      return lines;
+      return mergeLoneVerseMarkers(lines);
     };
 
     const svg = `

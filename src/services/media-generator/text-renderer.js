@@ -1,6 +1,7 @@
 const { createCanvas, loadImage, registerFont } = require("canvas");
 const fs = require("fs");
 const path = require("path");
+const { mergeLoneVerseMarkers } = require("../shared/text-utils");
 
 class TextRenderer {
   constructor() {
@@ -95,7 +96,7 @@ class TextRenderer {
       }
     }
     lines.push(line.trim());
-    return lines;
+    return mergeLoneVerseMarkers(lines);
   }
 
   /**

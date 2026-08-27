@@ -15,6 +15,14 @@ Automatically generates Quran videos periodically using bothX-Poster and YouTube
 
 Edit `config.json` to customize:
 
+> **Automatic long-pause removal (`audio.silenceRemoval`):** Some reciters take long
+> pauses between verses (or between words of the same verse). After all verse audio
+> files are downloaded and merged, the service detects silence regions via ffmpeg
+> `silencedetect` and trims any gap longer than `minSilenceSec` (default 0.5 s) down
+> to a short padding of `keepEdgeSec` (default 0.15 s) on each side of the cut.
+> Verse timings are automatically adjusted so verse-display stays in sync. Set
+> `enabled` to `false` to turn it off and use the raw recitation audio.
+
 ```json
 {
   "trigger": {
