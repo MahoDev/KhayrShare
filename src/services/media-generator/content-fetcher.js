@@ -750,7 +750,7 @@ class ContentFetcher {
     }
 
     const silenceCmd =
-      `ffmpeg -i "${mergedPath}" -af silencedetect=noise=${threshold}dB:d=${minSilence} -f null -`;
+      `ffmpeg -i "${mergedPath}" -af silencedetect=noise=${threshold}dB:d=0.1 -f null -`;
 
     let silenceRegions;
     try {
@@ -796,9 +796,11 @@ class ContentFetcher {
     let cursor = 0; // current position in original timeline
 
     for (const region of silenceRegions) {
+      const isAtEnd = Math.abs(region.end - totalDuration) < 0.1;
       const silenceDur = region.end - region.start;
-      if (silenceDur <= minSilence) {
-        // Not long enough to trim — will be included as-is.
+      
+      if (!isAtEnd && silenceDur <= minSilence) {
+        // Not long enough to trim (and not at the end) — will be included as-is.
         continue;
       }
 
@@ -808,9 +810,12 @@ class ContentFetcher {
         keeps.push({ start: cursor, end: keepEnd });
       }
 
-      // The gap we're removing (between the two kept edges).
+      // The gap we're removing.
       const trimStart = keepEnd;
-      const trimEnd = Math.max(region.end - keepEdge, trimStart);
+      // If it's the very end of the file, we don't keep a second padding edge
+      // extending backwards from the end of the file.
+      const rightPadding = isAtEnd ? 0 : keepEdge;
+      const trimEnd = Math.max(region.end - rightPadding, trimStart);
       const removedSec = trimEnd - trimStart;
       if (removedSec > 0) {
         removals.push({ originalStart: trimStart, removedSec });
