@@ -1,4 +1,3 @@
-const cron = require("node-cron");
 const path = require("path");
 const fs = require("fs");
 const { tickManualAssist } = require("./manual-assistant");
@@ -20,14 +19,16 @@ class ContentSuggesterScheduler {
       this.config = {
         settings: {
           checkIntervalMinutes: 5,
-          enabled: true
-        }
+          enabled: true,
+        },
       };
     }
   }
 
   async runTick() {
-    console.log(`[${new Date().toLocaleString()}] Running content suggestion tick...`);
+    console.log(
+      `[${new Date().toLocaleString()}] Running content suggestion tick...`,
+    );
     try {
       await tickManualAssist();
     } catch (error) {
@@ -37,26 +38,27 @@ class ContentSuggesterScheduler {
 
   start() {
     const intervalMinutes = this.config.settings?.checkIntervalMinutes || 60;
-    const cronPattern = `0 */${Math.max(1, Math.floor(intervalMinutes / 60))} * * *`; // Every N hours for simplicity or adjust as needed
-
-    // For more granular control, we can use:
-    const granularPattern = `*/${intervalMinutes} * * * *`;
+    const intervalMs = intervalMinutes * 60 * 1000;
 
     console.log("========================================");
     console.log("Background Content Suggester Scheduler");
     console.log("========================================");
-    console.log(`Check interval: Every ${intervalMinutes} minutes`);
-    console.log(`Cron pattern: ${granularPattern}`);
+    console.log(
+      `Check interval: Every ${intervalMinutes} minutes (${intervalMs}ms)`,
+    );
     console.log("========================================\n");
 
-    cron.schedule(granularPattern, () => {
-      this.runTick();
-    });
-
-    console.log("[Scheduler] Service started. Waiting for schedule...");
-    
     // Run once immediately
     this.runTick();
+
+    // Schedule subsequent checks using setInterval (not cron!)
+    // This ensures a true N-minute gap between runs, unlike cron's */N
+    // which resets at each hour boundary and causes uneven spacing.
+    setInterval(() => {
+      this.runTick();
+    }, intervalMs);
+
+    console.log("[Scheduler] Service started. Waiting for schedule...");
   }
 }
 
