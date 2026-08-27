@@ -892,6 +892,15 @@ class ContentFetcher {
       };
     });
 
+    // Recompute durationMs so each verse's image disappears exactly when the next verse starts.
+    for (let i = 0; i < adjustedTimings.length; i++) {
+      if (i < adjustedTimings.length - 1) {
+        adjustedTimings[i].durationMs = adjustedTimings[i + 1].startTimeMs - adjustedTimings[i].startTimeMs;
+      } else {
+        adjustedTimings[i].durationMs = Math.max(0, trimmedDur - adjustedTimings[i].startTimeMs);
+      }
+    }
+
     return { path: outPath, verseTimings: adjustedTimings };
   }
 
