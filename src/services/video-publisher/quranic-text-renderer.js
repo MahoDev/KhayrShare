@@ -49,43 +49,6 @@ class QuranicTextRenderer {
   }
 
   /**
-   * True if a whitespace-delimited token is a lone verse-number marker glyph.
-   * In the KFGQPC dataset each ayah ends with a private-use glyph (U+FC00…
-   * U+FDxx = "Arabic Presentation Forms") that arrives as its own token, e.g. "ﰀ".
-   */
-  isVerseMarkerToken(word) {
-    if (!word || word.length === 0) return false;
-    for (const ch of word) {
-      const cp = ch.codePointAt(0);
-      // Arabic Presentation Forms A/B + Private Use Area. Normal Quranic words
-      // (and combining marks) stay in U+0600..U+0700, so this only catches markers.
-      if (cp < 0xfb50) return false;
-    }
-    return true;
-  }
-
-  /**
-   * Make sure a wrapping pass never leaves a lone verse-number marker on its own
-   * line — merge such a line into the adjacent one so every verse number always
-   * has a real word next to it. Ordinary lines are untouched.
-   */
-  mergeLoneVerseMarkers(lines) {
-    const cleaned = [];
-    for (const line of lines) {
-      const tokens = line.split(/\s+/).filter((w) => w.length > 0);
-      const isLoneMarker =
-        tokens.length > 0 && tokens.every((t) => this.isVerseMarkerToken(t));
-      if (isLoneMarker && cleaned.length > 0) {
-        cleaned[cleaned.length - 1] =
-          cleaned[cleaned.length - 1].replace(/\s+$/, "") + " " + line.trim();
-      } else {
-        cleaned.push(line);
-      }
-    }
-    return cleaned;
-  }
-
-  /**
    * Wrap Arabic text into lines that fit within maxCharsPerLine.
    * Splits on whitespace preserving word boundaries.
    * @param {string} text
@@ -105,7 +68,7 @@ class QuranicTextRenderer {
       }
     }
     if (currentLine) lines.push(currentLine.trim());
-    return this.mergeLoneVerseMarkers(lines);
+    return lines;
   }
 
   /**
