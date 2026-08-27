@@ -1,5 +1,37 @@
 {
   "version": 1,
+  "platforms": {
+    "tiktok": {
+      "width": 1080,
+      "height": 1920,
+      "defaultStyle": "youtube"
+    },
+    "youtube": {
+      "width": 1920,
+      "height": 1080,
+      "defaultStyle": "youtube"
+    },
+    "instagram-reels": {
+      "width": 1080,
+      "height": 1920,
+      "defaultStyle": "youtube"
+    },
+    "instagram-post": {
+      "width": 1080,
+      "height": 1080,
+      "defaultStyle": "x"
+    },
+    "x": {
+      "width": 1080,
+      "height": 1080,
+      "defaultStyle": "x"
+    },
+    "facebook": {
+      "width": 1080,
+      "height": 1920,
+      "defaultStyle": "youtube"
+    }
+  },
   "presets": {
     "x": {
       "default": {

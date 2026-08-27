@@ -1,0 +1,3022 @@
+{
+  "1": {
+    "surahId": 1,
+    "startVerse": 1,
+    "endVerse": 7
+  },
+  "2": {
+    "surahId": 2,
+    "startVerse": 1,
+    "endVerse": 5
+  },
+  "3": {
+    "surahId": 2,
+    "startVerse": 6,
+    "endVerse": 16
+  },
+  "4": {
+    "surahId": 2,
+    "startVerse": 17,
+    "endVerse": 24
+  },
+  "5": {
+    "surahId": 2,
+    "startVerse": 25,
+    "endVerse": 29
+  },
+  "6": {
+    "surahId": 2,
+    "startVerse": 30,
+    "endVerse": 37
+  },
+  "7": {
+    "surahId": 2,
+    "startVerse": 38,
+    "endVerse": 48
+  },
+  "8": {
+    "surahId": 2,
+    "startVerse": 49,
+    "endVerse": 57
+  },
+  "9": {
+    "surahId": 2,
+    "startVerse": 58,
+    "endVerse": 61
+  },
+  "10": {
+    "surahId": 2,
+    "startVerse": 62,
+    "endVerse": 69
+  },
+  "11": {
+    "surahId": 2,
+    "startVerse": 70,
+    "endVerse": 76
+  },
+  "12": {
+    "surahId": 2,
+    "startVerse": 77,
+    "endVerse": 83
+  },
+  "13": {
+    "surahId": 2,
+    "startVerse": 84,
+    "endVerse": 88
+  },
+  "14": {
+    "surahId": 2,
+    "startVerse": 89,
+    "endVerse": 93
+  },
+  "15": {
+    "surahId": 2,
+    "startVerse": 94,
+    "endVerse": 101
+  },
+  "16": {
+    "surahId": 2,
+    "startVerse": 102,
+    "endVerse": 105
+  },
+  "17": {
+    "surahId": 2,
+    "startVerse": 106,
+    "endVerse": 112
+  },
+  "18": {
+    "surahId": 2,
+    "startVerse": 113,
+    "endVerse": 119
+  },
+  "19": {
+    "surahId": 2,
+    "startVerse": 120,
+    "endVerse": 126
+  },
+  "20": {
+    "surahId": 2,
+    "startVerse": 127,
+    "endVerse": 134
+  },
+  "21": {
+    "surahId": 2,
+    "startVerse": 135,
+    "endVerse": 141
+  },
+  "22": {
+    "surahId": 2,
+    "startVerse": 142,
+    "endVerse": 145
+  },
+  "23": {
+    "surahId": 2,
+    "startVerse": 146,
+    "endVerse": 153
+  },
+  "24": {
+    "surahId": 2,
+    "startVerse": 154,
+    "endVerse": 163
+  },
+  "25": {
+    "surahId": 2,
+    "startVerse": 164,
+    "endVerse": 169
+  },
+  "26": {
+    "surahId": 2,
+    "startVerse": 170,
+    "endVerse": 176
+  },
+  "27": {
+    "surahId": 2,
+    "startVerse": 177,
+    "endVerse": 181
+  },
+  "28": {
+    "surahId": 2,
+    "startVerse": 182,
+    "endVerse": 186
+  },
+  "29": {
+    "surahId": 2,
+    "startVerse": 187,
+    "endVerse": 190
+  },
+  "30": {
+    "surahId": 2,
+    "startVerse": 191,
+    "endVerse": 196
+  },
+  "31": {
+    "surahId": 2,
+    "startVerse": 197,
+    "endVerse": 202
+  },
+  "32": {
+    "surahId": 2,
+    "startVerse": 203,
+    "endVerse": 210
+  },
+  "33": {
+    "surahId": 2,
+    "startVerse": 211,
+    "endVerse": 215
+  },
+  "34": {
+    "surahId": 2,
+    "startVerse": 216,
+    "endVerse": 219
+  },
+  "35": {
+    "surahId": 2,
+    "startVerse": 220,
+    "endVerse": 224
+  },
+  "36": {
+    "surahId": 2,
+    "startVerse": 225,
+    "endVerse": 230
+  },
+  "37": {
+    "surahId": 2,
+    "startVerse": 231,
+    "endVerse": 233
+  },
+  "38": {
+    "surahId": 2,
+    "startVerse": 234,
+    "endVerse": 237
+  },
+  "39": {
+    "surahId": 2,
+    "startVerse": 238,
+    "endVerse": 245
+  },
+  "40": {
+    "surahId": 2,
+    "startVerse": 246,
+    "endVerse": 248
+  },
+  "41": {
+    "surahId": 2,
+    "startVerse": 249,
+    "endVerse": 252
+  },
+  "42": {
+    "surahId": 2,
+    "startVerse": 253,
+    "endVerse": 256
+  },
+  "43": {
+    "surahId": 2,
+    "startVerse": 257,
+    "endVerse": 259
+  },
+  "44": {
+    "surahId": 2,
+    "startVerse": 260,
+    "endVerse": 264
+  },
+  "45": {
+    "surahId": 2,
+    "startVerse": 265,
+    "endVerse": 269
+  },
+  "46": {
+    "surahId": 2,
+    "startVerse": 270,
+    "endVerse": 274
+  },
+  "47": {
+    "surahId": 2,
+    "startVerse": 275,
+    "endVerse": 281
+  },
+  "48": {
+    "surahId": 2,
+    "startVerse": 282,
+    "endVerse": 282
+  },
+  "49": {
+    "surahId": 2,
+    "startVerse": 283,
+    "endVerse": 286
+  },
+  "50": {
+    "surahId": 3,
+    "startVerse": 1,
+    "endVerse": 9
+  },
+  "51": {
+    "surahId": 3,
+    "startVerse": 10,
+    "endVerse": 15
+  },
+  "52": {
+    "surahId": 3,
+    "startVerse": 16,
+    "endVerse": 22
+  },
+  "53": {
+    "surahId": 3,
+    "startVerse": 23,
+    "endVerse": 29
+  },
+  "54": {
+    "surahId": 3,
+    "startVerse": 30,
+    "endVerse": 37
+  },
+  "55": {
+    "surahId": 3,
+    "startVerse": 38,
+    "endVerse": 45
+  },
+  "56": {
+    "surahId": 3,
+    "startVerse": 46,
+    "endVerse": 52
+  },
+  "57": {
+    "surahId": 3,
+    "startVerse": 53,
+    "endVerse": 61
+  },
+  "58": {
+    "surahId": 3,
+    "startVerse": 62,
+    "endVerse": 70
+  },
+  "59": {
+    "surahId": 3,
+    "startVerse": 71,
+    "endVerse": 77
+  },
+  "60": {
+    "surahId": 3,
+    "startVerse": 78,
+    "endVerse": 83
+  },
+  "61": {
+    "surahId": 3,
+    "startVerse": 84,
+    "endVerse": 91
+  },
+  "62": {
+    "surahId": 3,
+    "startVerse": 92,
+    "endVerse": 100
+  },
+  "63": {
+    "surahId": 3,
+    "startVerse": 101,
+    "endVerse": 108
+  },
+  "64": {
+    "surahId": 3,
+    "startVerse": 109,
+    "endVerse": 115
+  },
+  "65": {
+    "surahId": 3,
+    "startVerse": 116,
+    "endVerse": 121
+  },
+  "66": {
+    "surahId": 3,
+    "startVerse": 122,
+    "endVerse": 132
+  },
+  "67": {
+    "surahId": 3,
+    "startVerse": 133,
+    "endVerse": 140
+  },
+  "68": {
+    "surahId": 3,
+    "startVerse": 141,
+    "endVerse": 148
+  },
+  "69": {
+    "surahId": 3,
+    "startVerse": 149,
+    "endVerse": 153
+  },
+  "70": {
+    "surahId": 3,
+    "startVerse": 154,
+    "endVerse": 157
+  },
+  "71": {
+    "surahId": 3,
+    "startVerse": 158,
+    "endVerse": 165
+  },
+  "72": {
+    "surahId": 3,
+    "startVerse": 166,
+    "endVerse": 173
+  },
+  "73": {
+    "surahId": 3,
+    "startVerse": 174,
+    "endVerse": 180
+  },
+  "74": {
+    "surahId": 3,
+    "startVerse": 181,
+    "endVerse": 186
+  },
+  "75": {
+    "surahId": 3,
+    "startVerse": 187,
+    "endVerse": 194
+  },
+  "76": {
+    "surahId": 3,
+    "startVerse": 195,
+    "endVerse": 200
+  },
+  "77": {
+    "surahId": 4,
+    "startVerse": 1,
+    "endVerse": 6
+  },
+  "78": {
+    "surahId": 4,
+    "startVerse": 7,
+    "endVerse": 11
+  },
+  "79": {
+    "surahId": 4,
+    "startVerse": 12,
+    "endVerse": 14
+  },
+  "80": {
+    "surahId": 4,
+    "startVerse": 15,
+    "endVerse": 19
+  },
+  "81": {
+    "surahId": 4,
+    "startVerse": 20,
+    "endVerse": 23
+  },
+  "82": {
+    "surahId": 4,
+    "startVerse": 24,
+    "endVerse": 26
+  },
+  "83": {
+    "surahId": 4,
+    "startVerse": 27,
+    "endVerse": 33
+  },
+  "84": {
+    "surahId": 4,
+    "startVerse": 34,
+    "endVerse": 37
+  },
+  "85": {
+    "surahId": 4,
+    "startVerse": 38,
+    "endVerse": 44
+  },
+  "86": {
+    "surahId": 4,
+    "startVerse": 45,
+    "endVerse": 51
+  },
+  "87": {
+    "surahId": 4,
+    "startVerse": 52,
+    "endVerse": 59
+  },
+  "88": {
+    "surahId": 4,
+    "startVerse": 60,
+    "endVerse": 65
+  },
+  "89": {
+    "surahId": 4,
+    "startVerse": 66,
+    "endVerse": 74
+  },
+  "90": {
+    "surahId": 4,
+    "startVerse": 75,
+    "endVerse": 79
+  },
+  "91": {
+    "surahId": 4,
+    "startVerse": 80,
+    "endVerse": 86
+  },
+  "92": {
+    "surahId": 4,
+    "startVerse": 87,
+    "endVerse": 91
+  },
+  "93": {
+    "surahId": 4,
+    "startVerse": 92,
+    "endVerse": 94
+  },
+  "94": {
+    "surahId": 4,
+    "startVerse": 95,
+    "endVerse": 101
+  },
+  "95": {
+    "surahId": 4,
+    "startVerse": 102,
+    "endVerse": 105
+  },
+  "96": {
+    "surahId": 4,
+    "startVerse": 106,
+    "endVerse": 113
+  },
+  "97": {
+    "surahId": 4,
+    "startVerse": 114,
+    "endVerse": 121
+  },
+  "98": {
+    "surahId": 4,
+    "startVerse": 122,
+    "endVerse": 127
+  },
+  "99": {
+    "surahId": 4,
+    "startVerse": 128,
+    "endVerse": 134
+  },
+  "100": {
+    "surahId": 4,
+    "startVerse": 135,
+    "endVerse": 140
+  },
+  "101": {
+    "surahId": 4,
+    "startVerse": 141,
+    "endVerse": 147
+  },
+  "102": {
+    "surahId": 4,
+    "startVerse": 148,
+    "endVerse": 154
+  },
+  "103": {
+    "surahId": 4,
+    "startVerse": 155,
+    "endVerse": 162
+  },
+  "104": {
+    "surahId": 4,
+    "startVerse": 163,
+    "endVerse": 170
+  },
+  "105": {
+    "surahId": 4,
+    "startVerse": 171,
+    "endVerse": 175
+  },
+  "106": {
+    "surahId": 4,
+    "startVerse": 176,
+    "endVerse": 176
+  },
+  "107": {
+    "surahId": 5,
+    "startVerse": 3,
+    "endVerse": 5
+  },
+  "108": {
+    "surahId": 5,
+    "startVerse": 6,
+    "endVerse": 9
+  },
+  "109": {
+    "surahId": 5,
+    "startVerse": 10,
+    "endVerse": 13
+  },
+  "110": {
+    "surahId": 5,
+    "startVerse": 14,
+    "endVerse": 17
+  },
+  "111": {
+    "surahId": 5,
+    "startVerse": 18,
+    "endVerse": 23
+  },
+  "112": {
+    "surahId": 5,
+    "startVerse": 24,
+    "endVerse": 31
+  },
+  "113": {
+    "surahId": 5,
+    "startVerse": 32,
+    "endVerse": 36
+  },
+  "114": {
+    "surahId": 5,
+    "startVerse": 37,
+    "endVerse": 41
+  },
+  "115": {
+    "surahId": 5,
+    "startVerse": 42,
+    "endVerse": 45
+  },
+  "116": {
+    "surahId": 5,
+    "startVerse": 46,
+    "endVerse": 50
+  },
+  "117": {
+    "surahId": 5,
+    "startVerse": 51,
+    "endVerse": 57
+  },
+  "118": {
+    "surahId": 5,
+    "startVerse": 58,
+    "endVerse": 64
+  },
+  "119": {
+    "surahId": 5,
+    "startVerse": 65,
+    "endVerse": 70
+  },
+  "120": {
+    "surahId": 5,
+    "startVerse": 71,
+    "endVerse": 77
+  },
+  "121": {
+    "surahId": 5,
+    "startVerse": 78,
+    "endVerse": 83
+  },
+  "122": {
+    "surahId": 5,
+    "startVerse": 84,
+    "endVerse": 90
+  },
+  "123": {
+    "surahId": 5,
+    "startVerse": 91,
+    "endVerse": 95
+  },
+  "124": {
+    "surahId": 5,
+    "startVerse": 96,
+    "endVerse": 103
+  },
+  "125": {
+    "surahId": 5,
+    "startVerse": 104,
+    "endVerse": 108
+  },
+  "126": {
+    "surahId": 5,
+    "startVerse": 109,
+    "endVerse": 113
+  },
+  "127": {
+    "surahId": 5,
+    "startVerse": 114,
+    "endVerse": 120
+  },
+  "128": {
+    "surahId": 6,
+    "startVerse": 1,
+    "endVerse": 8
+  },
+  "129": {
+    "surahId": 6,
+    "startVerse": 9,
+    "endVerse": 18
+  },
+  "130": {
+    "surahId": 6,
+    "startVerse": 19,
+    "endVerse": 27
+  },
+  "131": {
+    "surahId": 6,
+    "startVerse": 28,
+    "endVerse": 35
+  },
+  "132": {
+    "surahId": 6,
+    "startVerse": 36,
+    "endVerse": 44
+  },
+  "133": {
+    "surahId": 6,
+    "startVerse": 45,
+    "endVerse": 52
+  },
+  "134": {
+    "surahId": 6,
+    "startVerse": 53,
+    "endVerse": 59
+  },
+  "135": {
+    "surahId": 6,
+    "startVerse": 60,
+    "endVerse": 68
+  },
+  "136": {
+    "surahId": 6,
+    "startVerse": 69,
+    "endVerse": 73
+  },
+  "137": {
+    "surahId": 6,
+    "startVerse": 74,
+    "endVerse": 81
+  },
+  "138": {
+    "surahId": 6,
+    "startVerse": 82,
+    "endVerse": 90
+  },
+  "139": {
+    "surahId": 6,
+    "startVerse": 91,
+    "endVerse": 94
+  },
+  "140": {
+    "surahId": 6,
+    "startVerse": 95,
+    "endVerse": 101
+  },
+  "141": {
+    "surahId": 6,
+    "startVerse": 102,
+    "endVerse": 110
+  },
+  "142": {
+    "surahId": 6,
+    "startVerse": 111,
+    "endVerse": 118
+  },
+  "143": {
+    "surahId": 6,
+    "startVerse": 119,
+    "endVerse": 124
+  },
+  "144": {
+    "surahId": 6,
+    "startVerse": 125,
+    "endVerse": 130
+  },
+  "145": {
+    "surahId": 6,
+    "startVerse": 131,
+    "endVerse": 137
+  },
+  "146": {
+    "surahId": 6,
+    "startVerse": 138,
+    "endVerse": 142
+  },
+  "147": {
+    "surahId": 6,
+    "startVerse": 143,
+    "endVerse": 146
+  },
+  "148": {
+    "surahId": 6,
+    "startVerse": 147,
+    "endVerse": 151
+  },
+  "149": {
+    "surahId": 6,
+    "startVerse": 152,
+    "endVerse": 157
+  },
+  "150": {
+    "surahId": 6,
+    "startVerse": 158,
+    "endVerse": 165
+  },
+  "151": {
+    "surahId": 7,
+    "startVerse": 1,
+    "endVerse": 11
+  },
+  "152": {
+    "surahId": 7,
+    "startVerse": 12,
+    "endVerse": 22
+  },
+  "153": {
+    "surahId": 7,
+    "startVerse": 23,
+    "endVerse": 30
+  },
+  "154": {
+    "surahId": 7,
+    "startVerse": 31,
+    "endVerse": 37
+  },
+  "155": {
+    "surahId": 7,
+    "startVerse": 38,
+    "endVerse": 43
+  },
+  "156": {
+    "surahId": 7,
+    "startVerse": 44,
+    "endVerse": 51
+  },
+  "157": {
+    "surahId": 7,
+    "startVerse": 52,
+    "endVerse": 57
+  },
+  "158": {
+    "surahId": 7,
+    "startVerse": 58,
+    "endVerse": 67
+  },
+  "159": {
+    "surahId": 7,
+    "startVerse": 68,
+    "endVerse": 73
+  },
+  "160": {
+    "surahId": 7,
+    "startVerse": 74,
+    "endVerse": 81
+  },
+  "161": {
+    "surahId": 7,
+    "startVerse": 82,
+    "endVerse": 87
+  },
+  "162": {
+    "surahId": 7,
+    "startVerse": 88,
+    "endVerse": 95
+  },
+  "163": {
+    "surahId": 7,
+    "startVerse": 96,
+    "endVerse": 104
+  },
+  "164": {
+    "surahId": 7,
+    "startVerse": 105,
+    "endVerse": 120
+  },
+  "165": {
+    "surahId": 7,
+    "startVerse": 121,
+    "endVerse": 130
+  },
+  "166": {
+    "surahId": 7,
+    "startVerse": 131,
+    "endVerse": 137
+  },
+  "167": {
+    "surahId": 7,
+    "startVerse": 138,
+    "endVerse": 143
+  },
+  "168": {
+    "surahId": 7,
+    "startVerse": 144,
+    "endVerse": 149
+  },
+  "169": {
+    "surahId": 7,
+    "startVerse": 150,
+    "endVerse": 155
+  },
+  "170": {
+    "surahId": 7,
+    "startVerse": 156,
+    "endVerse": 159
+  },
+  "171": {
+    "surahId": 7,
+    "startVerse": 160,
+    "endVerse": 163
+  },
+  "172": {
+    "surahId": 7,
+    "startVerse": 164,
+    "endVerse": 170
+  },
+  "173": {
+    "surahId": 7,
+    "startVerse": 171,
+    "endVerse": 178
+  },
+  "174": {
+    "surahId": 7,
+    "startVerse": 179,
+    "endVerse": 187
+  },
+  "175": {
+    "surahId": 7,
+    "startVerse": 188,
+    "endVerse": 195
+  },
+  "176": {
+    "surahId": 7,
+    "startVerse": 196,
+    "endVerse": 206
+  },
+  "177": {
+    "surahId": 8,
+    "startVerse": 1,
+    "endVerse": 8
+  },
+  "178": {
+    "surahId": 8,
+    "startVerse": 9,
+    "endVerse": 16
+  },
+  "179": {
+    "surahId": 8,
+    "startVerse": 17,
+    "endVerse": 25
+  },
+  "180": {
+    "surahId": 8,
+    "startVerse": 26,
+    "endVerse": 33
+  },
+  "181": {
+    "surahId": 8,
+    "startVerse": 34,
+    "endVerse": 40
+  },
+  "182": {
+    "surahId": 8,
+    "startVerse": 41,
+    "endVerse": 45
+  },
+  "183": {
+    "surahId": 8,
+    "startVerse": 46,
+    "endVerse": 52
+  },
+  "184": {
+    "surahId": 8,
+    "startVerse": 53,
+    "endVerse": 61
+  },
+  "185": {
+    "surahId": 8,
+    "startVerse": 62,
+    "endVerse": 69
+  },
+  "186": {
+    "surahId": 8,
+    "startVerse": 70,
+    "endVerse": 75
+  },
+  "187": {
+    "surahId": 9,
+    "startVerse": 1,
+    "endVerse": 6
+  },
+  "188": {
+    "surahId": 9,
+    "startVerse": 7,
+    "endVerse": 13
+  },
+  "189": {
+    "surahId": 9,
+    "startVerse": 14,
+    "endVerse": 20
+  },
+  "190": {
+    "surahId": 9,
+    "startVerse": 21,
+    "endVerse": 26
+  },
+  "191": {
+    "surahId": 9,
+    "startVerse": 27,
+    "endVerse": 31
+  },
+  "192": {
+    "surahId": 9,
+    "startVerse": 32,
+    "endVerse": 36
+  },
+  "193": {
+    "surahId": 9,
+    "startVerse": 37,
+    "endVerse": 40
+  },
+  "194": {
+    "surahId": 9,
+    "startVerse": 41,
+    "endVerse": 47
+  },
+  "195": {
+    "surahId": 9,
+    "startVerse": 48,
+    "endVerse": 54
+  },
+  "196": {
+    "surahId": 9,
+    "startVerse": 55,
+    "endVerse": 61
+  },
+  "197": {
+    "surahId": 9,
+    "startVerse": 62,
+    "endVerse": 68
+  },
+  "198": {
+    "surahId": 9,
+    "startVerse": 69,
+    "endVerse": 72
+  },
+  "199": {
+    "surahId": 9,
+    "startVerse": 73,
+    "endVerse": 79
+  },
+  "200": {
+    "surahId": 9,
+    "startVerse": 80,
+    "endVerse": 86
+  },
+  "201": {
+    "surahId": 9,
+    "startVerse": 87,
+    "endVerse": 93
+  },
+  "202": {
+    "surahId": 9,
+    "startVerse": 94,
+    "endVerse": 99
+  },
+  "203": {
+    "surahId": 9,
+    "startVerse": 100,
+    "endVerse": 106
+  },
+  "204": {
+    "surahId": 9,
+    "startVerse": 107,
+    "endVerse": 111
+  },
+  "205": {
+    "surahId": 9,
+    "startVerse": 112,
+    "endVerse": 117
+  },
+  "206": {
+    "surahId": 9,
+    "startVerse": 118,
+    "endVerse": 122
+  },
+  "207": {
+    "surahId": 9,
+    "startVerse": 123,
+    "endVerse": 129
+  },
+  "208": {
+    "surahId": 10,
+    "startVerse": 1,
+    "endVerse": 6
+  },
+  "209": {
+    "surahId": 10,
+    "startVerse": 7,
+    "endVerse": 14
+  },
+  "210": {
+    "surahId": 10,
+    "startVerse": 15,
+    "endVerse": 20
+  },
+  "211": {
+    "surahId": 10,
+    "startVerse": 21,
+    "endVerse": 25
+  },
+  "212": {
+    "surahId": 10,
+    "startVerse": 26,
+    "endVerse": 33
+  },
+  "213": {
+    "surahId": 10,
+    "startVerse": 34,
+    "endVerse": 42
+  },
+  "214": {
+    "surahId": 10,
+    "startVerse": 43,
+    "endVerse": 53
+  },
+  "215": {
+    "surahId": 10,
+    "startVerse": 54,
+    "endVerse": 61
+  },
+  "216": {
+    "surahId": 10,
+    "startVerse": 62,
+    "endVerse": 70
+  },
+  "217": {
+    "surahId": 10,
+    "startVerse": 71,
+    "endVerse": 78
+  },
+  "218": {
+    "surahId": 10,
+    "startVerse": 79,
+    "endVerse": 88
+  },
+  "219": {
+    "surahId": 10,
+    "startVerse": 89,
+    "endVerse": 97
+  },
+  "220": {
+    "surahId": 10,
+    "startVerse": 98,
+    "endVerse": 106
+  },
+  "221": {
+    "surahId": 10,
+    "startVerse": 107,
+    "endVerse": 109
+  },
+  "222": {
+    "surahId": 11,
+    "startVerse": 6,
+    "endVerse": 12
+  },
+  "223": {
+    "surahId": 11,
+    "startVerse": 13,
+    "endVerse": 19
+  },
+  "224": {
+    "surahId": 11,
+    "startVerse": 20,
+    "endVerse": 28
+  },
+  "225": {
+    "surahId": 11,
+    "startVerse": 29,
+    "endVerse": 37
+  },
+  "226": {
+    "surahId": 11,
+    "startVerse": 38,
+    "endVerse": 45
+  },
+  "227": {
+    "surahId": 11,
+    "startVerse": 46,
+    "endVerse": 53
+  },
+  "228": {
+    "surahId": 11,
+    "startVerse": 54,
+    "endVerse": 62
+  },
+  "229": {
+    "surahId": 11,
+    "startVerse": 63,
+    "endVerse": 71
+  },
+  "230": {
+    "surahId": 11,
+    "startVerse": 72,
+    "endVerse": 81
+  },
+  "231": {
+    "surahId": 11,
+    "startVerse": 82,
+    "endVerse": 88
+  },
+  "232": {
+    "surahId": 11,
+    "startVerse": 89,
+    "endVerse": 97
+  },
+  "233": {
+    "surahId": 11,
+    "startVerse": 98,
+    "endVerse": 108
+  },
+  "234": {
+    "surahId": 11,
+    "startVerse": 109,
+    "endVerse": 117
+  },
+  "235": {
+    "surahId": 11,
+    "startVerse": 118,
+    "endVerse": 123
+  },
+  "236": {
+    "surahId": 12,
+    "startVerse": 5,
+    "endVerse": 14
+  },
+  "237": {
+    "surahId": 12,
+    "startVerse": 15,
+    "endVerse": 22
+  },
+  "238": {
+    "surahId": 12,
+    "startVerse": 23,
+    "endVerse": 30
+  },
+  "239": {
+    "surahId": 12,
+    "startVerse": 31,
+    "endVerse": 37
+  },
+  "240": {
+    "surahId": 12,
+    "startVerse": 38,
+    "endVerse": 43
+  },
+  "241": {
+    "surahId": 12,
+    "startVerse": 44,
+    "endVerse": 52
+  },
+  "242": {
+    "surahId": 12,
+    "startVerse": 53,
+    "endVerse": 63
+  },
+  "243": {
+    "surahId": 12,
+    "startVerse": 64,
+    "endVerse": 69
+  },
+  "244": {
+    "surahId": 12,
+    "startVerse": 70,
+    "endVerse": 78
+  },
+  "245": {
+    "surahId": 12,
+    "startVerse": 79,
+    "endVerse": 86
+  },
+  "246": {
+    "surahId": 12,
+    "startVerse": 87,
+    "endVerse": 95
+  },
+  "247": {
+    "surahId": 12,
+    "startVerse": 96,
+    "endVerse": 103
+  },
+  "248": {
+    "surahId": 12,
+    "startVerse": 104,
+    "endVerse": 111
+  },
+  "249": {
+    "surahId": 13,
+    "startVerse": 1,
+    "endVerse": 5
+  },
+  "250": {
+    "surahId": 13,
+    "startVerse": 6,
+    "endVerse": 13
+  },
+  "251": {
+    "surahId": 13,
+    "startVerse": 14,
+    "endVerse": 18
+  },
+  "252": {
+    "surahId": 13,
+    "startVerse": 19,
+    "endVerse": 28
+  },
+  "253": {
+    "surahId": 13,
+    "startVerse": 29,
+    "endVerse": 34
+  },
+  "254": {
+    "surahId": 13,
+    "startVerse": 35,
+    "endVerse": 42
+  },
+  "255": {
+    "surahId": 13,
+    "startVerse": 43,
+    "endVerse": 43
+  },
+  "256": {
+    "surahId": 14,
+    "startVerse": 6,
+    "endVerse": 10
+  },
+  "257": {
+    "surahId": 14,
+    "startVerse": 11,
+    "endVerse": 18
+  },
+  "258": {
+    "surahId": 14,
+    "startVerse": 19,
+    "endVerse": 24
+  },
+  "259": {
+    "surahId": 14,
+    "startVerse": 25,
+    "endVerse": 33
+  },
+  "260": {
+    "surahId": 14,
+    "startVerse": 34,
+    "endVerse": 42
+  },
+  "261": {
+    "surahId": 14,
+    "startVerse": 43,
+    "endVerse": 52
+  },
+  "262": {
+    "surahId": 15,
+    "startVerse": 1,
+    "endVerse": 15
+  },
+  "263": {
+    "surahId": 15,
+    "startVerse": 16,
+    "endVerse": 31
+  },
+  "264": {
+    "surahId": 15,
+    "startVerse": 32,
+    "endVerse": 51
+  },
+  "265": {
+    "surahId": 15,
+    "startVerse": 52,
+    "endVerse": 70
+  },
+  "266": {
+    "surahId": 15,
+    "startVerse": 71,
+    "endVerse": 90
+  },
+  "267": {
+    "surahId": 15,
+    "startVerse": 91,
+    "endVerse": 99
+  },
+  "268": {
+    "surahId": 16,
+    "startVerse": 7,
+    "endVerse": 14
+  },
+  "269": {
+    "surahId": 16,
+    "startVerse": 15,
+    "endVerse": 26
+  },
+  "270": {
+    "surahId": 16,
+    "startVerse": 27,
+    "endVerse": 34
+  },
+  "271": {
+    "surahId": 16,
+    "startVerse": 35,
+    "endVerse": 42
+  },
+  "272": {
+    "surahId": 16,
+    "startVerse": 43,
+    "endVerse": 54
+  },
+  "273": {
+    "surahId": 16,
+    "startVerse": 55,
+    "endVerse": 64
+  },
+  "274": {
+    "surahId": 16,
+    "startVerse": 65,
+    "endVerse": 72
+  },
+  "275": {
+    "surahId": 16,
+    "startVerse": 73,
+    "endVerse": 79
+  },
+  "276": {
+    "surahId": 16,
+    "startVerse": 80,
+    "endVerse": 87
+  },
+  "277": {
+    "surahId": 16,
+    "startVerse": 88,
+    "endVerse": 93
+  },
+  "278": {
+    "surahId": 16,
+    "startVerse": 94,
+    "endVerse": 102
+  },
+  "279": {
+    "surahId": 16,
+    "startVerse": 103,
+    "endVerse": 110
+  },
+  "280": {
+    "surahId": 16,
+    "startVerse": 111,
+    "endVerse": 118
+  },
+  "281": {
+    "surahId": 16,
+    "startVerse": 119,
+    "endVerse": 128
+  },
+  "282": {
+    "surahId": 17,
+    "startVerse": 1,
+    "endVerse": 7
+  },
+  "283": {
+    "surahId": 17,
+    "startVerse": 8,
+    "endVerse": 17
+  },
+  "284": {
+    "surahId": 17,
+    "startVerse": 18,
+    "endVerse": 27
+  },
+  "285": {
+    "surahId": 17,
+    "startVerse": 28,
+    "endVerse": 38
+  },
+  "286": {
+    "surahId": 17,
+    "startVerse": 39,
+    "endVerse": 49
+  },
+  "287": {
+    "surahId": 17,
+    "startVerse": 50,
+    "endVerse": 58
+  },
+  "288": {
+    "surahId": 17,
+    "startVerse": 59,
+    "endVerse": 66
+  },
+  "289": {
+    "surahId": 17,
+    "startVerse": 67,
+    "endVerse": 75
+  },
+  "290": {
+    "surahId": 17,
+    "startVerse": 76,
+    "endVerse": 86
+  },
+  "291": {
+    "surahId": 17,
+    "startVerse": 87,
+    "endVerse": 96
+  },
+  "292": {
+    "surahId": 17,
+    "startVerse": 97,
+    "endVerse": 104
+  },
+  "293": {
+    "surahId": 17,
+    "startVerse": 105,
+    "endVerse": 111
+  },
+  "294": {
+    "surahId": 18,
+    "startVerse": 5,
+    "endVerse": 15
+  },
+  "295": {
+    "surahId": 18,
+    "startVerse": 16,
+    "endVerse": 20
+  },
+  "296": {
+    "surahId": 18,
+    "startVerse": 21,
+    "endVerse": 27
+  },
+  "297": {
+    "surahId": 18,
+    "startVerse": 28,
+    "endVerse": 34
+  },
+  "298": {
+    "surahId": 18,
+    "startVerse": 35,
+    "endVerse": 45
+  },
+  "299": {
+    "surahId": 18,
+    "startVerse": 46,
+    "endVerse": 53
+  },
+  "300": {
+    "surahId": 18,
+    "startVerse": 54,
+    "endVerse": 61
+  },
+  "301": {
+    "surahId": 18,
+    "startVerse": 62,
+    "endVerse": 74
+  },
+  "302": {
+    "surahId": 18,
+    "startVerse": 75,
+    "endVerse": 83
+  },
+  "303": {
+    "surahId": 18,
+    "startVerse": 84,
+    "endVerse": 97
+  },
+  "304": {
+    "surahId": 18,
+    "startVerse": 98,
+    "endVerse": 110
+  },
+  "305": {
+    "surahId": 19,
+    "startVerse": 1,
+    "endVerse": 11
+  },
+  "306": {
+    "surahId": 19,
+    "startVerse": 12,
+    "endVerse": 25
+  },
+  "307": {
+    "surahId": 19,
+    "startVerse": 26,
+    "endVerse": 38
+  },
+  "308": {
+    "surahId": 19,
+    "startVerse": 39,
+    "endVerse": 51
+  },
+  "309": {
+    "surahId": 19,
+    "startVerse": 52,
+    "endVerse": 64
+  },
+  "310": {
+    "surahId": 19,
+    "startVerse": 65,
+    "endVerse": 76
+  },
+  "311": {
+    "surahId": 19,
+    "startVerse": 77,
+    "endVerse": 95
+  },
+  "312": {
+    "surahId": 19,
+    "startVerse": 96,
+    "endVerse": 98
+  },
+  "313": {
+    "surahId": 20,
+    "startVerse": 13,
+    "endVerse": 37
+  },
+  "314": {
+    "surahId": 20,
+    "startVerse": 38,
+    "endVerse": 51
+  },
+  "315": {
+    "surahId": 20,
+    "startVerse": 52,
+    "endVerse": 64
+  },
+  "316": {
+    "surahId": 20,
+    "startVerse": 65,
+    "endVerse": 76
+  },
+  "317": {
+    "surahId": 20,
+    "startVerse": 77,
+    "endVerse": 87
+  },
+  "318": {
+    "surahId": 20,
+    "startVerse": 88,
+    "endVerse": 98
+  },
+  "319": {
+    "surahId": 20,
+    "startVerse": 99,
+    "endVerse": 113
+  },
+  "320": {
+    "surahId": 20,
+    "startVerse": 114,
+    "endVerse": 125
+  },
+  "321": {
+    "surahId": 20,
+    "startVerse": 126,
+    "endVerse": 135
+  },
+  "322": {
+    "surahId": 21,
+    "startVerse": 1,
+    "endVerse": 10
+  },
+  "323": {
+    "surahId": 21,
+    "startVerse": 11,
+    "endVerse": 24
+  },
+  "324": {
+    "surahId": 21,
+    "startVerse": 25,
+    "endVerse": 35
+  },
+  "325": {
+    "surahId": 21,
+    "startVerse": 36,
+    "endVerse": 44
+  },
+  "326": {
+    "surahId": 21,
+    "startVerse": 45,
+    "endVerse": 57
+  },
+  "327": {
+    "surahId": 21,
+    "startVerse": 58,
+    "endVerse": 72
+  },
+  "328": {
+    "surahId": 21,
+    "startVerse": 73,
+    "endVerse": 81
+  },
+  "329": {
+    "surahId": 21,
+    "startVerse": 82,
+    "endVerse": 90
+  },
+  "330": {
+    "surahId": 21,
+    "startVerse": 91,
+    "endVerse": 101
+  },
+  "331": {
+    "surahId": 21,
+    "startVerse": 102,
+    "endVerse": 112
+  },
+  "332": {
+    "surahId": 22,
+    "startVerse": 1,
+    "endVerse": 5
+  },
+  "333": {
+    "surahId": 22,
+    "startVerse": 6,
+    "endVerse": 15
+  },
+  "334": {
+    "surahId": 22,
+    "startVerse": 16,
+    "endVerse": 23
+  },
+  "335": {
+    "surahId": 22,
+    "startVerse": 24,
+    "endVerse": 30
+  },
+  "336": {
+    "surahId": 22,
+    "startVerse": 31,
+    "endVerse": 38
+  },
+  "337": {
+    "surahId": 22,
+    "startVerse": 39,
+    "endVerse": 46
+  },
+  "338": {
+    "surahId": 22,
+    "startVerse": 47,
+    "endVerse": 55
+  },
+  "339": {
+    "surahId": 22,
+    "startVerse": 56,
+    "endVerse": 64
+  },
+  "340": {
+    "surahId": 22,
+    "startVerse": 65,
+    "endVerse": 72
+  },
+  "341": {
+    "surahId": 22,
+    "startVerse": 73,
+    "endVerse": 78
+  },
+  "342": {
+    "surahId": 23,
+    "startVerse": 1,
+    "endVerse": 17
+  },
+  "343": {
+    "surahId": 23,
+    "startVerse": 18,
+    "endVerse": 27
+  },
+  "344": {
+    "surahId": 23,
+    "startVerse": 28,
+    "endVerse": 42
+  },
+  "345": {
+    "surahId": 23,
+    "startVerse": 43,
+    "endVerse": 59
+  },
+  "346": {
+    "surahId": 23,
+    "startVerse": 60,
+    "endVerse": 74
+  },
+  "347": {
+    "surahId": 23,
+    "startVerse": 75,
+    "endVerse": 89
+  },
+  "348": {
+    "surahId": 23,
+    "startVerse": 90,
+    "endVerse": 104
+  },
+  "349": {
+    "surahId": 23,
+    "startVerse": 105,
+    "endVerse": 118
+  },
+  "350": {
+    "surahId": 24,
+    "startVerse": 1,
+    "endVerse": 10
+  },
+  "351": {
+    "surahId": 24,
+    "startVerse": 11,
+    "endVerse": 20
+  },
+  "352": {
+    "surahId": 24,
+    "startVerse": 21,
+    "endVerse": 27
+  },
+  "353": {
+    "surahId": 24,
+    "startVerse": 28,
+    "endVerse": 31
+  },
+  "354": {
+    "surahId": 24,
+    "startVerse": 32,
+    "endVerse": 36
+  },
+  "355": {
+    "surahId": 24,
+    "startVerse": 37,
+    "endVerse": 43
+  },
+  "356": {
+    "surahId": 24,
+    "startVerse": 44,
+    "endVerse": 53
+  },
+  "357": {
+    "surahId": 24,
+    "startVerse": 54,
+    "endVerse": 58
+  },
+  "358": {
+    "surahId": 24,
+    "startVerse": 59,
+    "endVerse": 61
+  },
+  "359": {
+    "surahId": 24,
+    "startVerse": 62,
+    "endVerse": 64
+  },
+  "360": {
+    "surahId": 25,
+    "startVerse": 3,
+    "endVerse": 11
+  },
+  "361": {
+    "surahId": 25,
+    "startVerse": 12,
+    "endVerse": 20
+  },
+  "362": {
+    "surahId": 25,
+    "startVerse": 21,
+    "endVerse": 32
+  },
+  "363": {
+    "surahId": 25,
+    "startVerse": 33,
+    "endVerse": 43
+  },
+  "364": {
+    "surahId": 25,
+    "startVerse": 44,
+    "endVerse": 55
+  },
+  "365": {
+    "surahId": 25,
+    "startVerse": 56,
+    "endVerse": 67
+  },
+  "366": {
+    "surahId": 25,
+    "startVerse": 68,
+    "endVerse": 77
+  },
+  "367": {
+    "surahId": 26,
+    "startVerse": 1,
+    "endVerse": 19
+  },
+  "368": {
+    "surahId": 26,
+    "startVerse": 20,
+    "endVerse": 39
+  },
+  "369": {
+    "surahId": 26,
+    "startVerse": 40,
+    "endVerse": 60
+  },
+  "370": {
+    "surahId": 26,
+    "startVerse": 61,
+    "endVerse": 83
+  },
+  "371": {
+    "surahId": 26,
+    "startVerse": 84,
+    "endVerse": 111
+  },
+  "372": {
+    "surahId": 26,
+    "startVerse": 112,
+    "endVerse": 136
+  },
+  "373": {
+    "surahId": 26,
+    "startVerse": 137,
+    "endVerse": 159
+  },
+  "374": {
+    "surahId": 26,
+    "startVerse": 160,
+    "endVerse": 183
+  },
+  "375": {
+    "surahId": 26,
+    "startVerse": 184,
+    "endVerse": 206
+  },
+  "376": {
+    "surahId": 26,
+    "startVerse": 207,
+    "endVerse": 227
+  },
+  "377": {
+    "surahId": 27,
+    "startVerse": 1,
+    "endVerse": 13
+  },
+  "378": {
+    "surahId": 27,
+    "startVerse": 14,
+    "endVerse": 22
+  },
+  "379": {
+    "surahId": 27,
+    "startVerse": 23,
+    "endVerse": 35
+  },
+  "380": {
+    "surahId": 27,
+    "startVerse": 36,
+    "endVerse": 44
+  },
+  "381": {
+    "surahId": 27,
+    "startVerse": 45,
+    "endVerse": 55
+  },
+  "382": {
+    "surahId": 27,
+    "startVerse": 56,
+    "endVerse": 63
+  },
+  "383": {
+    "surahId": 27,
+    "startVerse": 64,
+    "endVerse": 76
+  },
+  "384": {
+    "surahId": 27,
+    "startVerse": 77,
+    "endVerse": 88
+  },
+  "385": {
+    "surahId": 27,
+    "startVerse": 89,
+    "endVerse": 93
+  },
+  "386": {
+    "surahId": 28,
+    "startVerse": 6,
+    "endVerse": 13
+  },
+  "387": {
+    "surahId": 28,
+    "startVerse": 14,
+    "endVerse": 21
+  },
+  "388": {
+    "surahId": 28,
+    "startVerse": 22,
+    "endVerse": 28
+  },
+  "389": {
+    "surahId": 28,
+    "startVerse": 29,
+    "endVerse": 35
+  },
+  "390": {
+    "surahId": 28,
+    "startVerse": 36,
+    "endVerse": 43
+  },
+  "391": {
+    "surahId": 28,
+    "startVerse": 44,
+    "endVerse": 50
+  },
+  "392": {
+    "surahId": 28,
+    "startVerse": 51,
+    "endVerse": 59
+  },
+  "393": {
+    "surahId": 28,
+    "startVerse": 60,
+    "endVerse": 70
+  },
+  "394": {
+    "surahId": 28,
+    "startVerse": 71,
+    "endVerse": 77
+  },
+  "395": {
+    "surahId": 28,
+    "startVerse": 78,
+    "endVerse": 84
+  },
+  "396": {
+    "surahId": 28,
+    "startVerse": 85,
+    "endVerse": 88
+  },
+  "397": {
+    "surahId": 29,
+    "startVerse": 7,
+    "endVerse": 14
+  },
+  "398": {
+    "surahId": 29,
+    "startVerse": 15,
+    "endVerse": 23
+  },
+  "399": {
+    "surahId": 29,
+    "startVerse": 24,
+    "endVerse": 30
+  },
+  "400": {
+    "surahId": 29,
+    "startVerse": 31,
+    "endVerse": 38
+  },
+  "401": {
+    "surahId": 29,
+    "startVerse": 39,
+    "endVerse": 45
+  },
+  "402": {
+    "surahId": 29,
+    "startVerse": 46,
+    "endVerse": 52
+  },
+  "403": {
+    "surahId": 29,
+    "startVerse": 53,
+    "endVerse": 63
+  },
+  "404": {
+    "surahId": 29,
+    "startVerse": 64,
+    "endVerse": 69
+  },
+  "405": {
+    "surahId": 30,
+    "startVerse": 6,
+    "endVerse": 15
+  },
+  "406": {
+    "surahId": 30,
+    "startVerse": 16,
+    "endVerse": 24
+  },
+  "407": {
+    "surahId": 30,
+    "startVerse": 25,
+    "endVerse": 32
+  },
+  "408": {
+    "surahId": 30,
+    "startVerse": 33,
+    "endVerse": 41
+  },
+  "409": {
+    "surahId": 30,
+    "startVerse": 42,
+    "endVerse": 50
+  },
+  "410": {
+    "surahId": 30,
+    "startVerse": 51,
+    "endVerse": 60
+  },
+  "411": {
+    "surahId": 31,
+    "startVerse": 1,
+    "endVerse": 11
+  },
+  "412": {
+    "surahId": 31,
+    "startVerse": 12,
+    "endVerse": 19
+  },
+  "413": {
+    "surahId": 31,
+    "startVerse": 20,
+    "endVerse": 28
+  },
+  "414": {
+    "surahId": 31,
+    "startVerse": 29,
+    "endVerse": 34
+  },
+  "415": {
+    "surahId": 32,
+    "startVerse": 1,
+    "endVerse": 11
+  },
+  "416": {
+    "surahId": 32,
+    "startVerse": 12,
+    "endVerse": 20
+  },
+  "417": {
+    "surahId": 32,
+    "startVerse": 21,
+    "endVerse": 30
+  },
+  "418": {
+    "surahId": 33,
+    "startVerse": 1,
+    "endVerse": 6
+  },
+  "419": {
+    "surahId": 33,
+    "startVerse": 7,
+    "endVerse": 15
+  },
+  "420": {
+    "surahId": 33,
+    "startVerse": 16,
+    "endVerse": 22
+  },
+  "421": {
+    "surahId": 33,
+    "startVerse": 23,
+    "endVerse": 30
+  },
+  "422": {
+    "surahId": 33,
+    "startVerse": 31,
+    "endVerse": 35
+  },
+  "423": {
+    "surahId": 33,
+    "startVerse": 36,
+    "endVerse": 43
+  },
+  "424": {
+    "surahId": 33,
+    "startVerse": 44,
+    "endVerse": 50
+  },
+  "425": {
+    "surahId": 33,
+    "startVerse": 51,
+    "endVerse": 54
+  },
+  "426": {
+    "surahId": 33,
+    "startVerse": 55,
+    "endVerse": 62
+  },
+  "427": {
+    "surahId": 33,
+    "startVerse": 63,
+    "endVerse": 73
+  },
+  "428": {
+    "surahId": 34,
+    "startVerse": 1,
+    "endVerse": 7
+  },
+  "429": {
+    "surahId": 34,
+    "startVerse": 8,
+    "endVerse": 14
+  },
+  "430": {
+    "surahId": 34,
+    "startVerse": 15,
+    "endVerse": 22
+  },
+  "431": {
+    "surahId": 34,
+    "startVerse": 23,
+    "endVerse": 31
+  },
+  "432": {
+    "surahId": 34,
+    "startVerse": 32,
+    "endVerse": 39
+  },
+  "433": {
+    "surahId": 34,
+    "startVerse": 40,
+    "endVerse": 48
+  },
+  "434": {
+    "surahId": 34,
+    "startVerse": 49,
+    "endVerse": 54
+  },
+  "435": {
+    "surahId": 35,
+    "startVerse": 4,
+    "endVerse": 11
+  },
+  "436": {
+    "surahId": 35,
+    "startVerse": 12,
+    "endVerse": 18
+  },
+  "437": {
+    "surahId": 35,
+    "startVerse": 19,
+    "endVerse": 30
+  },
+  "438": {
+    "surahId": 35,
+    "startVerse": 31,
+    "endVerse": 38
+  },
+  "439": {
+    "surahId": 35,
+    "startVerse": 39,
+    "endVerse": 44
+  },
+  "440": {
+    "surahId": 35,
+    "startVerse": 45,
+    "endVerse": 45
+  },
+  "441": {
+    "surahId": 36,
+    "startVerse": 13,
+    "endVerse": 27
+  },
+  "442": {
+    "surahId": 36,
+    "startVerse": 28,
+    "endVerse": 40
+  },
+  "443": {
+    "surahId": 36,
+    "startVerse": 41,
+    "endVerse": 54
+  },
+  "444": {
+    "surahId": 36,
+    "startVerse": 55,
+    "endVerse": 70
+  },
+  "445": {
+    "surahId": 36,
+    "startVerse": 71,
+    "endVerse": 83
+  },
+  "446": {
+    "surahId": 37,
+    "startVerse": 1,
+    "endVerse": 24
+  },
+  "447": {
+    "surahId": 37,
+    "startVerse": 25,
+    "endVerse": 51
+  },
+  "448": {
+    "surahId": 37,
+    "startVerse": 52,
+    "endVerse": 76
+  },
+  "449": {
+    "surahId": 37,
+    "startVerse": 77,
+    "endVerse": 102
+  },
+  "450": {
+    "surahId": 37,
+    "startVerse": 103,
+    "endVerse": 126
+  },
+  "451": {
+    "surahId": 37,
+    "startVerse": 127,
+    "endVerse": 153
+  },
+  "452": {
+    "surahId": 37,
+    "startVerse": 154,
+    "endVerse": 182
+  },
+  "453": {
+    "surahId": 38,
+    "startVerse": 1,
+    "endVerse": 16
+  },
+  "454": {
+    "surahId": 38,
+    "startVerse": 17,
+    "endVerse": 26
+  },
+  "455": {
+    "surahId": 38,
+    "startVerse": 27,
+    "endVerse": 42
+  },
+  "456": {
+    "surahId": 38,
+    "startVerse": 43,
+    "endVerse": 61
+  },
+  "457": {
+    "surahId": 38,
+    "startVerse": 62,
+    "endVerse": 83
+  },
+  "458": {
+    "surahId": 38,
+    "startVerse": 84,
+    "endVerse": 88
+  },
+  "459": {
+    "surahId": 39,
+    "startVerse": 6,
+    "endVerse": 10
+  },
+  "460": {
+    "surahId": 39,
+    "startVerse": 11,
+    "endVerse": 21
+  },
+  "461": {
+    "surahId": 39,
+    "startVerse": 22,
+    "endVerse": 31
+  },
+  "462": {
+    "surahId": 39,
+    "startVerse": 32,
+    "endVerse": 40
+  },
+  "463": {
+    "surahId": 39,
+    "startVerse": 41,
+    "endVerse": 47
+  },
+  "464": {
+    "surahId": 39,
+    "startVerse": 48,
+    "endVerse": 56
+  },
+  "465": {
+    "surahId": 39,
+    "startVerse": 57,
+    "endVerse": 67
+  },
+  "466": {
+    "surahId": 39,
+    "startVerse": 68,
+    "endVerse": 74
+  },
+  "467": {
+    "surahId": 39,
+    "startVerse": 75,
+    "endVerse": 75
+  },
+  "468": {
+    "surahId": 40,
+    "startVerse": 8,
+    "endVerse": 16
+  },
+  "469": {
+    "surahId": 40,
+    "startVerse": 17,
+    "endVerse": 25
+  },
+  "470": {
+    "surahId": 40,
+    "startVerse": 26,
+    "endVerse": 33
+  },
+  "471": {
+    "surahId": 40,
+    "startVerse": 34,
+    "endVerse": 40
+  },
+  "472": {
+    "surahId": 40,
+    "startVerse": 41,
+    "endVerse": 49
+  },
+  "473": {
+    "surahId": 40,
+    "startVerse": 50,
+    "endVerse": 58
+  },
+  "474": {
+    "surahId": 40,
+    "startVerse": 59,
+    "endVerse": 66
+  },
+  "475": {
+    "surahId": 40,
+    "startVerse": 67,
+    "endVerse": 77
+  },
+  "476": {
+    "surahId": 40,
+    "startVerse": 78,
+    "endVerse": 85
+  },
+  "477": {
+    "surahId": 41,
+    "startVerse": 1,
+    "endVerse": 11
+  },
+  "478": {
+    "surahId": 41,
+    "startVerse": 12,
+    "endVerse": 20
+  },
+  "479": {
+    "surahId": 41,
+    "startVerse": 21,
+    "endVerse": 29
+  },
+  "480": {
+    "surahId": 41,
+    "startVerse": 30,
+    "endVerse": 38
+  },
+  "481": {
+    "surahId": 41,
+    "startVerse": 39,
+    "endVerse": 46
+  },
+  "482": {
+    "surahId": 41,
+    "startVerse": 47,
+    "endVerse": 54
+  },
+  "483": {
+    "surahId": 42,
+    "startVerse": 1,
+    "endVerse": 10
+  },
+  "484": {
+    "surahId": 42,
+    "startVerse": 11,
+    "endVerse": 15
+  },
+  "485": {
+    "surahId": 42,
+    "startVerse": 16,
+    "endVerse": 22
+  },
+  "486": {
+    "surahId": 42,
+    "startVerse": 23,
+    "endVerse": 31
+  },
+  "487": {
+    "surahId": 42,
+    "startVerse": 32,
+    "endVerse": 44
+  },
+  "488": {
+    "surahId": 42,
+    "startVerse": 45,
+    "endVerse": 51
+  },
+  "489": {
+    "surahId": 42,
+    "startVerse": 52,
+    "endVerse": 53
+  },
+  "490": {
+    "surahId": 43,
+    "startVerse": 11,
+    "endVerse": 22
+  },
+  "491": {
+    "surahId": 43,
+    "startVerse": 23,
+    "endVerse": 33
+  },
+  "492": {
+    "surahId": 43,
+    "startVerse": 34,
+    "endVerse": 47
+  },
+  "493": {
+    "surahId": 43,
+    "startVerse": 48,
+    "endVerse": 60
+  },
+  "494": {
+    "surahId": 43,
+    "startVerse": 61,
+    "endVerse": 73
+  },
+  "495": {
+    "surahId": 43,
+    "startVerse": 74,
+    "endVerse": 89
+  },
+  "496": {
+    "surahId": 44,
+    "startVerse": 1,
+    "endVerse": 18
+  },
+  "497": {
+    "surahId": 44,
+    "startVerse": 19,
+    "endVerse": 39
+  },
+  "498": {
+    "surahId": 44,
+    "startVerse": 40,
+    "endVerse": 59
+  },
+  "499": {
+    "surahId": 45,
+    "startVerse": 1,
+    "endVerse": 13
+  },
+  "500": {
+    "surahId": 45,
+    "startVerse": 14,
+    "endVerse": 22
+  },
+  "501": {
+    "surahId": 45,
+    "startVerse": 23,
+    "endVerse": 32
+  },
+  "502": {
+    "surahId": 45,
+    "startVerse": 33,
+    "endVerse": 37
+  },
+  "503": {
+    "surahId": 46,
+    "startVerse": 6,
+    "endVerse": 14
+  },
+  "504": {
+    "surahId": 46,
+    "startVerse": 15,
+    "endVerse": 20
+  },
+  "505": {
+    "surahId": 46,
+    "startVerse": 21,
+    "endVerse": 28
+  },
+  "506": {
+    "surahId": 46,
+    "startVerse": 29,
+    "endVerse": 35
+  },
+  "507": {
+    "surahId": 47,
+    "startVerse": 1,
+    "endVerse": 11
+  },
+  "508": {
+    "surahId": 47,
+    "startVerse": 12,
+    "endVerse": 19
+  },
+  "509": {
+    "surahId": 47,
+    "startVerse": 20,
+    "endVerse": 29
+  },
+  "510": {
+    "surahId": 47,
+    "startVerse": 30,
+    "endVerse": 38
+  },
+  "511": {
+    "surahId": 48,
+    "startVerse": 1,
+    "endVerse": 9
+  },
+  "512": {
+    "surahId": 48,
+    "startVerse": 10,
+    "endVerse": 15
+  },
+  "513": {
+    "surahId": 48,
+    "startVerse": 16,
+    "endVerse": 23
+  },
+  "514": {
+    "surahId": 48,
+    "startVerse": 24,
+    "endVerse": 28
+  },
+  "515": {
+    "surahId": 48,
+    "startVerse": 29,
+    "endVerse": 29
+  },
+  "516": {
+    "surahId": 49,
+    "startVerse": 5,
+    "endVerse": 11
+  },
+  "517": {
+    "surahId": 49,
+    "startVerse": 12,
+    "endVerse": 18
+  },
+  "518": {
+    "surahId": 50,
+    "startVerse": 1,
+    "endVerse": 15
+  },
+  "519": {
+    "surahId": 50,
+    "startVerse": 16,
+    "endVerse": 35
+  },
+  "520": {
+    "surahId": 50,
+    "startVerse": 36,
+    "endVerse": 45
+  },
+  "521": {
+    "surahId": 51,
+    "startVerse": 7,
+    "endVerse": 30
+  },
+  "522": {
+    "surahId": 51,
+    "startVerse": 31,
+    "endVerse": 51
+  },
+  "523": {
+    "surahId": 51,
+    "startVerse": 52,
+    "endVerse": 60
+  },
+  "524": {
+    "surahId": 52,
+    "startVerse": 15,
+    "endVerse": 31
+  },
+  "525": {
+    "surahId": 52,
+    "startVerse": 32,
+    "endVerse": 49
+  },
+  "526": {
+    "surahId": 53,
+    "startVerse": 1,
+    "endVerse": 26
+  },
+  "527": {
+    "surahId": 53,
+    "startVerse": 27,
+    "endVerse": 44
+  },
+  "528": {
+    "surahId": 53,
+    "startVerse": 45,
+    "endVerse": 62
+  },
+  "529": {
+    "surahId": 54,
+    "startVerse": 7,
+    "endVerse": 27
+  },
+  "530": {
+    "surahId": 54,
+    "startVerse": 28,
+    "endVerse": 49
+  },
+  "531": {
+    "surahId": 54,
+    "startVerse": 50,
+    "endVerse": 55
+  },
+  "532": {
+    "surahId": 55,
+    "startVerse": 19,
+    "endVerse": 41
+  },
+  "533": {
+    "surahId": 55,
+    "startVerse": 42,
+    "endVerse": 69
+  },
+  "534": {
+    "surahId": 55,
+    "startVerse": 70,
+    "endVerse": 78
+  },
+  "535": {
+    "surahId": 56,
+    "startVerse": 17,
+    "endVerse": 50
+  },
+  "536": {
+    "surahId": 56,
+    "startVerse": 51,
+    "endVerse": 76
+  },
+  "537": {
+    "surahId": 56,
+    "startVerse": 77,
+    "endVerse": 96
+  },
+  "538": {
+    "surahId": 57,
+    "startVerse": 4,
+    "endVerse": 11
+  },
+  "539": {
+    "surahId": 57,
+    "startVerse": 12,
+    "endVerse": 18
+  },
+  "540": {
+    "surahId": 57,
+    "startVerse": 19,
+    "endVerse": 24
+  },
+  "541": {
+    "surahId": 57,
+    "startVerse": 25,
+    "endVerse": 29
+  },
+  "542": {
+    "surahId": 58,
+    "startVerse": 1,
+    "endVerse": 6
+  },
+  "543": {
+    "surahId": 58,
+    "startVerse": 7,
+    "endVerse": 11
+  },
+  "544": {
+    "surahId": 58,
+    "startVerse": 12,
+    "endVerse": 21
+  },
+  "545": {
+    "surahId": 58,
+    "startVerse": 22,
+    "endVerse": 22
+  },
+  "546": {
+    "surahId": 59,
+    "startVerse": 4,
+    "endVerse": 9
+  },
+  "547": {
+    "surahId": 59,
+    "startVerse": 10,
+    "endVerse": 16
+  },
+  "548": {
+    "surahId": 59,
+    "startVerse": 17,
+    "endVerse": 24
+  },
+  "549": {
+    "surahId": 60,
+    "startVerse": 1,
+    "endVerse": 5
+  },
+  "550": {
+    "surahId": 60,
+    "startVerse": 6,
+    "endVerse": 11
+  },
+  "551": {
+    "surahId": 60,
+    "startVerse": 12,
+    "endVerse": 13
+  },
+  "552": {
+    "surahId": 61,
+    "startVerse": 6,
+    "endVerse": 14
+  },
+  "553": {
+    "surahId": 62,
+    "startVerse": 1,
+    "endVerse": 8
+  },
+  "554": {
+    "surahId": 62,
+    "startVerse": 9,
+    "endVerse": 11
+  },
+  "555": {
+    "surahId": 63,
+    "startVerse": 5,
+    "endVerse": 11
+  },
+  "556": {
+    "surahId": 64,
+    "startVerse": 1,
+    "endVerse": 9
+  },
+  "557": {
+    "surahId": 64,
+    "startVerse": 10,
+    "endVerse": 18
+  },
+  "558": {
+    "surahId": 65,
+    "startVerse": 1,
+    "endVerse": 5
+  },
+  "559": {
+    "surahId": 65,
+    "startVerse": 6,
+    "endVerse": 12
+  },
+  "560": {
+    "surahId": 66,
+    "startVerse": 1,
+    "endVerse": 7
+  },
+  "561": {
+    "surahId": 66,
+    "startVerse": 8,
+    "endVerse": 12
+  },
+  "562": {
+    "surahId": 67,
+    "startVerse": 1,
+    "endVerse": 12
+  },
+  "563": {
+    "surahId": 67,
+    "startVerse": 13,
+    "endVerse": 26
+  },
+  "564": {
+    "surahId": 67,
+    "startVerse": 27,
+    "endVerse": 30
+  },
+  "565": {
+    "surahId": 68,
+    "startVerse": 17,
+    "endVerse": 42
+  },
+  "566": {
+    "surahId": 68,
+    "startVerse": 43,
+    "endVerse": 52
+  },
+  "567": {
+    "surahId": 69,
+    "startVerse": 9,
+    "endVerse": 35
+  },
+  "568": {
+    "surahId": 69,
+    "startVerse": 36,
+    "endVerse": 52
+  },
+  "569": {
+    "surahId": 70,
+    "startVerse": 11,
+    "endVerse": 40
+  },
+  "570": {
+    "surahId": 70,
+    "startVerse": 41,
+    "endVerse": 44
+  },
+  "571": {
+    "surahId": 71,
+    "startVerse": 11,
+    "endVerse": 28
+  },
+  "572": {
+    "surahId": 72,
+    "startVerse": 1,
+    "endVerse": 13
+  },
+  "573": {
+    "surahId": 72,
+    "startVerse": 14,
+    "endVerse": 28
+  },
+  "574": {
+    "surahId": 73,
+    "startVerse": 1,
+    "endVerse": 19
+  },
+  "575": {
+    "surahId": 73,
+    "startVerse": 20,
+    "endVerse": 20
+  },
+  "576": {
+    "surahId": 74,
+    "startVerse": 19,
+    "endVerse": 47
+  },
+  "577": {
+    "surahId": 74,
+    "startVerse": 48,
+    "endVerse": 56
+  },
+  "578": {
+    "surahId": 75,
+    "startVerse": 20,
+    "endVerse": 40
+  },
+  "579": {
+    "surahId": 76,
+    "startVerse": 6,
+    "endVerse": 25
+  },
+  "580": {
+    "surahId": 76,
+    "startVerse": 26,
+    "endVerse": 31
+  },
+  "581": {
+    "surahId": 77,
+    "startVerse": 20,
+    "endVerse": 50
+  },
+  "582": {
+    "surahId": 78,
+    "startVerse": 1,
+    "endVerse": 30
+  },
+  "583": {
+    "surahId": 78,
+    "startVerse": 31,
+    "endVerse": 40
+  },
+  "584": {
+    "surahId": 79,
+    "startVerse": 17,
+    "endVerse": 46
+  },
+  "585": {
+    "surahId": 80,
+    "startVerse": 1,
+    "endVerse": 40
+  },
+  "586": {
+    "surahId": 80,
+    "startVerse": 41,
+    "endVerse": 42
+  },
+  "587": {
+    "surahId": 82,
+    "startVerse": 1,
+    "endVerse": 19
+  },
+  "588": {
+    "surahId": 83,
+    "startVerse": 5,
+    "endVerse": 33
+  },
+  "589": {
+    "surahId": 83,
+    "startVerse": 34,
+    "endVerse": 36
+  },
+  "590": {
+    "surahId": 84,
+    "startVerse": 25,
+    "endVerse": 25
+  },
+  "591": {
+    "surahId": 86,
+    "startVerse": 1,
+    "endVerse": 17
+  },
+  "592": {
+    "surahId": 87,
+    "startVerse": 11,
+    "endVerse": 19
+  },
+  "593": {
+    "surahId": 88,
+    "startVerse": 23,
+    "endVerse": 26
+  },
+  "594": {
+    "surahId": 89,
+    "startVerse": 23,
+    "endVerse": 30
+  },
+  "595": {
+    "surahId": 90,
+    "startVerse": 19,
+    "endVerse": 20
+  },
+  "596": {
+    "surahId": 92,
+    "startVerse": 10,
+    "endVerse": 21
+  },
+  "597": {
+    "surahId": 94,
+    "startVerse": 3,
+    "endVerse": 8
+  },
+  "598": {
+    "surahId": 96,
+    "startVerse": 13,
+    "endVerse": 19
+  },
+  "599": {
+    "surahId": 98,
+    "startVerse": 6,
+    "endVerse": 8
+  },
+  "600": {
+    "surahId": 100,
+    "startVerse": 6,
+    "endVerse": 11
+  },
+  "601": {
+    "surahId": 103,
+    "startVerse": 1,
+    "endVerse": 3
+  },
+  "602": {
+    "surahId": 106,
+    "startVerse": 1,
+    "endVerse": 4
+  },
+  "603": {
+    "surahId": 109,
+    "startVerse": 1,
+    "endVerse": 6
+  },
+  "604": {
+    "surahId": 112,
+    "startVerse": 1,
+    "endVerse": 4
+  }
+}

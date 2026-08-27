@@ -106,10 +106,10 @@
 
 ### Implementation for User Story 4
 
-- [ ] T021 [P] [US4] Delete old `.bat` and `.lnk` files in the repository root (`start-all.bat`, etc.).
-- [ ] T022 [P] [US4] Update root `README.md` to describe the new `human-assister` architecture, data externalization, and setup steps. Delete `facebook_poster/README.md`.
-- [ ] T023 [US4] Remove the existing `.git/` folder to detach from the old repository history.
-- [ ] T024 [US4] Run `git init`, `git add .`, and `git commit -m "Initial commit for human-assister restructure"`.
+- [X] T021 [P] [US4] Delete old `.bat` and `.lnk` files in the repository root (`start-all.bat`, etc.).
+- [X] T022 [P] [US4] Update root `README.md` to describe the new `KhayrShare` architecture, data externalization, and setup steps. Delete `facebook_poster/README.md`.
+- [X] T023 [US4] Remove the existing `.git/` folder to detach from the old repository history.
+- [X] T024 [US4] Initialize a fresh Git repository, add all files, and perform the first commit as "KhayrShare".
 
 **Checkpoint**: New git repository ready.
 
@@ -119,8 +119,8 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T025 [P] Run quickstart.md validation manually to ensure a user can bootstrap the application.
-- [ ] T026 Code cleanup: format all JS files with `prettier` or standard configuration.
+- [X] T025 [P] Run quickstart.md validation manually to ensure a user can bootstrap the application.
+- [X] T026 Code cleanup: format all JS files with `prettier` or standard configuration.
 
 ---
 

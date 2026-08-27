@@ -14,6 +14,10 @@ const GROUP_USAGE_FILE = path.join(OUTPUT_PATH, "group_usage.json");
 
 const SUGGESTIONS_DIR = OUTPUT_PATH;
 const PENDING_TXT_FILE = path.join(SUGGESTIONS_DIR, "next_post.txt");
+const DAILY_GROUP_SUGGESTIONS_FILE = path.join(
+  OUTPUT_PATH,
+  "daily_group_suggestions.json",
+);
 
 function ensureSuggestionsDir() {
   if (!fs.existsSync(SUGGESTIONS_DIR)) {
@@ -51,6 +55,41 @@ function safeUnlink(filePath) {
   try {
     if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
   } catch {}
+}
+
+/**
+ * Load daily group suggestions tracker.
+ * Returns { date: "YYYY-MM-DD", suggestedUrls: [] } — reset if missing, corrupt, or stale.
+ */
+function loadDailyGroupSuggestions() {
+  const today = DateTime.now().setZone("local").toISODate();
+  const data = readJson(DAILY_GROUP_SUGGESTIONS_FILE, null);
+
+  if (!data || data.date !== today) {
+    return { date: today, suggestedUrls: [] };
+  }
+
+  // Graceful fallback: if suggestedUrls is present but not an array, reset with warning
+  if (data.suggestedUrls !== undefined && !Array.isArray(data.suggestedUrls)) {
+    console.warn(
+      "[manual-assist] daily_group_suggestions.json has invalid suggestedUrls — resetting to []",
+    );
+    data.suggestedUrls = [];
+  }
+
+  return data;
+}
+
+/**
+ * Append a group URL to the daily group suggestions tracker and persist.
+ */
+function appendDailyGroupSuggestion(groupUrl) {
+  const state = loadDailyGroupSuggestions();
+  state.suggestedUrls.push(groupUrl);
+  writeJson(DAILY_GROUP_SUGGESTIONS_FILE, state);
+  console.log(
+    `[manual-assist] Recorded group suggestion for within-day dampening: ${groupUrl}`,
+  );
 }
 
 function ensureTodayHistory(config) {
@@ -174,36 +213,47 @@ function ensureServerStarted(config) {
 }
 
 function formatSuggestionText(suggestion) {
-  const cleanSuggestion = { ...suggestion };
+  const sep = "─".repeat(60);
+  const group = suggestion.group || {};
+  const content = suggestion.content || {};
 
-  // 1. Ensure the internal string uses single backslashes
-  if (cleanSuggestion.content && cleanSuggestion.content.imagePath) {
-    cleanSuggestion.content.imagePath =
-      cleanSuggestion.content.imagePath.replace(/\//g, "\\");
-  }
-
-  // 2. Stringify the object
-  let jsonString = JSON.stringify(cleanSuggestion, null, 2);
-
-  // 3. Post-process the string to convert double backslashes back to single
-  // This looks for "\\" in the string and turns them into "\"
-  return jsonString.replace(/\\\\/g, "\\");
+  return [
+    `[ KhayrShare Facebook Suggestion ]`,
+    `Generated: ${suggestion.createdAt || ""}  |  Day: ${suggestion.day || ""}`,
+    sep,
+    ``,
+    `[ FACEBOOK GROUP ]`,
+    group.name || "",
+    group.url || "",
+    ``,
+    sep,
+    `[ CAPTION TO PASTE ]`,
+    content.caption || "(no caption)",
+    ``,
+    sep,
+    `[ IMAGE FILE PATH ]`,
+    content.imagePath || content.image || "",
+    ``,
+    sep,
+    `[ STATUS ]`,
+    `Mark as done: change finishedPosting to true, then save this file.`,
+    `finishedPosting: ${suggestion.finishedPosting ? "true" : "false"}`,
+  ].join("\n");
 }
 
 function showToast(config, title, message, groupUrl) {
   return new Promise((resolve) => {
     const txtPath = path.resolve(PENDING_TXT_FILE);
 
-    console.log("[manual-assist] Showing toast notification.");
-    logVerbose(config, "Toast will open:", txtPath);
-
+    /*
+    // 1. Notify (non-blocking)
     notifier.notify(
       {
         title: title,
         message: message,
-        appID: "content-suggester",
-        wait: true,
-        timeout: 15,
+        appID: "KhayrShare",
+        wait: false,
+        timeout: 10,
       },
       (err, response) => {
         if (err) {
@@ -214,52 +264,37 @@ function showToast(config, title, message, groupUrl) {
         } else {
           logVerbose(config, "Toast response:", response);
         }
-
-        if (!err) {
-          logVerbose(config, `Debug: groupUrl is '${groupUrl}'`);
-
-          // Open PENDING_TXT_FILE with default opener
-          if (fs.existsSync(txtPath)) {
-            const openFileCmd =
-              process.platform === "win32"
-                ? `start "" "${txtPath}"`
-                : process.platform === "darwin"
-                  ? `open "${txtPath}"`
-                  : `xdg-open "${txtPath}"`;
-
-            logVerbose(config, `Executing file open command: ${openFileCmd}`);
-            exec(openFileCmd, { windowsHide: true });
-          }
-
-          // Open Group URL if available
-          if (groupUrl) {
-            const openBrowserCmd =
-              process.platform === "win32"
-                ? `start "" "${groupUrl}"`
-                : process.platform === "darwin"
-                  ? `open "${groupUrl}"`
-                  : `xdg-open "${groupUrl}"`;
-
-            logVerbose(config, `Executing browser command: ${openBrowserCmd}`);
-
-            exec(openBrowserCmd, { windowsHide: true }, (browserErr) => {
-              if (browserErr) {
-                console.log(
-                  "[manual-assist] Open browser error:",
-                  browserErr && browserErr.message
-                    ? browserErr.message
-                    : browserErr,
-                );
-              } else {
-                logVerbose(config, "Opened browser:", groupUrl);
-              }
-            });
-          }
-        }
-
-        resolve();
       },
     );
+    */
+
+    // 2. Open text file in default text editor
+    if (fs.existsSync(txtPath)) {
+      const openFileCmd =
+        process.platform === "win32"
+          ? `explorer.exe "${txtPath}"`
+          : process.platform === "darwin"
+            ? `open "${txtPath}"`
+            : `xdg-open "${txtPath}"`;
+
+      logVerbose(config, `Executing file open command: ${openFileCmd}`);
+      exec(openFileCmd, { windowsHide: true, shell: true });
+    }
+
+    // 3. Open Facebook group link in default browser
+    if (groupUrl) {
+      const openBrowserCmd =
+        process.platform === "win32"
+          ? `start "" "${groupUrl}"`
+          : process.platform === "darwin"
+            ? `open "${groupUrl}"`
+            : `xdg-open "${groupUrl}"`;
+
+      logVerbose(config, `Executing browser open command: ${openBrowserCmd}`);
+      exec(openBrowserCmd, { windowsHide: true, shell: true });
+    }
+
+    resolve();
   });
 }
 
@@ -282,6 +317,7 @@ function selectSuggestion(config, history, currentDay) {
   }
 
   const usageData = readJson(GROUP_USAGE_FILE, {});
+  const dailySuggestions = loadDailyGroupSuggestions();
 
   while (pool.length > 0) {
     // --- WEIGHTED RANDOM SELECTION START ---
@@ -304,6 +340,15 @@ function selectSuggestion(config, history, currentDay) {
       // REDUCE FREQUENCY FOR QURAN GROUPS
       if (group.categories && group.categories.includes("quran")) {
         weight = weight * 0.3;
+      }
+
+      // NEW: within-day dampening — groups suggested today get drastically reduced weight
+      const dampeningFactor = config.settings?.sameDayDampeningFactor ?? 0.1;
+      if (dailySuggestions.suggestedUrls.includes(group.url)) {
+        weight *= dampeningFactor;
+        console.log(
+          `[DEBUG] Group ${group.name} dampened (suggested today): weight now ${weight.toFixed(2)}`,
+        );
       }
 
       return { group, weight };
@@ -478,17 +523,14 @@ async function createPendingSuggestion(config) {
   // Check if there's a pending suggestion that is NOT finishedPosting
   if (hasPendingSuggestion()) {
     const txtContent = fs.readFileSync(PENDING_TXT_FILE, "utf8");
-    try {
-      const pending = JSON.parse(txtContent.replace(/\\/g, "\\\\"));
-      if (pending && pending.finishedPosting !== true) {
-        logVerbose(
-          config,
-          "Pending suggestion exists and not finishedPosting; not creating another.",
-        );
-        return null;
-      }
-    } catch {
-      // If JSON is malformed, treat as no pending suggestion
+    // Check the plain-text status line
+    const isDone = /finishedPosting:\s*true/i.test(txtContent);
+    if (!isDone) {
+      logVerbose(
+        config,
+        "Pending suggestion exists and not finishedPosting; not creating another.",
+      );
+      return null;
     }
   }
 
@@ -508,6 +550,9 @@ async function createPendingSuggestion(config) {
   suggestion.finishedPosting = false;
 
   fs.writeFileSync(PENDING_TXT_FILE, formatSuggestionText(suggestion), "utf8");
+
+  // Track this suggestion in the within-day dampening tracker
+  appendDailyGroupSuggestion(suggestion.group.url);
 
   console.log("[manual-assist] Created new pending suggestion:", {
     group: suggestion.group.name || suggestion.group.url,
@@ -559,16 +604,43 @@ function markDone() {
   }
 
   const txtContent = fs.readFileSync(PENDING_TXT_FILE, "utf8");
-  let pending;
-  try {
-    pending = JSON.parse(txtContent);
-  } catch {
-    console.log("Pending suggestion file is not valid JSON.");
-    return false;
-  }
+
+  // Parse the plain-text format
+  const getLine = (label) => {
+    const lines = txtContent.split("\n");
+    const idx = lines.findIndex((l) => l.trim() === `[ ${label} ]`);
+    if (idx === -1) return null;
+    // Return the first non-empty line after the label
+    for (let i = idx + 1; i < lines.length; i++) {
+      const v = lines[i].trim();
+      if (v && !v.startsWith("[") && !v.startsWith("─")) return v;
+    }
+    return null;
+  };
+
+  const groupUrl = getLine("FACEBOOK GROUP") ? null : null; // url is second non-sep line after label
+  // Extract group URL specifically (second content line under [ FACEBOOK GROUP ])
+  const groupSection = txtContent.match(
+    /\[ FACEBOOK GROUP \][\s\S]*?\n([^\n]+)\n([^\n]+)/,
+  );
+  const parsedGroupName = groupSection ? groupSection[1].trim() : null;
+  const parsedGroupUrl = groupSection ? groupSection[2].trim() : null;
+
+  const imageSection = txtContent.match(
+    /\[ IMAGE FILE PATH \][\s\S]*?\n([^\n─\[]+)/,
+  );
+  const parsedImage = imageSection ? imageSection[1].trim() : null;
+
+  const isDone = /finishedPosting:\s*true/i.test(txtContent);
+
+  const pending = {
+    group: { url: parsedGroupUrl, name: parsedGroupName },
+    content: { image: parsedImage, isPriority: false },
+    finishedPosting: isDone,
+  };
 
   // If finishedPosting is true, clear the pending suggestion and update history
-  if (pending.finishedPosting === true) {
+  if (isDone) {
     const groupUrl = pending.group?.url;
     const contentImage = pending.content?.image;
 
