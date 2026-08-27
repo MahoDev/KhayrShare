@@ -5014,7 +5014,7 @@ index 6495624..8d17980 100644
 +                    if (charCount > T600) {
 +                      // Extremely long verses (e.g. Al-Baqarah 282: 1110+ chars)
 +                      fontSize = Math.round(baseFontSize * 0.6);
-+                      maxCharsPerLine = Math.round(160 * widthScale);
++                      maxCharsPerLine = Math.round(155 * widthScale);
 +                    } else if (charCount > T350) {
 +                      // Long verses (350-600 chars) ΓÇö moderate sizing to avoid excessive empty space
 +                      fontSize = Math.round(baseFontSize * 0.65);

@@ -377,16 +377,16 @@ class VideoGenerator {
                     } else if (charCount > T350) {
                       // Long verses (350-600 chars) — moderate sizing to avoid excessive empty space
                       fontSize = Math.round(baseFontSize * 0.65);
-                      maxCharsPerLine = Math.round(155 * widthScale);
+                      maxCharsPerLine = Math.round(150 * widthScale);
                     } else if (charCount > T180) {
                       fontSize = Math.round(baseFontSize * 0.75);
                       maxCharsPerLine = Math.round(125 * widthScale);
                     } else if (charCount > T120) {
                       fontSize = Math.round(baseFontSize * 0.88);
-                      maxCharsPerLine = Math.round(105 * widthScale);
+                      maxCharsPerLine = Math.round(103 * widthScale);
                     } else if (charCount > T70) {
                       fontSize = Math.round(baseFontSize * 0.95);
-                      maxCharsPerLine = Math.round(100 * widthScale);
+                      maxCharsPerLine = Math.round(97 * widthScale);
                     }
 
                     // Wrap text into multiple lines — use slightly wider padding to fit more chars
@@ -556,6 +556,14 @@ class VideoGenerator {
   }
 
   async createVideo(audioPath, backgroundPath, metadata = {}) {
+    // Verify audio file exists before running ffmpeg
+    if (!audioPath || !fs.existsSync(audioPath)) {
+      throw new Error(
+        `Audio file not found: ${audioPath || "(empty path)"}. ` +
+          `The merged audio may have failed to generate or was cleaned up prematurely.`,
+      );
+    }
+
     const sanitize = (s) =>
       (s || "")
         .toString()
@@ -657,6 +665,14 @@ class VideoGenerator {
     outputPath,
     timestamp,
   ) {
+    // Verify audio file exists before running ffmpeg
+    if (!audioPath || !fs.existsSync(audioPath)) {
+      throw new Error(
+        `Audio file not found: ${audioPath || "(empty path)"}. ` +
+          `The merged audio may have failed to generate or was cleaned up prematurely.`,
+      );
+    }
+
     const verseTimings = metadata.verseTimings || [];
     const bgExt = path.extname(backgroundPath).toLowerCase();
     const isVideo = [".mp4", ".mov", ".webm"].includes(bgExt);
@@ -671,8 +687,12 @@ class VideoGenerator {
     const totalAudioSec = lastVerse
       ? ((lastVerse.startTimeMs || 0) + (lastVerse.durationMs || 5000)) / 1000
       : 10;
-    // Total video = audio duration + 2 extra seconds for clean tail
-    const totalVideoSec = totalAudioSec + 2.0;
+
+    const isVertical = this.height > this.width;
+
+    // Total video = audio duration + 2 extra seconds for clean tail (skip tail for vertical videos)
+    const tailSec = isVertical ? 0 : 2.0;
+    const totalVideoSec = totalAudioSec + tailSec;
     // Fade out smoothly over 1 second starting at the audio end time
     // so overlays fade to black, then 1 more second of pure black
     const fadeStartSec = totalAudioSec;
@@ -707,11 +727,15 @@ class VideoGenerator {
       filter += `;${prevLabel}[${inputIdx}:v]overlay=0:0:enable='between(t,${startSec},${endSec})'[bg${i}]`;
     }
 
-    // After last overlay, add fade-out to black for smooth ending
-    const lastLabel =
-      overlayPaths.length > 0 ? `[bg${overlayPaths.length - 1}]` : "[bg]";
-    const fadedLabel = "faded";
-    filter += `;${lastLabel}fade=out:st=${fadeStartSec}:d=1.0[${fadedLabel}]`;
+    // After last overlay, add fade-out to black for smooth ending (skip for vertical videos)
+    const lastLabelName =
+      overlayPaths.length > 0 ? `bg${overlayPaths.length - 1}` : "bg";
+    let finalLabel = lastLabelName;
+
+    if (!isVertical) {
+      finalLabel = "faded";
+      filter += `;[${lastLabelName}]fade=out:st=${fadeStartSec}:d=1.0[${finalLabel}]`;
+    }
 
     // Build input arguments
     let inputs = "";
@@ -730,7 +754,7 @@ class VideoGenerator {
 
     const command =
       `ffmpeg -y ${inputs} ` +
-      `-filter_complex "${filter}" -map "[${fadedLabel}]" -map "${overlayPaths.length + 1}:a" ` +
+      `-filter_complex "${filter}" -map "[${finalLabel}]" -map "${overlayPaths.length + 1}:a" ` +
       `-c:v libx264 -tune ${tune} -preset medium -crf 18 -c:a aac -b:a 192k ` +
       `-pix_fmt yuv420p -movflags +faststart -t ${totalVideoSec} "${outputPath}"`;
 
