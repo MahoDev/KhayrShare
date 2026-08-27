@@ -887,8 +887,14 @@ class ContentFetcher {
       let cumulativeRemoved = 0;
       for (const r of removals) {
         if (r.originalStart < origStartSec) {
-          // This removal happened before the verse start.
-          cumulativeRemoved += r.removedSec;
+          const removalEnd = r.originalStart + r.removedSec;
+          if (removalEnd <= origStartSec) {
+            // The entire removal happened before the verse start.
+            cumulativeRemoved += r.removedSec;
+          } else {
+            // The removal overlaps the verse start. Only subtract the portion that came before it.
+            cumulativeRemoved += (origStartSec - r.originalStart);
+          }
         }
       }
       return {
