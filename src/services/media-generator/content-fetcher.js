@@ -70,14 +70,6 @@ class ContentFetcher {
         this.config = {};
       }
     }
-
-    // Keep the on-disk service config around too. Some callers build a *partial*
-    // `config` object (e.g. `{ excludedReciters: [...] }`), so audio settings read
-    // from the real config file rather than the partial one.
-    const fileConfigPath = path.join(__dirname, "config.json");
-    this.fileConfig = fs.existsSync(fileConfigPath)
-      ? JSON.parse(fs.readFileSync(fileConfigPath, "utf8"))
-      : {};
   }
 
   /**
@@ -699,71 +691,6 @@ class ContentFetcher {
   }
 
   /**
-   * Trim long silent gaps out of a single audio file so the final videos don't
-   * contain jarring empty waiting periods.
-   *
-   * Uses FFmpeg's `silenceremove` filter:
-   *  - `stop_periods=-1` removes silenced periods throughout the file (edges
-   *    and interior), not just leading/trailing silence.
-   *  - Each removed gap is clamped down to ~`minSilenceSec` (a natural breath),
-   *    so short spoken pauses are preserved while long empty waits disappear.
-   *  - `keepEdgeSec` keeps a small amount of silence at the edges of every cut,
-   *    so the recitation never sounds abruptly clipped.
-   *
-   * Returns the path of the trimmed file, or `null` if trimming is disabled or
-   * failed (caller falls back to the original file — never breaks generation).
-   * @param {string} filePath - Absolute path to the source audio file.
-   * @param {object} settings - `{ enabled, minSilenceSec, keepEdgeSec, thresholdDb }`
-   * @returns {Promise<string|null>}
-   */
-  async removeSilence(filePath, settings) {
-    // Disabled unless explicitly toggled on, but if `.enabled` is omitted the
-    // feature stays ON (the service now removes long silent gaps by default).
-    if (!settings || settings.enabled === false) return null;
-
-    const minSilenceSec = Number(settings.minSilenceSec);
-    const minSilence = Number.isFinite(minSilenceSec) && minSilenceSec >= 0 ? minSilenceSec : 0.32;
-    const keepEdgeSec = Number(settings.keepEdgeSec);
-    const keepEdge = Number.isFinite(keepEdgeSec) && keepEdgeSec >= 0 ? keepEdgeSec : 0.05;
-    const thresholdDb = Number(settings.thresholdDb);
-    const threshold = Number.isFinite(thresholdDb) ? thresholdDb : -45;
-
-    // Guard against near-empty / unusual files being trimmed into nothing.
-    const startDur = Math.min(Math.max(keepEdge, 0.05), 0.4);
-
-    const outPath = filePath.replace(/\.mp3$/i, "") + "_trimmed.mp3";
-    const af =
-      "silenceremove=" +
-      `start_periods=1:start_silence=${keepEdge}:start_duration=${startDur}:start_threshold=${threshold}dB` +
-      `:stop_periods=-1:stop_duration=${minSilence}:stop_threshold=${threshold}dB:stop_silence=${keepEdge}`;
-    const command = `ffmpeg -y -i "${filePath}" -af "${af}" -c:a libmp3lame -q:a 2 "${outPath}"`;
-
-    return new Promise((resolve) => {
-      exec(command, { windowsHide: true }, async (error) => {
-        if (error) {
-          console.warn(
-            `[Fetcher] Silence removal failed for ${path.basename(filePath)} (${error.message}). Using original audio.`,
-          );
-          try {
-            fs.unlinkSync(outPath);
-          } catch (e) {}
-          return resolve(null);
-        }
-        const dur = await this.getAudioDuration(outPath);
-        // If the result is unexpectedly empty/broken, fall back to the original.
-        if (Number.isFinite(dur) && dur >= 300) {
-          resolve(outPath);
-        } else {
-          try {
-            fs.unlinkSync(outPath);
-          } catch (e) {}
-          resolve(null);
-        }
-      });
-    });
-  }
-
-  /**
    * Download all audio files for the Ruku and merge them
    * Returns the merged audio path and verse timing metadata
    */
@@ -773,10 +700,6 @@ class ContentFetcher {
 
     // 1. Download all files
     console.log(`Downloading ${verses.length} audio segments...`);
-
-    // Silence-removal settings (long pauses removed from the final audio).
-    const silenceSettings = this.fileConfig.audio?.silenceRemoval || {};
-
     let accumulatedStartMs = 0;
     for (const v of verses) {
       const fileName = `part_${Date.now()}_${v.numberInSurah}.mp3`;
@@ -806,17 +729,8 @@ class ContentFetcher {
         }
       }
 
-      // 1a. Strip long silent waiting periods (this verse's own audio), keeping a
-      // small edge at every cut. Timing is measured AFTER trimming, so the verse
-      // timings stay in sync with the actual (shortened) audio for verse-display.
-      let audioPath = filePath;
-      if (silenceSettings.enabled !== false) {
-        const trimmed = await this.removeSilence(filePath, silenceSettings);
-        if (trimmed) audioPath = trimmed;
-      }
-
-      // Get duration for this verse (post-trim when applicable)
-      const durationMs = await this.getAudioDuration(audioPath);
+      // Get duration for this verse
+      const durationMs = await this.getAudioDuration(filePath);
       verseTimings.push({
         numberInSurah: v.numberInSurah,
         text: v.text,
@@ -826,7 +740,6 @@ class ContentFetcher {
       accumulatedStartMs += durationMs;
 
       filePaths.push(filePath);
-      if (audioPath !== filePath) filePaths.push(audioPath);
     }
 
     // 2. Create concat list
